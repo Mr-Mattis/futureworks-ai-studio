@@ -1,0 +1,17 @@
+test_all_100_state_pairs (__main__.StateTests.test_all_100_state_pairs) ... ok
+test_complete_path_retains_identifiers (__main__.StateTests.test_complete_path_retains_identifiers) ... ok
+test_each_gate_is_required (__main__.StateTests.test_each_gate_is_required) ... ok
+test_human_gates_reject_services_and_agents (__main__.StateTests.test_human_gates_reject_services_and_agents) ... ok
+test_malformed_history (__main__.StateTests.test_malformed_history) ... ok
+test_manifest_contract_compatibility (__main__.StateTests.test_manifest_contract_compatibility) ... ok
+test_no_mutation_on_success_or_failure (__main__.StateTests.test_no_mutation_on_success_or_failure) ... ok
+test_publishing_needs_confirmation_not_just_approval (__main__.StateTests.test_publishing_needs_confirmation_not_just_approval) ... ok
+test_receipts_fail_closed (__main__.StateTests.test_receipts_fail_closed) ... ok
+test_resolver_required_and_unavailable (__main__.StateTests.test_resolver_required_and_unavailable) ... ok
+test_schemas (__main__.StateTests.test_schemas) ... ok
+test_stale_version_and_revision_changes (__main__.StateTests.test_stale_version_and_revision_changes) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.065s
+
+OK

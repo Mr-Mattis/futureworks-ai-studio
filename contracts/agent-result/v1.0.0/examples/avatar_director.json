@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "result_id": "fixture-avatar_director",
+  "agent": {
+    "role": "avatar_director",
+    "instance_id": "W3eKFChCiz6s391f"
+  },
+  "scope": "episode",
+  "input_manifest": {
+    "schema_version": "1.0.0",
+    "project_id": "FWAI-EP-0001",
+    "revision": 1,
+    "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+  },
+  "execution": {
+    "run_id": "fixture-run-001",
+    "attempt": 1,
+    "started_at": "2026-11-10T04:00:00Z",
+    "finished_at": "2026-11-10T04:00:01Z",
+    "status": "succeeded"
+  },
+  "output": {
+    "project_id": "FWAI-EP-0001",
+    "identity_profile_version": "Synthetic contract fixture",
+    "presenter_scenes": [
+      {
+        "scene_id": "S01",
+        "script_excerpt": "This segment describes hook and the AI-concept disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "voice_style": "Planning fixture only"
+      }
+    ],
+    "required_consents": [],
+    "missing_assets": [],
+    "continuity_checks": [],
+    "disclosure_flags": []
+  },
+  "validation": {
+    "status": "passed",
+    "findings": []
+  },
+  "errors": [],
+  "blockers": [],
+  "authorization": {
+    "spend_authorized": false,
+    "publish_authorized": false,
+    "production_approved": false
+  }
+}

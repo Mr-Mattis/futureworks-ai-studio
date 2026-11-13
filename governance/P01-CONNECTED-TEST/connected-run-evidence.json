@@ -1,0 +1,72 @@
+{
+  "checkpoint": "P01.07",
+  "workflow_id": "yjuRNIatvdTMKuqj",
+  "workflow_name": "FWAI-LOCAL — Production Adapter (Presenter Pilot)",
+  "workflow_active": false,
+  "workflow_version_after": "a9b9ff34-d006-4edf-a66d-ebc3fdd05534",
+  "workflow_nodes_before": 4,
+  "workflow_nodes_after": 19,
+  "original_nodes_preserved": true,
+  "project_id": "FWAI-P0105-LIVE-TEST",
+  "job_id": "P0105-LIVE-TEST-R1",
+  "manifest_revision": 1,
+  "manifest_sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd",
+  "connected_data_gate": {
+    "execution_id": "19",
+    "execution_status": "success",
+    "records_checked": 6,
+    "live_state": "draft",
+    "live_approval": "pending",
+    "provider_status": "not_submitted"
+  },
+  "interruption": {
+    "execution_id": "20",
+    "execution_status": "error",
+    "expected_error": "P01.07_INTENTIONAL_INTERRUPTION_AFTER_DURABLE_TEST_ROW",
+    "record_id": "P0107-INTERRUPT-OP-001",
+    "n8n_row_id": 3,
+    "created_at": "2026-11-10T06:11:27.708Z",
+    "matching_rows_after_interruption": 1
+  },
+  "resume": {
+    "execution_id": "21",
+    "execution_status": "success",
+    "result": "recovered_existing_operation",
+    "provider_rows_created_this_run": 0,
+    "matching_rows_after_resume": 1,
+    "provider_calls": 0,
+    "amount_microusd": 0,
+    "presenter_pilot_result": "staged_only_no_api_call"
+  },
+  "canonical_guard_and_persisted_transition": {
+    "execution_id": "22",
+    "execution_status": "success",
+    "job_id": "P0105-LIVE-TEST-R2",
+    "manifest_revision": 2,
+    "manifest_sha256": "4c5ac9cda32207d72e2516909c9a3c7e69a57118ae6a6bc8a44af930fb7bf95e",
+    "n8n_job_row_id": 3,
+    "synthetic_receipt_id": "P0107-TEST-R2-brief-validated",
+    "canonical_job_and_receipt_rows_validated": true,
+    "invalid_manifest_missing_narration_rejected": true,
+    "invalid_job_revision_hash_rejected": true,
+    "transition": "draft → research",
+    "persisted_state_version": 1,
+    "persisted_history_events": 1,
+    "fresh_live_readback": true,
+    "provider_calls": 0,
+    "amount_microusd": 0
+  },
+  "cleanup_regression": {
+    "execution_id": "23",
+    "execution_status": "success",
+    "temporary_http_branch_removed": true,
+    "temporary_service_stopped": true,
+    "workflow_nodes_after_cleanup": 19,
+    "workflow_active": false,
+    "original_presenter_branch_result": "staged_only_no_api_call",
+    "submit_request": false
+  },
+  "paid_calls": 0,
+  "publication_actions": 0,
+  "checkpoint_complete": true
+}

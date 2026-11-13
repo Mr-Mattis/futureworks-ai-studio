@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "result_id": "fixture-visual_director",
+  "agent": {
+    "role": "visual_director",
+    "instance_id": "rh9g0toSiBLc1r9D"
+  },
+  "scope": "episode",
+  "input_manifest": {
+    "schema_version": "1.0.0",
+    "project_id": "FWAI-EP-0001",
+    "revision": 1,
+    "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+  },
+  "execution": {
+    "run_id": "fixture-run-001",
+    "attempt": 1,
+    "started_at": "2026-11-10T04:00:00Z",
+    "finished_at": "2026-11-10T04:00:01Z",
+    "status": "succeeded"
+  },
+  "output": {
+    "project_id": "FWAI-EP-0001",
+    "continuity_rules": [],
+    "shots": [
+      {
+        "scene_id": "S01",
+        "shot_id": "S01-01",
+        "positive_prompt": "Synthetic fixture, no generation",
+        "target_seconds": 5,
+        "reference_asset_ids": []
+      }
+    ],
+    "unresolved_assets": [],
+    "quality_criteria": [],
+    "look_bible": {}
+  },
+  "validation": {
+    "status": "passed",
+    "findings": []
+  },
+  "errors": [],
+  "blockers": [],
+  "authorization": {
+    "spend_authorized": false,
+    "publish_authorized": false,
+    "production_approved": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "P01.04",
+  "project_id": "nIsO1QWWbw69iEOr",
+  "tables": {
+    "scene_assets": {
+      "id": "XOmc8JeQZ5XMkqUr",
+      "name": "FWAI-LOCAL scene_assets v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    },
+    "provider_jobs": {
+      "id": "76887G0E8vWicp9L",
+      "name": "FWAI-LOCAL provider_jobs v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    },
+    "production_jobs": {
+      "id": "nBhvxQQ3GZhoHF78",
+      "name": "FWAI-LOCAL production_jobs v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    },
+    "approvals": {
+      "id": "Xw5HI0b1JjG1hsO5",
+      "name": "FWAI-LOCAL approvals v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    },
+    "costs": {
+      "id": "h0lTFGdFhcWJhBuu",
+      "name": "FWAI-LOCAL costs v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    },
+    "errors": {
+      "id": "Hui30zLdxZX9kaLu",
+      "name": "FWAI-LOCAL errors v1",
+      "projectId": "nIsO1QWWbw69iEOr"
+    }
+  }
+}

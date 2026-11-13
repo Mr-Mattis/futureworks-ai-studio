@@ -1,0 +1,34 @@
+{
+  "other_tables": [
+    {
+      "table": "FWAI-LOCAL errors v1",
+      "unchanged": true
+    },
+    {
+      "table": "FWAI-LOCAL approvals v1",
+      "unchanged": true
+    },
+    {
+      "table": "FWAI-LOCAL costs v1",
+      "unchanged": true
+    },
+    {
+      "table": "FWAI-LOCAL provider_jobs v1",
+      "unchanged": true
+    },
+    {
+      "table": "FWAI-LOCAL scene_assets v1",
+      "unchanged": true
+    },
+    {
+      "table": "FWAI Creative Director Manifests",
+      "unchanged": true
+    }
+  ],
+  "workflows_unchanged": true,
+  "existing_job_unchanged": true,
+  "new_draft_rows": 2,
+  "exact_roundtrips": 2,
+  "approval_rows_added": 0,
+  "provider_calls": 0
+}

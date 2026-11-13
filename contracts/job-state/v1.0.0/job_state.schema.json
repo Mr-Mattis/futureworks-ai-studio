@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://futureworks.local/schemas/job-state/v1.0.0/job_state.schema.json",
+  "title": "Future Works Job State v1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "job_id",
+    "manifest_ref",
+    "state",
+    "state_version",
+    "history"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "project_id",
+        "revision",
+        "sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,79}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "state": {
+      "enum": [
+        "draft",
+        "research",
+        "scripted",
+        "planned",
+        "approved",
+        "generating",
+        "assembling",
+        "qa",
+        "ready_for_edit",
+        "published"
+      ]
+    },
+    "state_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "from",
+          "to",
+          "evidence"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "from": {
+            "enum": [
+              "draft",
+              "research",
+              "scripted",
+              "planned",
+              "approved",
+              "generating",
+              "assembling",
+              "qa",
+              "ready_for_edit",
+              "published"
+            ]
+          },
+          "to": {
+            "enum": [
+              "draft",
+              "research",
+              "scripted",
+              "planned",
+              "approved",
+              "generating",
+              "assembling",
+              "qa",
+              "ready_for_edit",
+              "published"
+            ]
+          },
+          "evidence": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

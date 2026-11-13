@@ -1,0 +1,536 @@
+{
+  "synthetic_only": true,
+  "snapshots": [
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "draft",
+      "state_version": 0,
+      "history": []
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "research",
+      "state_version": 1,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "scripted",
+      "state_version": 2,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "planned",
+      "state_version": 3,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "approved",
+      "state_version": 4,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "generating",
+      "state_version": 5,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        },
+        {
+          "sequence": 5,
+          "from": "approved",
+          "to": "generating",
+          "evidence": {
+            "generation_authorized": "synthetic-generation_authorized",
+            "budget_authorized": "synthetic-budget_authorized"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "assembling",
+      "state_version": 6,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        },
+        {
+          "sequence": 5,
+          "from": "approved",
+          "to": "generating",
+          "evidence": {
+            "generation_authorized": "synthetic-generation_authorized",
+            "budget_authorized": "synthetic-budget_authorized"
+          }
+        },
+        {
+          "sequence": 6,
+          "from": "generating",
+          "to": "assembling",
+          "evidence": {
+            "assets_complete": "synthetic-assets_complete"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "qa",
+      "state_version": 7,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        },
+        {
+          "sequence": 5,
+          "from": "approved",
+          "to": "generating",
+          "evidence": {
+            "generation_authorized": "synthetic-generation_authorized",
+            "budget_authorized": "synthetic-budget_authorized"
+          }
+        },
+        {
+          "sequence": 6,
+          "from": "generating",
+          "to": "assembling",
+          "evidence": {
+            "assets_complete": "synthetic-assets_complete"
+          }
+        },
+        {
+          "sequence": 7,
+          "from": "assembling",
+          "to": "qa",
+          "evidence": {
+            "assembly_complete": "synthetic-assembly_complete"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "ready_for_edit",
+      "state_version": 8,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        },
+        {
+          "sequence": 5,
+          "from": "approved",
+          "to": "generating",
+          "evidence": {
+            "generation_authorized": "synthetic-generation_authorized",
+            "budget_authorized": "synthetic-budget_authorized"
+          }
+        },
+        {
+          "sequence": 6,
+          "from": "generating",
+          "to": "assembling",
+          "evidence": {
+            "assets_complete": "synthetic-assets_complete"
+          }
+        },
+        {
+          "sequence": 7,
+          "from": "assembling",
+          "to": "qa",
+          "evidence": {
+            "assembly_complete": "synthetic-assembly_complete"
+          }
+        },
+        {
+          "sequence": 8,
+          "from": "qa",
+          "to": "ready_for_edit",
+          "evidence": {
+            "technical_qc_pass": "synthetic-technical_qc_pass",
+            "creative_qc_pass": "synthetic-creative_qc_pass",
+            "disclosure_rights_pass": "synthetic-disclosure_rights_pass"
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": "1.0.0",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "state": "published",
+      "state_version": 9,
+      "history": [
+        {
+          "sequence": 1,
+          "from": "draft",
+          "to": "research",
+          "evidence": {
+            "brief_validated": "synthetic-brief_validated"
+          }
+        },
+        {
+          "sequence": 2,
+          "from": "research",
+          "to": "scripted",
+          "evidence": {
+            "research_complete": "synthetic-research_complete",
+            "script_validated": "synthetic-script_validated"
+          }
+        },
+        {
+          "sequence": 3,
+          "from": "scripted",
+          "to": "planned",
+          "evidence": {
+            "visual_plan_ready": "synthetic-visual_plan_ready",
+            "avatar_plan_ready": "synthetic-avatar_plan_ready",
+            "budget_plan_ready": "synthetic-budget_plan_ready"
+          }
+        },
+        {
+          "sequence": 4,
+          "from": "planned",
+          "to": "approved",
+          "evidence": {
+            "human_production_approval": "synthetic-human_production_approval"
+          }
+        },
+        {
+          "sequence": 5,
+          "from": "approved",
+          "to": "generating",
+          "evidence": {
+            "generation_authorized": "synthetic-generation_authorized",
+            "budget_authorized": "synthetic-budget_authorized"
+          }
+        },
+        {
+          "sequence": 6,
+          "from": "generating",
+          "to": "assembling",
+          "evidence": {
+            "assets_complete": "synthetic-assets_complete"
+          }
+        },
+        {
+          "sequence": 7,
+          "from": "assembling",
+          "to": "qa",
+          "evidence": {
+            "assembly_complete": "synthetic-assembly_complete"
+          }
+        },
+        {
+          "sequence": 8,
+          "from": "qa",
+          "to": "ready_for_edit",
+          "evidence": {
+            "technical_qc_pass": "synthetic-technical_qc_pass",
+            "creative_qc_pass": "synthetic-creative_qc_pass",
+            "disclosure_rights_pass": "synthetic-disclosure_rights_pass"
+          }
+        },
+        {
+          "sequence": 9,
+          "from": "ready_for_edit",
+          "to": "published",
+          "evidence": {
+            "owner_publish_approval": "synthetic-owner_publish_approval",
+            "publication_confirmed": "synthetic-publication_confirmed"
+          }
+        }
+      ]
+    }
+  ]
+}

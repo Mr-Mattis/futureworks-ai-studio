@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "FWAI-P0105-LIVE-TEST",
+  "job_id": "P0105-LIVE-TEST-R1",
+  "manifest_revision": 1,
+  "manifest_sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd",
+  "is_test": true,
+  "test_run_id": "P0105-v1-revision-test-001",
+  "record_id": "P0107-TEST-errors",
+  "provider_job_record_id": "P0107-TEST-provider_jobs",
+  "stage": "draft",
+  "code": "SYNTHETIC_FULL_GATE_TEST",
+  "severity": "info",
+  "retryable": false,
+  "status": "test_only",
+  "message": "Synthetic full data-gate fixture; no production error occurred.",
+  "details_json": "{\"agent_result_error\": {\"code\": \"SYNTHETIC_FULL_GATE_TEST\", \"details\": {}, \"message\": \"Synthetic test record\", \"retryable\": false}, \"synthetic_only\": true}"
+}

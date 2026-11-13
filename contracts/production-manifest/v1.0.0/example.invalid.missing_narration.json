@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "FWAI-EP-0001",
+  "revision": 1,
+  "title": "The PC That Became a Robot",
+  "content_type": "AI_CONCEPT",
+  "disclosure": "This episode is an AI-generated fictional concept, not a working machine or actual engineering test.",
+  "source_evidence_ids": [],
+  "target_duration_seconds": 360,
+  "output_profile": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "timeline_format": "otioz",
+    "audio_sample_rate": 48000
+  },
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "order": 1,
+      "duration_seconds": 72,
+      "narration": "This segment describes hook and the AI-concept disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+      "visual_prompt": "Original graphite and electric cyan concept gaming PC; hook and the AI-concept disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+      "image_prompt": "Concept keyframe S01 graphite titanium cyan machine",
+      "sound_prompt": "Soft original mechanical servo ambience; licensed track only.",
+      "avatar_script": null,
+      "media_requirements": {
+        "image": true,
+        "video": true,
+        "avatar": false,
+        "voice": true,
+        "sound_effects": true,
+        "music": false,
+        "captions": true
+      },
+      "asset_references": [],
+      "continuity_notes": "Maintain same machine silhouette and materials across all scenes.",
+      "research_claim_ids": []
+    },
+    {
+      "scene_id": "S02",
+      "order": 2,
+      "duration_seconds": 72,
+      "visual_prompt": "Original graphite and electric cyan concept gaming PC; physical design constraints as a fictional study; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+      "image_prompt": "Concept keyframe S02 graphite titanium cyan machine",
+      "sound_prompt": "Soft original mechanical servo ambience; licensed track only.",
+      "avatar_script": null,
+      "media_requirements": {
+        "image": true,
+        "video": true,
+        "avatar": false,
+        "voice": true,
+        "sound_effects": true,
+        "music": false,
+        "captions": true
+      },
+      "asset_references": [],
+      "continuity_notes": "Maintain same machine silhouette and materials across all scenes.",
+      "research_claim_ids": []
+    },
+    {
+      "scene_id": "S03",
+      "order": 3,
+      "duration_seconds": 72,
+      "narration": "This segment describes the imagined transformation choreography. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+      "visual_prompt": "Original graphite and electric cyan concept gaming PC; the imagined transformation choreography; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+      "image_prompt": "Concept keyframe S03 graphite titanium cyan machine",
+      "sound_prompt": "Soft original mechanical servo ambience; licensed track only.",
+      "avatar_script": null,
+      "media_requirements": {
+        "image": true,
+        "video": true,
+        "avatar": false,
+        "voice": true,
+        "sound_effects": true,
+        "music": false,
+        "captions": true
+      },
+      "asset_references": [],
+      "continuity_notes": "Maintain same machine silhouette and materials across all scenes.",
+      "research_claim_ids": []
+    },
+    {
+      "scene_id": "S04",
+      "order": 4,
+      "duration_seconds": 72,
+      "narration": "This segment describes cinematic robot reveal and design tradeoffs. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+      "visual_prompt": "Original graphite and electric cyan concept gaming PC; cinematic robot reveal and design tradeoffs; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+      "image_prompt": "Concept keyframe S04 graphite titanium cyan machine",
+      "sound_prompt": "Soft original mechanical servo ambience; licensed track only.",
+      "avatar_script": null,
+      "media_requirements": {
+        "image": true,
+        "video": true,
+        "avatar": false,
+        "voice": true,
+        "sound_effects": true,
+        "music": false,
+        "captions": true
+      },
+      "asset_references": [],
+      "continuity_notes": "Maintain same machine silhouette and materials across all scenes.",
+      "research_claim_ids": []
+    },
+    {
+      "scene_id": "S05",
+      "order": 5,
+      "duration_seconds": 72,
+      "narration": "This segment describes closing recap and ethical disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+      "visual_prompt": "Original graphite and electric cyan concept gaming PC; closing recap and ethical disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+      "image_prompt": "Concept keyframe S05 graphite titanium cyan machine",
+      "sound_prompt": "Soft original mechanical servo ambience; licensed track only.",
+      "avatar_script": null,
+      "media_requirements": {
+        "image": true,
+        "video": true,
+        "avatar": false,
+        "voice": true,
+        "sound_effects": true,
+        "music": false,
+        "captions": true
+      },
+      "asset_references": [],
+      "continuity_notes": "Maintain same machine silhouette and materials across all scenes.",
+      "research_claim_ids": []
+    }
+  ],
+  "generation_plan": {
+    "image": {
+      "enabled": true,
+      "provider": "comfyui",
+      "execution_mode": "local"
+    },
+    "video": {
+      "enabled": true,
+      "provider": "runway",
+      "execution_mode": "paid"
+    },
+    "avatar": {
+      "enabled": false,
+      "provider": "heygen",
+      "execution_mode": "paid"
+    },
+    "voice": {
+      "enabled": true,
+      "provider": "elevenlabs",
+      "execution_mode": "paid"
+    },
+    "sound_effects": {
+      "enabled": true,
+      "provider": "elevenlabs",
+      "execution_mode": "paid"
+    },
+    "music": {
+      "enabled": false,
+      "provider": "licensed_library",
+      "execution_mode": "licensed"
+    },
+    "captions": {
+      "enabled": true,
+      "provider": "local_transcription",
+      "execution_mode": "local"
+    }
+  },
+  "asset_references": [],
+  "approval_state": {
+    "status": "pending_review",
+    "approved_revision": null,
+    "approved_by": null,
+    "approval_record_id": null
+  }
+}

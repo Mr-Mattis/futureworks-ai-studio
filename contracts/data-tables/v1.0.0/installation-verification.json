@@ -1,0 +1,18 @@
+{
+  "checkpoint": "P01.04",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/data-tables/v1.0.0",
+  "verified_at_utc": "2026-11-10T04:55:16.338748+00:00",
+  "live_tables_created": 6,
+  "synthetic_rows_retained": 6,
+  "exact_roundtrips": 6,
+  "second_reads_unchanged": 6,
+  "offline_test_methods_passed": 7,
+  "test_exit_code": 0,
+  "workflow_mutations": 0,
+  "archive_mutations": 0,
+  "paid_calls": 0,
+  "publication_actions": 0,
+  "progress_sha256": "fde8fba3500d57a16952d84854cc0b81ae8edff82c4dfcd3c3bd9f70ffd0f227"
+}

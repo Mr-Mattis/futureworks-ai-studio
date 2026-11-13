@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "sha256": {
+    "production_manifest.schema.json": "2c57f70634e79219432378139fe64ba6e472f45b26dab9c728a3d65a2fe87ed3",
+    "validate_manifest.py": "64b39959ccbaa6dbf85d2c2e487c826f8e2d82dd23c93f37d9076d08f6b7aa95"
+  }
+}

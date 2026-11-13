@@ -1,0 +1,293 @@
+{
+  "synthetic_only": true,
+  "receipts": {
+    "synthetic-brief_validated": {
+      "receipt_id": "synthetic-brief_validated",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "brief_validated",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-research_complete": {
+      "receipt_id": "synthetic-research_complete",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "research_complete",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-script_validated": {
+      "receipt_id": "synthetic-script_validated",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "script_validated",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-visual_plan_ready": {
+      "receipt_id": "synthetic-visual_plan_ready",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "visual_plan_ready",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-avatar_plan_ready": {
+      "receipt_id": "synthetic-avatar_plan_ready",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "avatar_plan_ready",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-budget_plan_ready": {
+      "receipt_id": "synthetic-budget_plan_ready",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "budget_plan_ready",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-human_production_approval": {
+      "receipt_id": "synthetic-human_production_approval",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "human_production_approval",
+      "type": "human_approval",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "owner"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-generation_authorized": {
+      "receipt_id": "synthetic-generation_authorized",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "generation_authorized",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-budget_authorized": {
+      "receipt_id": "synthetic-budget_authorized",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "budget_authorized",
+      "type": "budget_authorization",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-assets_complete": {
+      "receipt_id": "synthetic-assets_complete",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "assets_complete",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-assembly_complete": {
+      "receipt_id": "synthetic-assembly_complete",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "assembly_complete",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-technical_qc_pass": {
+      "receipt_id": "synthetic-technical_qc_pass",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "technical_qc_pass",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-creative_qc_pass": {
+      "receipt_id": "synthetic-creative_qc_pass",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "creative_qc_pass",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-disclosure_rights_pass": {
+      "receipt_id": "synthetic-disclosure_rights_pass",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "disclosure_rights_pass",
+      "type": "validation",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-owner_publish_approval": {
+      "receipt_id": "synthetic-owner_publish_approval",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "owner_publish_approval",
+      "type": "human_approval",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "owner"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    },
+    "synthetic-publication_confirmed": {
+      "receipt_id": "synthetic-publication_confirmed",
+      "job_id": "SYNTHETIC-JOB-001",
+      "manifest_ref": {
+        "schema_version": "1.0.0",
+        "project_id": "FWAI-EP-0001",
+        "revision": 1,
+        "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+      },
+      "gate": "publication_confirmed",
+      "type": "publication_receipt",
+      "decision": "passed",
+      "actor": {
+        "id": "synthetic-test-actor",
+        "kind": "service"
+      },
+      "evidence_reference": "fixture-only:no-real-action"
+    }
+  }
+}

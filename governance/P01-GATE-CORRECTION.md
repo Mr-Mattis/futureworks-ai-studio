@@ -1,0 +1,13 @@
+# P01 exit-gate status correction — November 10, 2026
+
+The earlier P01.07 report and final response said the P01 phase was 7/7 and its data-architecture exit gate passed. That conclusion exceeded the evidence. This correction changes status only; it does not alter the locked checklist or overwrite the checksum-verified v1.0.0 evidence package.
+
+What is real: P01.01 and P01.02 versioned contracts and validators; P01.03 state-transition contract; P01.04 six live n8n data tables; P01.05 local guarded revision writer and two saved test revisions; P01.06 recovery policy and reference decision code. P01.07 wrote five marked test rows to live n8n tables and read them back. Its 28 positive checks and 25 expected rejections are valid results for the controlled tests they describe.
+
+What remains unproved: a connected n8n workflow invoking the validation and revision guard for the same dummy manifest; persistent state progression through those guards; an interrupted operation resumed through the live n8n path with no duplicate provider job or expense. The nine state transitions used in-memory synthetic receipts, and recovery used a mock provider and local files. There was no live approval, provider submission or paid charge. The live job intentionally remains draft with approval pending and provider not_submitted.
+
+Current status: P01.01–P01.06 complete at their stated contract/storage/policy scope. P01.07 partially tested; integrated exit test pending. P01 is 6/7 complete, and its phase exit gate is open. P02 is not started.
+
+Update, November 10: The owner directed us to use the existing inactive local Production Adapter instead of creating another workflow. Its added P01.07 branch passed six live-record checks and a sequential synthetic interruption/restart test (executions 19–21), with one durable operation row and zero provider calls/cost. See P01-CONNECTED-TEST/CHECKPOINT-ADDENDUM.md. The installed canonical validators/guard are not yet invoked from n8n, and connected invalid-input rejection and guarded state progression remain open. Synthetic approvals must remain labeled and cannot authorize real spending or publication.
+
+Final P01.07 update: execution 22 called the installed canonical guards through a temporary local test bridge, rejected two invalid inputs, and persisted a guarded `draft → research` transition for the marked revision-2 test job. Fresh n8n readback preserved the revision identity. The bridge and temporary workflow branch were removed; regression execution 23 passed. P01.07 and the controlled P01 phase exit gate are complete. This supersedes the open-gate status above without claiming permanent guard service deployment or production orchestration.

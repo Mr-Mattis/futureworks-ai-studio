@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "result_id": "fixture-research_agent",
+  "agent": {
+    "role": "research_agent",
+    "instance_id": "CjMtsIIQ6cFYHbKJ"
+  },
+  "scope": "episode",
+  "input_manifest": {
+    "schema_version": "1.0.0",
+    "project_id": "FWAI-EP-0001",
+    "revision": 1,
+    "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+  },
+  "execution": {
+    "run_id": "fixture-run-001",
+    "attempt": 1,
+    "started_at": "2026-11-10T04:00:00Z",
+    "finished_at": "2026-11-10T04:00:01Z",
+    "status": "succeeded"
+  },
+  "output": {
+    "project_id": "FWAI-EP-0001",
+    "research_questions": [],
+    "verified_claims": [],
+    "unverified_claims": [],
+    "technical_constraints": [],
+    "safety_notes": [],
+    "rights_risks": [],
+    "concept_only_elements": [],
+    "followup_needed": "Synthetic contract fixture"
+  },
+  "validation": {
+    "status": "passed",
+    "findings": []
+  },
+  "errors": [],
+  "blockers": [],
+  "authorization": {
+    "spend_authorized": false,
+    "publish_authorized": false,
+    "production_approved": false
+  }
+}

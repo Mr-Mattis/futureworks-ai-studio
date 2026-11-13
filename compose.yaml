@@ -1,0 +1,43 @@
+name: futureworks-studio
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=America/New_York
+      - TZ=America/New_York
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - worker
+  worker:
+    build: ./worker
+    restart: unless-stopped
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4.1-mini}
+      - RUNWAYML_API_SECRET=${RUNWAYML_API_SECRET:-}
+      - HEYGEN_API_KEY=${HEYGEN_API_KEY:-}
+      - HEYGEN_AVATAR_ID=${HEYGEN_AVATAR_ID:-}
+      - HEYGEN_VOICE_ID=${HEYGEN_VOICE_ID:-}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+      - ELEVENLABS_VOICE_ID=${ELEVENLABS_VOICE_ID:-}
+      - ENABLE_PAID_GENERATION=${ENABLE_PAID_GENERATION:-false}
+      - TZ=America/New_York
+    volumes:
+      - ${OUTPUT_DIR}:/data/output
+      - ./assets:/data/assets:ro
+    expose:
+      - "8000"
+volumes:
+  n8n_data:

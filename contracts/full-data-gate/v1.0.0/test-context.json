@@ -1,0 +1,13 @@
+{
+  "project_id": "FWAI-P0105-LIVE-TEST",
+  "job_id": "P0105-LIVE-TEST-R1",
+  "manifest_ref": {
+    "schema_version": "1.0.0",
+    "project_id": "FWAI-P0105-LIVE-TEST",
+    "revision": 1,
+    "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+  },
+  "test_run_id": "P0105-v1-revision-test-001",
+  "job_record_id": "FWAI-P0105-LIVE-TEST:r1:483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd",
+  "provider_record_id": "P0107-TEST-provider_jobs"
+}

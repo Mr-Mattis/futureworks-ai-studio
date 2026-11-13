@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "FWAI-P0105-LIVE-TEST",
+  "job_id": "P0105-LIVE-TEST-R1",
+  "manifest_revision": 1,
+  "manifest_sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd",
+  "is_test": true,
+  "test_run_id": "P0105-v1-revision-test-001",
+  "record_id": "P0107-TEST-approvals",
+  "gate": "brief_validated",
+  "receipt_type": "validation",
+  "decision": "pending",
+  "actor_id": "synthetic-storage-test",
+  "actor_kind": "service",
+  "receipt_json": "{\"actor\": {\"id\": \"synthetic-storage-test\", \"kind\": \"service\"}, \"decision\": \"pending\", \"evidence_reference\": \"fixture:pending-not-an-approval\", \"gate\": \"brief_validated\", \"job_id\": \"P0105-LIVE-TEST-R1\", \"manifest_ref\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"schema_version\": \"1.0.0\", \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"receipt_id\": \"P0107-TEST-approvals\", \"type\": \"validation\"}"
+}

@@ -1,0 +1,18 @@
+{
+  "checkpoint": "P01.06",
+  "version": "1.0.0",
+  "status": "PASS",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/recovery-policy/v1.0.0",
+  "verified_at_utc": "2026-11-10T05:23:47.635533+00:00",
+  "test_methods_passed": 17,
+  "test_exit_code": 0,
+  "synthetic_crash_exit_code": 17,
+  "synthetic_submissions": 1,
+  "synthetic_billable_events": 1,
+  "synthetic_recorded_charge_events": 1,
+  "real_provider_calls": 0,
+  "real_charges": 0,
+  "n8n_mutations": 0,
+  "live_postcheck": "unavailable: tunnel_client_not_connected",
+  "progress_sha256": "142102ace58855ee86906984e54f94d1cd868799b0f893496a61842ee5f67012"
+}

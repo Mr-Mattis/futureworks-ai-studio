@@ -1,0 +1,23 @@
+{
+  "synthetic_only": true,
+  "crash_exit_code": 17,
+  "first_recovery_action": "reconciled_existing_job",
+  "second_recovery_action": "reuse_verified_result",
+  "report": {
+    "action": "reuse_verified_result",
+    "billable_events": 1,
+    "recorded_charge_events": 1,
+    "status": "completed",
+    "submissions": 1,
+    "synthetic_only": true
+  },
+  "operation_key": "fwai-op-v1-f07f8a3162b08f86cfc166e8340594f5a1c1ced0de5699c1880746db3ca1e635",
+  "provider_job_id": "mock-job-1",
+  "result_sha256": "91b6bd115e8e10b799b119f6c0062dd9ae1b16724b8acf3cbca00ef9e5e741e1",
+  "charge_keys": [
+    "fwai-charge-v1-170aab819e18887afd59e7e5bd1e610765d5992d84e03a4deb1533fa283fb448"
+  ],
+  "artifact_sha256_verified": true,
+  "real_provider_calls": 0,
+  "real_charges": 0
+}

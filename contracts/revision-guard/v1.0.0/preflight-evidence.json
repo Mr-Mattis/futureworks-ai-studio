@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "same-revision overwrite rejected before n8n write",
+    "duplicate identity rejected before n8n write"
+  ],
+  "valid_insert_candidates": 2,
+  "invalid_candidates_sent": 0
+}

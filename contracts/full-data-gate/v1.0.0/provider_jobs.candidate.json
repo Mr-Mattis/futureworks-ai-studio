@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "FWAI-P0105-LIVE-TEST",
+  "job_id": "P0105-LIVE-TEST-R1",
+  "manifest_revision": 1,
+  "manifest_sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd",
+  "is_test": true,
+  "test_run_id": "P0105-v1-revision-test-001",
+  "record_id": "P0107-TEST-provider_jobs",
+  "provider": "synthetic_no_provider",
+  "operation": "storage_gate_test_only",
+  "provider_job_id": null,
+  "status": "not_submitted",
+  "request_reference": "fixture:no-provider-call",
+  "response_json": "{}"
+}

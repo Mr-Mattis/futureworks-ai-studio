@@ -1,0 +1,20 @@
+test_agent_result_bound_to_stored_manifest (__main__.RevisionTests.test_agent_result_bound_to_stored_manifest) ... ok
+test_all_six_row_validators (__main__.RevisionTests.test_all_six_row_validators) ... ok
+test_approved_script_cannot_be_overwritten (__main__.RevisionTests.test_approved_script_cannot_be_overwritten) ... ok
+test_concurrent_conflicting_writers (__main__.RevisionTests.test_concurrent_conflicting_writers) ... ok
+test_immutable_identity_and_exact_bytes (__main__.RevisionTests.test_immutable_identity_and_exact_bytes) ... ok
+test_invalid_manifests_never_committed (__main__.RevisionTests.test_invalid_manifests_never_committed) ... ok
+test_live_n8n_capture_matches_guarded_revisions (__main__.RevisionTests.test_live_n8n_capture_matches_guarded_revisions) ... ok
+test_n8n_preflight_rejects_existing_identity (__main__.RevisionTests.test_n8n_preflight_rejects_existing_identity) ... ok
+test_new_revision_resets_approval (__main__.RevisionTests.test_new_revision_resets_approval) ... ok
+test_path_and_symlink_rejected (__main__.RevisionTests.test_path_and_symlink_rejected) ... ok
+test_receipt_self_approval_rejected (__main__.RevisionTests.test_receipt_self_approval_rejected) ... ok
+test_restart_retains_revision_and_tamper_detected (__main__.RevisionTests.test_restart_retains_revision_and_tamper_detected) ... ok
+test_row_field_and_relationship_rejections (__main__.RevisionTests.test_row_field_and_relationship_rejections) ... ok
+test_sequential_revision_numbers (__main__.RevisionTests.test_sequential_revision_numbers) ... ok
+test_strict_json_and_optional_key_failure (__main__.RevisionTests.test_strict_json_and_optional_key_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.352s
+
+OK

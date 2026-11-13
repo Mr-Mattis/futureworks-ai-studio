@@ -1,0 +1,632 @@
+{
+  "data": [
+    {
+      "id": "Hui30zLdxZX9kaLu",
+      "name": "FWAI-LOCAL errors v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:28.442Z",
+      "updatedAt": "2026-11-10T04:52:28.442Z",
+      "columns": [
+        {
+          "id": "U5eca3EOWjeh5Rpt",
+          "name": "code",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "O4xNdAGZFmQzZIsY",
+          "name": "details_json",
+          "type": "string",
+          "index": 15
+        },
+        {
+          "id": "fkcppzX4xHTj7qPK",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "0OLDtedBtloriSFU",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "gghgLn8kX3BrwSyk",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "UjPlJycPkMBwnC05",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "Y6mlle67sZACgUum",
+          "name": "message",
+          "type": "string",
+          "index": 14
+        },
+        {
+          "id": "XpuVUEYMfgDKT15u",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "I4asSdGAvAEe8amW",
+          "name": "provider_job_record_id",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "xP2Z011IbOy87TnQ",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "mnzTsVud0q8s37BT",
+          "name": "retryable",
+          "type": "boolean",
+          "index": 12
+        },
+        {
+          "id": "djNksDuRYqMuSHLT",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "dBzP7jLile35hBbw",
+          "name": "severity",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "jRK26w0LvdETphBi",
+          "name": "stage",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "51Ys28dy48KVP8VL",
+          "name": "status",
+          "type": "string",
+          "index": 13
+        },
+        {
+          "id": "HTI0MGS5i2lxMEfH",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "Xw5HI0b1JjG1hsO5",
+      "name": "FWAI-LOCAL approvals v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:28.064Z",
+      "updatedAt": "2026-11-10T04:52:28.064Z",
+      "columns": [
+        {
+          "id": "6yveYEVoIO9EALL5",
+          "name": "actor_id",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "GLDZneaCsVgeeAHU",
+          "name": "actor_kind",
+          "type": "string",
+          "index": 12
+        },
+        {
+          "id": "MqMFI9sj3cvyJSBr",
+          "name": "decision",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "Ur09vPkteKkr6ufi",
+          "name": "gate",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "Ay70UkUfYPDCD97o",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "UNWDYBIQzKsH78c4",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "fy7p1rdAvYK8d7Lr",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "451Ud0dmWDhxCOOA",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "GcczsqoXtSaiUurS",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "n3sf6rOguJmin8h1",
+          "name": "receipt_json",
+          "type": "string",
+          "index": 13
+        },
+        {
+          "id": "fzwUJ4STs0DEoDH0",
+          "name": "receipt_type",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "TKEx6yQUuPITTtdP",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "PqySdFcUYEK8fjr2",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "tCzqJUVjqHuPHlJt",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "h0lTFGdFhcWJhBuu",
+      "name": "FWAI-LOCAL costs v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:27.574Z",
+      "updatedAt": "2026-11-10T04:52:27.574Z",
+      "columns": [
+        {
+          "id": "T3wqgfT2bwcUTtbn",
+          "name": "amount_microusd",
+          "type": "number",
+          "index": 12
+        },
+        {
+          "id": "knKtYLmBOH1DiBfH",
+          "name": "cost_type",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "Dg9vuUQ7O0d7YXej",
+          "name": "currency",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "rvif75AO5gUGy9wd",
+          "name": "evidence_reference",
+          "type": "string",
+          "index": 13
+        },
+        {
+          "id": "DQYVB2OnR6I4WVPo",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "a2x4u941Ay3DSmgq",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "fCVvCCE6VCOIGHYd",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "uljSnN6VNTmJJmOk",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "XaxqEcgSHYYxxUab",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "yBp2TRn7uQoL48gx",
+          "name": "provider",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "BDFfryMEEVnDkbEJ",
+          "name": "provider_job_record_id",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "yf2oohospg8RkifN",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "a8FWQ4VAkRkOL469",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "CtqrqFCKVqPIdaIu",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "76887G0E8vWicp9L",
+      "name": "FWAI-LOCAL provider_jobs v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:26.987Z",
+      "updatedAt": "2026-11-10T04:52:26.987Z",
+      "columns": [
+        {
+          "id": "PNRD33Ns0MTfh9Nz",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "7mvYsyms0sS9gYOo",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "PFg1TF8VFRcyFCfw",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "r0scloDHGECNjAgS",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "YJBJXAMCLULy3GjK",
+          "name": "operation",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "FcTDOUOb8IIwZwDJ",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "ZhQdT8121q9Vx0P5",
+          "name": "provider",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "MsC4r0bF1dR9lwGw",
+          "name": "provider_job_id",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "LsUzJsHcpBB7dKHF",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "FCovXbXsZR8yn8zb",
+          "name": "request_reference",
+          "type": "string",
+          "index": 12
+        },
+        {
+          "id": "LEow2wsJPouYGQCR",
+          "name": "response_json",
+          "type": "string",
+          "index": 13
+        },
+        {
+          "id": "tTnh7DS22AKjP2Aw",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "1OJ5b73BNqp5jHmt",
+          "name": "status",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "xDEGUVSYZTsamMJa",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "XOmc8JeQZ5XMkqUr",
+      "name": "FWAI-LOCAL scene_assets v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:26.534Z",
+      "updatedAt": "2026-11-10T04:52:26.534Z",
+      "columns": [
+        {
+          "id": "v7qogp9fh1Kt4sIQ",
+          "name": "asset_id",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "MNUjNwWBAF7ZVMnr",
+          "name": "asset_json",
+          "type": "string",
+          "index": 13
+        },
+        {
+          "id": "boCtGsjNa6I2bkac",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "DPpcNlOngXxYxuMZ",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "Fgh97XRFheFVsGDW",
+          "name": "kind",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "6zrpzDliH70iTov2",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "9u5E16dXmX70bt5S",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "ivpVrbETuyMdRSgY",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "TDaInFF00iKlthp7",
+          "name": "provider_job_record_id",
+          "type": "string",
+          "index": 12
+        },
+        {
+          "id": "hDTcnV2wANKzrEpe",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "8a2EjMiObIqmhi6Z",
+          "name": "scene_id",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "K82z6lEdE5ecis5p",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "P61NOoeJI5xYlGAz",
+          "name": "status",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "UTm3yEUmLuIAb0Z9",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "nBhvxQQ3GZhoHF78",
+      "name": "FWAI-LOCAL production_jobs v1",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-10T04:52:26.058Z",
+      "updatedAt": "2026-11-10T04:52:26.058Z",
+      "columns": [
+        {
+          "id": "s3xipz4mYleNn8C0",
+          "name": "is_test",
+          "type": "boolean",
+          "index": 6
+        },
+        {
+          "id": "K67FmKI69EJnJ1pX",
+          "name": "job_id",
+          "type": "string",
+          "index": 3
+        },
+        {
+          "id": "hGmPdHIJjNROyqlp",
+          "name": "manifest_json",
+          "type": "string",
+          "index": 10
+        },
+        {
+          "id": "UTnNZ6lvgWIY4Sga",
+          "name": "manifest_revision",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "upYqW0WcHCesg9lY",
+          "name": "manifest_sha256",
+          "type": "string",
+          "index": 5
+        },
+        {
+          "id": "o30HIQhUBj4AmUqV",
+          "name": "project_id",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "Tl9URt24AdtsWJy0",
+          "name": "record_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "zf7Kz7EFHYXVSgPt",
+          "name": "schema_version",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "uXtOQY2XULBXTEk4",
+          "name": "snapshot_json",
+          "type": "string",
+          "index": 11
+        },
+        {
+          "id": "tLZPSBVfvRvKxbMa",
+          "name": "state",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "hi2sCWLUnjWnUoYa",
+          "name": "state_version",
+          "type": "number",
+          "index": 9
+        },
+        {
+          "id": "j2CZhb8mnRlpuqyq",
+          "name": "test_run_id",
+          "type": "string",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "id": "HTva5g0oLtmFmUfk",
+      "name": "FWAI Creative Director Manifests",
+      "projectId": "nIsO1QWWbw69iEOr",
+      "createdAt": "2026-11-09T05:01:05.933Z",
+      "updatedAt": "2026-11-09T21:45:44.746Z",
+      "columns": [
+        {
+          "id": "UcVB4Mj8wYssow4H",
+          "name": "content_type",
+          "type": "string",
+          "index": 2
+        },
+        {
+          "id": "WchTteIMTZyVu46r",
+          "name": "manifest_json",
+          "type": "string",
+          "index": 6
+        },
+        {
+          "id": "7dURL8PNcBkeGWpb",
+          "name": "narration_word_count",
+          "type": "number",
+          "index": 4
+        },
+        {
+          "id": "D2bdIgoVHVcpyyEh",
+          "name": "project_id",
+          "type": "string",
+          "index": 0
+        },
+        {
+          "id": "DomDf2ddC7crkUEg",
+          "name": "review_notes",
+          "type": "string",
+          "index": 9
+        },
+        {
+          "id": "N8q3F2vHegpwOkYE",
+          "name": "review_status",
+          "type": "string",
+          "index": 8
+        },
+        {
+          "id": "ER6Corh9fyCcEr74",
+          "name": "source_execution_id",
+          "type": "string",
+          "index": 7
+        },
+        {
+          "id": "eZj9Y2VQZxcmpFJV",
+          "name": "target_duration_seconds",
+          "type": "number",
+          "index": 3
+        },
+        {
+          "id": "Tc8XwWfw8AAsRimO",
+          "name": "title",
+          "type": "string",
+          "index": 1
+        },
+        {
+          "id": "JUE9mZumH2Tay3CR",
+          "name": "validation_status",
+          "type": "string",
+          "index": 5
+        }
+      ]
+    }
+  ],
+  "count": 7
+}

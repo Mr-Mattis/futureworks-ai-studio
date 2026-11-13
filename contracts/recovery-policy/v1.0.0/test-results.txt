@@ -1,0 +1,22 @@
+test_ambiguous_failure_never_blind_retries (__main__.RecoveryTests.test_ambiguous_failure_never_blind_retries) ... ok
+test_cancellation_keeps_reservation (__main__.RecoveryTests.test_cancellation_keeps_reservation) ... ok
+test_confirmed_nonacceptance_backoff_and_three_attempt_limit (__main__.RecoveryTests.test_confirmed_nonacceptance_backoff_and_three_attempt_limit) ... ok
+test_deadline_and_clock_rollback_stop_automation (__main__.RecoveryTests.test_deadline_and_clock_rollback_stop_automation) ... ok
+test_download_retries_same_job_bounded (__main__.RecoveryTests.test_download_retries_same_job_bounded) ... ok
+test_duplicate_billing_event_applied_once_conflict_rejected (__main__.RecoveryTests.test_duplicate_billing_event_applied_once_conflict_rejected) ... ok
+test_identity_stable_and_every_input_bound (__main__.RecoveryTests.test_identity_stable_and_every_input_bound) ... ok
+test_invalid_snapshot_and_events_rejected (__main__.RecoveryTests.test_invalid_snapshot_and_events_rejected) ... ok
+test_known_job_poll_never_regenerates (__main__.RecoveryTests.test_known_job_poll_never_regenerates) ... ok
+test_native_replay_requires_valid_contract_window_and_same_key (__main__.RecoveryTests.test_native_replay_requires_valid_contract_window_and_same_key) ... ok
+test_no_authorization_reservation_or_writer_no_submit (__main__.RecoveryTests.test_no_authorization_reservation_or_writer_no_submit) ... ok
+test_provider_failure_requires_new_intent (__main__.RecoveryTests.test_provider_failure_requires_new_intent) ... ok
+test_real_process_interruption_and_repeated_recovery (__main__.RecoveryTests.test_real_process_interruption_and_repeated_recovery) ... ok
+test_retry_after_never_shortened (__main__.RecoveryTests.test_retry_after_never_shortened) ... ok
+test_schemas (__main__.RecoveryTests.test_schemas) ... ok
+test_verified_result_reused_without_new_generation (__main__.RecoveryTests.test_verified_result_reused_without_new_generation) ... ok
+test_write_ahead_attempt_before_send (__main__.RecoveryTests.test_write_ahead_attempt_before_send) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.252s
+
+OK

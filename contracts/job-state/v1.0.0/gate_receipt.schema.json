@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://futureworks.local/schemas/job-state/v1.0.0/gate_receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "job_id",
+    "manifest_ref",
+    "gate",
+    "type",
+    "decision",
+    "actor",
+    "evidence_reference"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "project_id",
+        "revision",
+        "sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,79}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "gate": {
+      "enum": [
+        "brief_validated",
+        "research_complete",
+        "script_validated",
+        "visual_plan_ready",
+        "avatar_plan_ready",
+        "budget_plan_ready",
+        "human_production_approval",
+        "generation_authorized",
+        "budget_authorized",
+        "assets_complete",
+        "assembly_complete",
+        "technical_qc_pass",
+        "creative_qc_pass",
+        "disclosure_rights_pass",
+        "owner_publish_approval",
+        "publication_confirmed"
+      ]
+    },
+    "type": {
+      "enum": [
+        "budget_authorization",
+        "human_approval",
+        "publication_receipt",
+        "validation"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "passed",
+        "failed",
+        "pending",
+        "revoked"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "owner",
+            "service",
+            "agent"
+          ]
+        }
+      }
+    },
+    "evidence_reference": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

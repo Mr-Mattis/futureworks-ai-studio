@@ -1,0 +1,167 @@
+{
+  "creative_director": {
+    "project_id": "FWAI-EP-0001",
+    "working_title": "The PC That Became a Robot",
+    "opening_hook": "Synthetic contract fixture",
+    "logline": "Synthetic contract fixture",
+    "closing_cta": "Synthetic contract fixture",
+    "disclosure_note": "Synthetic contract fixture",
+    "sections": [],
+    "scenes": [
+      {
+        "scene_id": "S01",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes hook and the AI-concept disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; hook and the AI-concept disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S02",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes physical design constraints as a fictional study. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; physical design constraints as a fictional study; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S03",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes the imagined transformation choreography. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; the imagined transformation choreography; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S04",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes cinematic robot reveal and design tradeoffs. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; cinematic robot reveal and design tradeoffs; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S05",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes closing recap and ethical disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; closing recap and ethical disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      }
+    ],
+    "shorts_ideas": [],
+    "open_questions": [],
+    "metadata_draft": {}
+  },
+  "executive_producer": {
+    "project_id": "FWAI-EP-0001",
+    "working_title": "Synthetic contract fixture",
+    "content_type": "AI_CONCEPT",
+    "story_goal": "Synthetic contract fixture",
+    "target_audience": "Synthetic contract fixture",
+    "next_action": "Synthetic contract fixture",
+    "creative_constraints": "Synthetic contract fixture",
+    "work_packages": [],
+    "gates": [],
+    "assumptions": [],
+    "blockers": [],
+    "estimated_scene_count": 5
+  },
+  "sop_knowledge": {
+    "proposed_version": "Synthetic contract fixture",
+    "changes": [],
+    "change_log": "Synthetic contract fixture",
+    "unresolved_questions": [],
+    "owner_approval_required": true
+  },
+  "growth_strategist": {
+    "reporting_period": "Synthetic contract fixture",
+    "observed_patterns": [],
+    "candidate_experiments": [],
+    "content_mix_recommendation": "Synthetic contract fixture",
+    "financial_notes": "Synthetic contract fixture",
+    "data_gaps": []
+  },
+  "quality_control": {
+    "project_id": "FWAI-EP-0001",
+    "overall_verdict": "needs_review",
+    "checks": [
+      {
+        "check_id": "media-review",
+        "type": "manual",
+        "pass": false,
+        "confidence": 0,
+        "evidence": "Media has not been reviewed"
+      }
+    ],
+    "defects": [],
+    "rights_disclosure_review": "Synthetic contract fixture",
+    "manual_checks_required": "Synthetic contract fixture"
+  },
+  "editing_supervisor": {
+    "project_id": "FWAI-EP-0001",
+    "edit_notes": [
+      {
+        "scene_id": "S01",
+        "issue": "Synthetic example",
+        "severity": "info",
+        "proposed_change": "None",
+        "rationale": "Contract test"
+      }
+    ],
+    "pacing_review": "Synthetic contract fixture",
+    "audio_alignment_review": "Synthetic contract fixture",
+    "missing_transitions": [],
+    "recommendations": [],
+    "manual_review_required": false
+  },
+  "budget_controller": {
+    "project_id": "FWAI-EP-0001",
+    "currency": "USD",
+    "forecast_line_items": [],
+    "tradeoffs": [],
+    "missing_rates": [],
+    "budget_cap_usd": 0,
+    "forecast_total_usd": 0,
+    "contingency_usd": 0,
+    "under_budget": true,
+    "approval_required": true
+  },
+  "avatar_director": {
+    "project_id": "FWAI-EP-0001",
+    "identity_profile_version": "Synthetic contract fixture",
+    "presenter_scenes": [
+      {
+        "scene_id": "S01",
+        "script_excerpt": "This segment describes hook and the AI-concept disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "voice_style": "Planning fixture only"
+      }
+    ],
+    "required_consents": [],
+    "missing_assets": [],
+    "continuity_checks": [],
+    "disclosure_flags": []
+  },
+  "visual_director": {
+    "project_id": "FWAI-EP-0001",
+    "continuity_rules": [],
+    "shots": [
+      {
+        "scene_id": "S01",
+        "shot_id": "S01-01",
+        "positive_prompt": "Synthetic fixture, no generation",
+        "target_seconds": 5,
+        "reference_asset_ids": []
+      }
+    ],
+    "unresolved_assets": [],
+    "quality_criteria": [],
+    "look_bible": {}
+  },
+  "research_agent": {
+    "project_id": "FWAI-EP-0001",
+    "research_questions": [],
+    "verified_claims": [],
+    "unverified_claims": [],
+    "technical_constraints": [],
+    "safety_notes": [],
+    "rights_risks": [],
+    "concept_only_elements": [],
+    "followup_needed": "Synthetic contract fixture"
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "P01.04",
+  "tables": {
+    "production_jobs": {
+      "name": "FWAI-LOCAL production_jobs v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "string"
+        },
+        {
+          "name": "state_version",
+          "type": "number"
+        },
+        {
+          "name": "manifest_json",
+          "type": "string"
+        },
+        {
+          "name": "snapshot_json",
+          "type": "string"
+        }
+      ]
+    },
+    "scene_assets": {
+      "name": "FWAI-LOCAL scene_assets v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "asset_id",
+          "type": "string"
+        },
+        {
+          "name": "scene_id",
+          "type": "string"
+        },
+        {
+          "name": "kind",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "provider_job_record_id",
+          "type": "string"
+        },
+        {
+          "name": "asset_json",
+          "type": "string"
+        }
+      ]
+    },
+    "provider_jobs": {
+      "name": "FWAI-LOCAL provider_jobs v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "provider",
+          "type": "string"
+        },
+        {
+          "name": "operation",
+          "type": "string"
+        },
+        {
+          "name": "provider_job_id",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "request_reference",
+          "type": "string"
+        },
+        {
+          "name": "response_json",
+          "type": "string"
+        }
+      ]
+    },
+    "costs": {
+      "name": "FWAI-LOCAL costs v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "provider_job_record_id",
+          "type": "string"
+        },
+        {
+          "name": "provider",
+          "type": "string"
+        },
+        {
+          "name": "cost_type",
+          "type": "string"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount_microusd",
+          "type": "number"
+        },
+        {
+          "name": "evidence_reference",
+          "type": "string"
+        }
+      ]
+    },
+    "approvals": {
+      "name": "FWAI-LOCAL approvals v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "gate",
+          "type": "string"
+        },
+        {
+          "name": "receipt_type",
+          "type": "string"
+        },
+        {
+          "name": "decision",
+          "type": "string"
+        },
+        {
+          "name": "actor_id",
+          "type": "string"
+        },
+        {
+          "name": "actor_kind",
+          "type": "string"
+        },
+        {
+          "name": "receipt_json",
+          "type": "string"
+        }
+      ]
+    },
+    "errors": {
+      "name": "FWAI-LOCAL errors v1",
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "string"
+        },
+        {
+          "name": "schema_version",
+          "type": "string"
+        },
+        {
+          "name": "project_id",
+          "type": "string"
+        },
+        {
+          "name": "job_id",
+          "type": "string"
+        },
+        {
+          "name": "manifest_revision",
+          "type": "number"
+        },
+        {
+          "name": "manifest_sha256",
+          "type": "string"
+        },
+        {
+          "name": "is_test",
+          "type": "boolean"
+        },
+        {
+          "name": "test_run_id",
+          "type": "string"
+        },
+        {
+          "name": "provider_job_record_id",
+          "type": "string"
+        },
+        {
+          "name": "stage",
+          "type": "string"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        },
+        {
+          "name": "severity",
+          "type": "string"
+        },
+        {
+          "name": "retryable",
+          "type": "boolean"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "details_json",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

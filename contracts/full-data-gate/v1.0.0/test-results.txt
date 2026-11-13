@@ -1,0 +1,1 @@
+{"status": "PASS", "checks_passed": 28, "expected_rejections": 25, "real_provider_calls": 0, "real_expenses_microusd": 0}

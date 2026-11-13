@@ -1,0 +1,12 @@
+{
+  "workflows_unchanged": true,
+  "tables_unchanged": true,
+  "workflow_count": 4,
+  "table_count": 7,
+  "live_job_still_draft": true,
+  "live_approval_pending": true,
+  "live_provider_not_submitted": true,
+  "real_provider_calls": 0,
+  "real_expenses_microusd": 0,
+  "publication_actions": 0
+}

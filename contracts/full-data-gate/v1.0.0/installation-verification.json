@@ -1,0 +1,19 @@
+{
+  "checkpoint": "P01.07",
+  "version": "1.0.0",
+  "status": "PASS",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/full-data-gate/v1.0.0",
+  "verified_at_utc": "2026-11-10T05:55:00.921112+00:00",
+  "checks_passed": 28,
+  "expected_rejections": 25,
+  "live_tables_checked": 6,
+  "new_test_rows": 5,
+  "synthetic_crash_exit_code": 17,
+  "synthetic_submissions": 1,
+  "synthetic_charge_events": 1,
+  "real_provider_calls": 0,
+  "real_expenses_microusd": 0,
+  "approval_actions": 0,
+  "publication_actions": 0,
+  "progress_sha256": "39b580030f52b5a9be4cf3a0291a635385944032ca193f69b08af68ff6cb2c55"
+}

@@ -1,0 +1,15 @@
+{
+  "checkpoint": "P01.03",
+  "version": "1.0.0",
+  "status": "PASS",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/job-state/v1.0.0",
+  "verified_at_utc": "2026-11-10T04:49:49.631093+00:00",
+  "test_methods": 12,
+  "state_pairs": 100,
+  "permitted_edges": 9,
+  "rejected_pairs": 91,
+  "test_exit_code": 0,
+  "production_mutations": 0,
+  "paid_calls": 0,
+  "publication_actions": 0
+}

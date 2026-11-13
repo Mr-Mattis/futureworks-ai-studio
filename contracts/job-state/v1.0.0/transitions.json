@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "states": [
+    "draft",
+    "research",
+    "scripted",
+    "planned",
+    "approved",
+    "generating",
+    "assembling",
+    "qa",
+    "ready_for_edit",
+    "published"
+  ],
+  "initial_state": "draft",
+  "terminal_states": [
+    "published"
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "research",
+      "required_gates": [
+        "brief_validated"
+      ]
+    },
+    {
+      "from": "research",
+      "to": "scripted",
+      "required_gates": [
+        "research_complete",
+        "script_validated"
+      ]
+    },
+    {
+      "from": "scripted",
+      "to": "planned",
+      "required_gates": [
+        "visual_plan_ready",
+        "avatar_plan_ready",
+        "budget_plan_ready"
+      ]
+    },
+    {
+      "from": "planned",
+      "to": "approved",
+      "required_gates": [
+        "human_production_approval"
+      ]
+    },
+    {
+      "from": "approved",
+      "to": "generating",
+      "required_gates": [
+        "generation_authorized",
+        "budget_authorized"
+      ]
+    },
+    {
+      "from": "generating",
+      "to": "assembling",
+      "required_gates": [
+        "assets_complete"
+      ]
+    },
+    {
+      "from": "assembling",
+      "to": "qa",
+      "required_gates": [
+        "assembly_complete"
+      ]
+    },
+    {
+      "from": "qa",
+      "to": "ready_for_edit",
+      "required_gates": [
+        "technical_qc_pass",
+        "creative_qc_pass",
+        "disclosure_rights_pass"
+      ]
+    },
+    {
+      "from": "ready_for_edit",
+      "to": "published",
+      "required_gates": [
+        "owner_publish_approval",
+        "publication_confirmed"
+      ]
+    }
+  ],
+  "receipt_types": {
+    "brief_validated": "validation",
+    "research_complete": "validation",
+    "script_validated": "validation",
+    "visual_plan_ready": "validation",
+    "avatar_plan_ready": "validation",
+    "budget_plan_ready": "validation",
+    "human_production_approval": "human_approval",
+    "generation_authorized": "validation",
+    "budget_authorized": "budget_authorization",
+    "assets_complete": "validation",
+    "assembly_complete": "validation",
+    "technical_qc_pass": "validation",
+    "creative_qc_pass": "validation",
+    "disclosure_rights_pass": "validation",
+    "owner_publish_approval": "human_approval",
+    "publication_confirmed": "publication_receipt"
+  }
+}

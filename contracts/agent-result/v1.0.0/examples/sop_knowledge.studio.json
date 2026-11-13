@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "result_id": "fixture-sop_knowledge",
+  "agent": {
+    "role": "sop_knowledge",
+    "instance_id": "7g1LuYGdutw73OPO"
+  },
+  "scope": "studio",
+  "input_manifest": null,
+  "execution": {
+    "run_id": "fixture-run-001",
+    "attempt": 1,
+    "started_at": "2026-11-10T04:00:00Z",
+    "finished_at": "2026-11-10T04:00:01Z",
+    "status": "succeeded"
+  },
+  "output": {
+    "proposed_version": "Synthetic contract fixture",
+    "changes": [],
+    "change_log": "Synthetic contract fixture",
+    "unresolved_questions": [],
+    "owner_approval_required": true
+  },
+  "validation": {
+    "status": "passed",
+    "findings": []
+  },
+  "errors": [],
+  "blockers": [],
+  "authorization": {
+    "spend_authorized": false,
+    "publish_authorized": false,
+    "production_approved": false
+  }
+}

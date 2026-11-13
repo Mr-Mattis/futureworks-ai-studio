@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "P01.06",
+  "defaults": {
+    "submit_attempts_total": 3,
+    "poll_requests_total": 120,
+    "download_attempts_total": 3,
+    "local_task_attempts_total": 2,
+    "connect_timeout_seconds": 10,
+    "submit_response_timeout_seconds": 60,
+    "poll_response_timeout_seconds": 30,
+    "poll_interval_seconds": 30,
+    "download_timeout_seconds": 300,
+    "local_task_timeout_seconds": 900,
+    "operation_deadline_seconds": 3600,
+    "backoff_base_seconds": 5,
+    "backoff_cap_seconds": 300,
+    "jitter_max_seconds": 5
+  },
+  "rules": {
+    "paid_submission_default": "disabled_until_trusted_approval_and_budget_reservation",
+    "unknown_submission_outcome": "reconcile_never_blind_resubmit",
+    "unknown_idempotency_support": "unsupported",
+    "expired_idempotency_window": "manual_review",
+    "provider_job_id_known": "poll_or_retrieve_existing_job_never_resubmit",
+    "provider_terminal_failure": "new_generation_intent_requires_new_approval_and_budget",
+    "expired_download_url": "refresh_existing_job_url_never_regenerate",
+    "failed_integrity_check": "redownload_same_asset_within_download_limit",
+    "unknown_charge": "keep_reservation_until_reconciled",
+    "budget_reservation": "one_per_operation_key_under_single_writer",
+    "duplicate_billing_event": "same_provider_account_event_id_applied_once",
+    "writer_concurrency": "one_trusted_writer_with_exclusive_os_lock",
+    "lease_expiry": "does_not_authorize_takeover_or_retry",
+    "deadline_expired": "stop_automation_reconcile_existing_job_no_resubmit",
+    "cancellation": "record_and_reconcile_not_assumed_free",
+    "clock_rollback": "manual_review",
+    "policy_overrides": "versioned_review_required_no_silent_runtime_relaxation"
+  }
+}

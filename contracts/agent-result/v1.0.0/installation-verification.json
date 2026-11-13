@@ -1,0 +1,31 @@
+{
+  "checkpoint": "P01.02",
+  "contract_version": "1.0.0",
+  "verified_at_utc": "2026-11-10T04:38:12.239735+00:00",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/agent-result/v1.0.0",
+  "status": "PASS",
+  "tests": [
+    {
+      "command": [
+        "python3",
+        "test_agent_result.py"
+      ],
+      "exit_code": 0,
+      "output": "test_all_ten_live_roles (__main__.ContractTests.test_all_ten_live_roles) ... ok\ntest_cli_exit_codes (__main__.ContractTests.test_cli_exit_codes) ... ok\ntest_dependency_drift (__main__.ContractTests.test_dependency_drift) ... ok\ntest_invalid_results (__main__.ContractTests.test_invalid_results) ... ok\ntest_manifest_invariants_and_file_binding (__main__.ContractTests.test_manifest_invariants_and_file_binding) ... ok\ntest_missing_manifest_file (__main__.ContractTests.test_missing_manifest_file) ... ok\ntest_schema (__main__.ContractTests.test_schema) ... ok\ntest_strict_json (__main__.ContractTests.test_strict_json) ... ok\ntest_terminal_statuses (__main__.ContractTests.test_terminal_statuses) ... ok\ntest_two_studio_roles (__main__.ContractTests.test_two_studio_roles) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 1.506s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "validate_agent_result.py",
+        "agent_result.json",
+        "--manifest",
+        "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/production-manifest/v1.0.0/example.valid.json"
+      ],
+      "exit_code": 0,
+      "output": "PASS: agent_result.json\n"
+    }
+  ],
+  "production_mutations": false,
+  "paid_calls": 0,
+  "published": false
+}

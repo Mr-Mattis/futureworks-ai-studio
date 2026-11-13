@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://futureworks.local/schemas/recovery-policy/v1.0.0/operation_snapshot.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "manifest_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "schema_version": {
+              "const": "1.0.0"
+            },
+            "project_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,79}$"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "schema_version",
+            "project_id",
+            "revision",
+            "sha256"
+          ]
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scene_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^S[0-9]{2,3}$"
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_account_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "input_asset_sha256": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "generation_intent": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "manifest_ref",
+        "job_id",
+        "scene_id",
+        "provider",
+        "provider_account_reference",
+        "operation",
+        "model_version",
+        "request_sha256",
+        "input_asset_sha256",
+        "generation_intent"
+      ]
+    },
+    "operation_key": {
+      "type": "string",
+      "pattern": "^fwai-op-v1-[a-f0-9]{64}$"
+    },
+    "status": {
+      "enum": [
+        "prepared",
+        "dispatching",
+        "retry_wait",
+        "accepted",
+        "download_pending",
+        "completed",
+        "blocked",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "provider_job_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "submit_attempts": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "poll_requests": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "download_attempts": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "created_at": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "deadline_at": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "last_observed_at": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "not_before": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "idempotency_guaranteed_until": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "adapter_contract_reference": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "reservation_record_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "result_sha256": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "identity",
+    "operation_key",
+    "status",
+    "provider_job_id",
+    "submit_attempts",
+    "poll_requests",
+    "download_attempts",
+    "created_at",
+    "deadline_at",
+    "last_observed_at",
+    "not_before",
+    "idempotency_guaranteed_until",
+    "adapter_contract_reference",
+    "reservation_record_id",
+    "result_sha256"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "production-manifest/v1.0.0/production_manifest.schema.json": "2c57f70634e79219432378139fe64ba6e472f45b26dab9c728a3d65a2fe87ed3",
+  "production-manifest/v1.0.0/validate_manifest.py": "64b39959ccbaa6dbf85d2c2e487c826f8e2d82dd23c93f37d9076d08f6b7aa95",
+  "agent-result/v1.0.0/agent_result.schema.json": "dd8962160335f9615a159b061de0fad1508ef35cb9f7830c4ac4771d073d4b80",
+  "agent-result/v1.0.0/validate_agent_result.py": "65d2614ded95560dfb20973233627b2f164395e162543da713e3520b3790ee8f",
+  "agent-result/v1.0.0/agent-registry.json": "65fadb1544777328879a0158cff230716577284d5328bc416811ea94709c24bd",
+  "agent-result/v1.0.0/manifest-dependency.json": "a25b3a37b62aa080f6660f227e7a1936b9311d4a00bc69d8e5090fb4880d97a5",
+  "job-state/v1.0.0/job_state.schema.json": "138551bf7d4c745f26ac9bb71832a45cf9e966367b9d4a080f35529c88423143",
+  "job-state/v1.0.0/job_state.py": "19e78bbf6ba4c3e9b3a9555a6a5b5afc641c579763bb916aaa95ba4d3336f39c",
+  "job-state/v1.0.0/gate_receipt.schema.json": "60a3e266616c65adb71019fe4480e9b344fc33387abae0c93e84b8e9155531f8",
+  "job-state/v1.0.0/transitions.json": "dea2a71b3b83be80ef2d39ecec72696f17358f41785c758840393379cdb71204",
+  "data-tables/v1.0.0/table-definitions.json": "cd0c5b10c2c0816b4d44839471fb7c56921a1bb92465944026966e67bbf5200c"
+}

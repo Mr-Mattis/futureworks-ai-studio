@@ -1,0 +1,154 @@
+{
+  "checks": [
+    {
+      "check": "workflows",
+      "unchanged": true,
+      "before": {
+        "data": [
+          {
+            "id": "yjuRNIatvdTMKuqj",
+            "name": "FWAI-LOCAL — Production Adapter (Presenter Pilot)",
+            "description": "Inactive, no-submit presenter pilot staged from an approved Creative Director archive row.",
+            "active": false,
+            "createdAt": "2026-11-09T22:14:08.594Z",
+            "updatedAt": "2026-11-09T22:14:08.594Z",
+            "triggerCount": 0,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "xs4sxANjgMcQS25p",
+            "name": "FWAI-LOCAL — Creative Director",
+            "description": null,
+            "active": true,
+            "createdAt": "2026-11-09T03:08:22.179Z",
+            "updatedAt": "2026-11-09T21:38:06.655Z",
+            "triggerCount": 2,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "Axm40lskQWoxf1XM",
+            "name": "FutureWorks Studio - Submit and Check Jobs",
+            "description": null,
+            "active": true,
+            "createdAt": "2026-11-05T05:05:25.066Z",
+            "updatedAt": "2026-11-09T02:44:46.630Z",
+            "triggerCount": 2,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "fqrWkeG3IFtjQ1tT",
+            "name": "My workflow 1",
+            "description": null,
+            "active": false,
+            "createdAt": "2026-11-08T06:58:05.944Z",
+            "updatedAt": "2026-11-08T06:58:05.944Z",
+            "triggerCount": 0,
+            "availableInMCP": false,
+            "parentFolderId": null,
+            "tags": []
+          }
+        ],
+        "count": 4
+      },
+      "after": {
+        "data": [
+          {
+            "id": "yjuRNIatvdTMKuqj",
+            "name": "FWAI-LOCAL — Production Adapter (Presenter Pilot)",
+            "description": "Inactive, no-submit presenter pilot staged from an approved Creative Director archive row.",
+            "active": false,
+            "createdAt": "2026-11-09T22:14:08.594Z",
+            "updatedAt": "2026-11-09T22:14:08.594Z",
+            "triggerCount": 0,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "xs4sxANjgMcQS25p",
+            "name": "FWAI-LOCAL — Creative Director",
+            "description": null,
+            "active": true,
+            "createdAt": "2026-11-09T03:08:22.179Z",
+            "updatedAt": "2026-11-09T21:38:06.655Z",
+            "triggerCount": 2,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "Axm40lskQWoxf1XM",
+            "name": "FutureWorks Studio - Submit and Check Jobs",
+            "description": null,
+            "active": true,
+            "createdAt": "2026-11-05T05:05:25.066Z",
+            "updatedAt": "2026-11-09T02:44:46.630Z",
+            "triggerCount": 2,
+            "availableInMCP": true,
+            "parentFolderId": null,
+            "tags": []
+          },
+          {
+            "id": "fqrWkeG3IFtjQ1tT",
+            "name": "My workflow 1",
+            "description": null,
+            "active": false,
+            "createdAt": "2026-11-08T06:58:05.944Z",
+            "updatedAt": "2026-11-08T06:58:05.944Z",
+            "triggerCount": 0,
+            "availableInMCP": false,
+            "parentFolderId": null,
+            "tags": []
+          }
+        ],
+        "count": 4
+      }
+    },
+    {
+      "check": "creative_director_archive",
+      "unchanged": true,
+      "rows": 2
+    },
+    {
+      "check": "production_jobs",
+      "unchanged": true,
+      "rows": 1
+    },
+    {
+      "check": "scene_assets",
+      "unchanged": true,
+      "rows": 1
+    },
+    {
+      "check": "provider_jobs",
+      "unchanged": true,
+      "rows": 1
+    },
+    {
+      "check": "costs",
+      "unchanged": true,
+      "rows": 1
+    },
+    {
+      "check": "approvals",
+      "unchanged": true,
+      "rows": 1
+    },
+    {
+      "check": "errors",
+      "unchanged": true,
+      "rows": 1
+    }
+  ],
+  "workflow_executions": 0,
+  "workflow_mutations": 0,
+  "archive_mutations": 0,
+  "provider_calls": 0,
+  "publication_actions": 0
+}

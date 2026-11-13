@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "result_id": "fixture-creative_director",
+  "agent": {
+    "role": "creative_director",
+    "instance_id": "mx0phnsUl3H06dVe"
+  },
+  "scope": "episode",
+  "input_manifest": {
+    "schema_version": "1.0.0",
+    "project_id": "FWAI-EP-0001",
+    "revision": 1,
+    "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+  },
+  "execution": {
+    "run_id": "fixture-run-001",
+    "attempt": 1,
+    "started_at": "2026-11-10T04:00:00Z",
+    "finished_at": "2026-11-10T04:00:01Z",
+    "status": "succeeded"
+  },
+  "output": {
+    "project_id": "FWAI-EP-0001",
+    "working_title": "The PC That Became a Robot",
+    "opening_hook": "Synthetic contract fixture",
+    "logline": "Synthetic contract fixture",
+    "closing_cta": "Synthetic contract fixture",
+    "disclosure_note": "Synthetic contract fixture",
+    "sections": [],
+    "scenes": [
+      {
+        "scene_id": "S01",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes hook and the AI-concept disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; hook and the AI-concept disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S02",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes physical design constraints as a fictional study. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; physical design constraints as a fictional study; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S03",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes the imagined transformation choreography. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; the imagined transformation choreography; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S04",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes cinematic robot reveal and design tradeoffs. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; cinematic robot reveal and design tradeoffs; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      },
+      {
+        "scene_id": "S05",
+        "description": "Synthetic concept scene",
+        "narration": "This segment describes closing recap and ethical disclosure. All hardware transformations shown are fictional visualizations, not a demonstration of working hardware.",
+        "visual_intent": "Original graphite and electric cyan concept gaming PC; closing recap and ethical disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.",
+        "duration_seconds": 72
+      }
+    ],
+    "shorts_ideas": [],
+    "open_questions": [],
+    "metadata_draft": {}
+  },
+  "validation": {
+    "status": "passed",
+    "findings": []
+  },
+  "errors": [],
+  "blockers": [],
+  "authorization": {
+    "spend_authorized": false,
+    "publish_authorized": false,
+    "production_approved": false
+  }
+}

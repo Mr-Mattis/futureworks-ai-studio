@@ -1,0 +1,74 @@
+{
+  "name": "FutureWorks Studio - Submit and Check Jobs",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "futureworks/produce",
+        "responseMode": "lastNode",
+        "responseData": "firstEntryJson",
+        "options": {}
+      },
+      "id": "b40597dd-d5be-42a6-b9ee-c62b1058f171",
+      "name": "Submit production brief",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [240, 240],
+      "webhookId": "futureworks-produce"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://worker:8000/jobs",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {}
+      },
+      "id": "bcd0ebc0-6348-4a03-9b0e-78321e90f843",
+      "name": "Queue production job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 240]
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "futureworks/status/:job_id",
+        "responseMode": "lastNode",
+        "responseData": "firstEntryJson",
+        "options": {}
+      },
+      "id": "b16b9ee8-c0d9-4d42-a69c-386986cd6281",
+      "name": "Check job status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [240, 490],
+      "webhookId": "futureworks-job-status"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'http://worker:8000/jobs/' + $json.params.job_id }}",
+        "options": {}
+      },
+      "id": "36ffef51-d192-41c6-b5b3-cc9224d45145",
+      "name": "Fetch job status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 490]
+    }
+  ],
+  "connections": {
+    "Submit production brief": {
+      "main": [[{"node": "Queue production job", "type": "main", "index": 0}]]
+    },
+    "Check job status": {
+      "main": [[{"node": "Fetch job status", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {"executionOrder": "v1"},
+  "active": false,
+  "pinData": {},
+  "tags": []
+}

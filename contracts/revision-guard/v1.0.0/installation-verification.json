@@ -1,0 +1,31 @@
+{
+  "checkpoint": "P01.05",
+  "version": "1.0.0",
+  "status": "PASS",
+  "installed_path": "/home/mattis983/futureworks-studio/futureworks-ai-studio/contracts/revision-guard/v1.0.0",
+  "revision_store": "/home/mattis983/futureworks-studio/futureworks-ai-studio/data/manifest-revisions",
+  "verified_at_utc": "2026-11-10T05:05:21.190659+00:00",
+  "test_methods_passed": 15,
+  "test_exit_code": 0,
+  "stored_revisions": [
+    {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 2,
+      "sha256": "4c5ac9cda32207d72e2516909c9a3c7e69a57118ae6a6bc8a44af930fb7bf95e"
+    }
+  ],
+  "new_n8n_draft_rows": 2,
+  "exact_roundtrips": 2,
+  "workflow_mutations": 0,
+  "approval_rows_added": 0,
+  "paid_calls": 0,
+  "publication_actions": 0,
+  "progress_sha256": "b54e2224964a125463fb752188c4bbb98fd3315b8590b4bee06bcdce215570fc"
+}

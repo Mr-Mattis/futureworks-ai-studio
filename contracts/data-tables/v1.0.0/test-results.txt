@@ -1,0 +1,12 @@
+test_all_six_tables_and_exact_columns (__main__.StorageEvidenceTests.test_all_six_tables_and_exact_columns) ... ok
+test_approval_receipt_preservation (__main__.StorageEvidenceTests.test_approval_receipt_preservation) ... ok
+test_error_contract_compatibility (__main__.StorageEvidenceTests.test_error_contract_compatibility) ... ok
+test_exact_roundtrip_and_native_metadata (__main__.StorageEvidenceTests.test_exact_roundtrip_and_native_metadata) ... ok
+test_manifest_and_job_contracts (__main__.StorageEvidenceTests.test_manifest_and_job_contracts) ... ok
+test_no_operational_authority_or_spend (__main__.StorageEvidenceTests.test_no_operational_authority_or_spend) ... ok
+test_relationships_and_scene_reference (__main__.StorageEvidenceTests.test_relationships_and_scene_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK

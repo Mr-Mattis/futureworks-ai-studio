@@ -1,0 +1,36 @@
+P02.01 offline development evidence — not live acceptance
+Command: sh agents/executive_producer/run-isolated-tests.sh
+Environment: Bubblewrap network/PID/IPC namespaces, minimal read-only /usr and
+libraries, checkout mounted read-only at /mnt, empty private /tmp, cleared environment.
+Production home and runtime sockets are not mounted.
+No n8n engine, Ollama inference or provider API was invoked.
+
+Earlier run: 19 tests; 2 assertion failures (Bubblewrap supplies PWD and the fixture
+adds its own blocker). Assertions corrected; two CLI tests added before this run.
+
+test_invalid_cli_input_returns_rejection (__main__.CliTests.test_invalid_cli_input_returns_rejection) ... ok
+test_offline_request_and_evaluation (__main__.CliTests.test_offline_request_and_evaluation) ... ok
+test_checkout_is_mounted_read_only (__main__.IsolationTests.test_checkout_is_mounted_read_only) ... ok
+test_environment_has_no_provider_credentials (__main__.IsolationTests.test_environment_has_no_provider_credentials) ... ok
+test_loopback_cannot_reach_production (__main__.IsolationTests.test_loopback_cannot_reach_production) ... ok
+test_no_network_interfaces_except_loopback (__main__.IsolationTests.test_no_network_interfaces_except_loopback) ... ok
+test_production_home_and_runtime_sockets_absent (__main__.IsolationTests.test_production_home_and_runtime_sockets_absent) ... ok
+test_canonical_contract_tampering_is_rejected (__main__.PlannerTests.test_canonical_contract_tampering_is_rejected) ... ok
+test_canonical_result_is_blocked_without_authority (__main__.PlannerTests.test_canonical_result_is_blocked_without_authority) ... ok
+test_duplicate_keys_and_nonfinite_json_rejected (__main__.PlannerTests.test_duplicate_keys_and_nonfinite_json_rejected) ... ok
+test_external_paths_rejected (__main__.PlannerTests.test_external_paths_rejected) ... ok
+test_manifest_exact_byte_identity_and_no_mutation (__main__.PlannerTests.test_manifest_exact_byte_identity_and_no_mutation) ... ok
+test_missing_optional_keys_fail_closed (__main__.PlannerTests.test_missing_optional_keys_fail_closed) ... ok
+test_new_profile_is_valid_json_schema (__main__.PlannerTests.test_new_profile_is_valid_json_schema) ... ok
+test_payload_claims_never_grant_permissions (__main__.PlannerTests.test_payload_claims_never_grant_permissions) ... ok
+test_schema_and_semantic_rejections (__main__.PlannerTests.test_schema_and_semantic_rejections) ... ok
+test_unique_attempt_ids (__main__.PlannerTests.test_unique_attempt_ids) ... ok
+test_unknown_manifest_fields_fail_closed (__main__.PlannerTests.test_unknown_manifest_fields_fail_closed) ... ok
+test_graph_has_only_planning_capabilities (__main__.WorkflowTests.test_graph_has_only_planning_capabilities) ... ok
+test_node_vm_and_python_accept_same_corpus (__main__.WorkflowTests.test_node_vm_and_python_accept_same_corpus) ... ok
+test_workflow_reproducible (__main__.WorkflowTests.test_workflow_reproducible) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.599s
+
+OK

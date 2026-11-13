@@ -1,0 +1,135 @@
+{
+  "project_id": "FWAI-EP-0001",
+  "working_title": "Synthetic robot concept planning test",
+  "content_type": "AI_CONCEPT",
+  "story_goal": "Plan a clearly labeled fictional concept episode.",
+  "target_audience": "Viewers interested in original machine concept art.",
+  "creative_constraints": [
+    "Fiction must not be represented as a real engineering test."
+  ],
+  "work_packages": [
+    {
+      "package_id": "research",
+      "stage": "research",
+      "owner": "research_agent",
+      "task": "Propose research work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed research handoff for review",
+      "dependencies": []
+    },
+    {
+      "package_id": "script",
+      "stage": "script",
+      "owner": "creative_director",
+      "task": "Propose script work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed script handoff for review",
+      "dependencies": [
+        "research"
+      ]
+    },
+    {
+      "package_id": "visual",
+      "stage": "visual",
+      "owner": "visual_director",
+      "task": "Propose visual work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed visual handoff for review",
+      "dependencies": [
+        "script"
+      ]
+    },
+    {
+      "package_id": "avatar",
+      "stage": "avatar",
+      "owner": "avatar_director",
+      "task": "Propose avatar work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed avatar handoff for review",
+      "dependencies": [
+        "script"
+      ]
+    },
+    {
+      "package_id": "budget",
+      "stage": "budget",
+      "owner": "budget_controller",
+      "task": "Propose budget work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed budget handoff for review",
+      "dependencies": [
+        "visual",
+        "avatar"
+      ]
+    },
+    {
+      "package_id": "assembly",
+      "stage": "assembly",
+      "owner": "editing_supervisor",
+      "task": "Propose assembly work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed assembly handoff for review",
+      "dependencies": [
+        "visual",
+        "avatar",
+        "budget"
+      ]
+    },
+    {
+      "package_id": "qc",
+      "stage": "qc",
+      "owner": "quality_control",
+      "task": "Propose qc work; no execution claimed.",
+      "required_inputs": [
+        "Canonical input manifest and prior planning deliverables"
+      ],
+      "deliverable": "Proposed qc handoff for review",
+      "dependencies": [
+        "assembly"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "name": "human_approval",
+      "owner": "human_owner",
+      "pass_conditions": [
+        "Authenticated owner approval bound to exact immutable revision"
+      ]
+    },
+    {
+      "name": "budget_approval",
+      "owner": "human_owner",
+      "pass_conditions": [
+        "Verified spending authorization and independently enforced provider caps"
+      ]
+    },
+    {
+      "name": "publication_approval",
+      "owner": "human_owner",
+      "pass_conditions": [
+        "Final QC and authenticated owner release approval"
+      ]
+    }
+  ],
+  "estimated_scene_count": 5,
+  "assumptions": [
+    "All inputs and this response are synthetic; no model has executed."
+  ],
+  "blockers": [
+    "Approved brand profile and local agent readiness are unknown."
+  ],
+  "next_action": "Review proposed work packages and unresolved inputs."
+}

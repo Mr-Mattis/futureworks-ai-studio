@@ -72,6 +72,31 @@ class AtomicClaimTests(unittest.TestCase):
         with sqlite3.connect(self.path) as db:
             self.assertEqual(db.execute("SELECT COUNT(*) FROM provider_reservations").fetchone()[0], 1)
 
+    def test_parallel_provider_reservations_stay_unique(self):
+        claim(self.path, self.request)
+        with concurrent.futures.ProcessPoolExecutor(max_workers=12) as pool:
+            futures = [
+                pool.submit(
+                    reserve_provider_operation,
+                    self.path,
+                    self.request,
+                    "provider-op-race",
+                )
+                for _ in range(12)
+            ]
+            outcomes = [future.result() for future in futures]
+        self.assertEqual(outcomes.count("reserved"), 1)
+        self.assertEqual(outcomes.count("already_reserved"), 11)
+        with sqlite3.connect(self.path) as db:
+            self.assertEqual(
+                db.execute("SELECT COUNT(*) FROM provider_reservations").fetchone()[0],
+                1,
+            )
+            self.assertEqual(
+                db.execute("SELECT state FROM provider_reservations").fetchone()[0],
+                "not_submitted",
+            )
+
     def test_provider_key_conflict(self):
         claim(self.path, self.request)
         other = Claim("OTHER-PROJECT", "OTHER-RUN", 1, SHA)

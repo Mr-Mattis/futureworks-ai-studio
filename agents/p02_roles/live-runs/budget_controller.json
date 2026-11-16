@@ -1,0 +1,47 @@
+{
+  "role": "budget_controller",
+  "checkpoint": "P02.06",
+  "workflow_id": "Cx2Gx2N3iEwWUURE",
+  "workflow_version": "24306fa6-01aa-4386-9056-7322b1b6fcdf",
+  "execution_id": "64",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.06",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "currency": "USD",
+      "forecast_line_items": [],
+      "tradeoffs": [
+        "Zero budget cap prohibits any expenditure; no tradeoffs are viable under a hard zero constraint."
+      ],
+      "missing_rates": [
+        "No provider rate cards were provided in the input, preventing verification of unit costs for any potential services or assets.",
+        "Independent verification of current market rates for AI generation, hardware components, or material supplies is unavailable due to empty provider_rates object."
+      ],
+      "budget_cap_usd": 0,
+      "forecast_total_usd": 0,
+      "contingency_usd": 0,
+      "under_budget": true,
+      "approval_required": true
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "Spending caps enforced outside this model; no rates assumed"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

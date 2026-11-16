@@ -1,0 +1,98 @@
+{
+  "role": "quality_control",
+  "checkpoint": "P02.08",
+  "workflow_id": "xxpGERneD6wzi61c",
+  "workflow_version": "8eddbcfd-c399-4f0f-b50e-7bc641071bdd",
+  "execution_id": "63",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.08",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "overall_verdict": "fail",
+      "checks": [
+        {
+          "check_id": "CHK-MEDIA-EXISTENCE",
+          "type": "asset_validation",
+          "pass": false,
+          "confidence": 1,
+          "evidence": "Asset manifest is empty; no video, audio, or image files provided for review."
+        },
+        {
+          "check_id": "CHK-APPROVALS-COMPLETE",
+          "type": "compliance_check",
+          "pass": false,
+          "confidence": 1,
+          "evidence": "Approvals array is empty; no stakeholder sign-offs recorded."
+        },
+        {
+          "check_id": "CHK-RESEARCH-EVIDENCE",
+          "type": "content_accuracy",
+          "pass": false,
+          "confidence": 1,
+          "evidence": "Research evidence array is empty; claims lack supporting documentation."
+        },
+        {
+          "check_id": "CHK-SCENE-COVERAGE",
+          "type": "structural_check",
+          "pass": false,
+          "confidence": 1,
+          "evidence": "Scene IDs S01-S05 are listed but have no associated media or transcript data to verify content."
+        }
+      ],
+      "defects": [
+        {
+          "scene_id": "S01",
+          "severity": "critical",
+          "description": "Missing source media and transcript for Scene 01.",
+          "repair_plan": "Upload raw footage, render files, and corresponding transcript. Attach research citations for any technical claims."
+        },
+        {
+          "scene_id": "S02",
+          "severity": "critical",
+          "description": "Missing source media and transcript for Scene 02.",
+          "repair_plan": "Upload raw footage, render files, and corresponding transcript. Attach research citations for any technical claims."
+        },
+        {
+          "scene_id": "S03",
+          "severity": "critical",
+          "description": "Missing source media and transcript for Scene 03.",
+          "repair_plan": "Upload raw footage, render files, and corresponding transcript. Attach research citations for any technical claims."
+        },
+        {
+          "scene_id": "S04",
+          "severity": "critical",
+          "description": "Missing source media and transcript for Scene 04.",
+          "repair_plan": "Upload raw footage, render files, and corresponding transcript. Attach research citations for any technical claims."
+        },
+        {
+          "scene_id": "S05",
+          "severity": "critical",
+          "description": "Missing source media and transcript for Scene 05.",
+          "repair_plan": "Upload raw footage, render files, and corresponding transcript. Attach research citations for any technical claims."
+        }
+      ],
+      "rights_disclosure_review": "Unable to review rights due to missing assets. All content must be verified for originality or licensed usage before publication. No third-party IP (music, footage, models) can be confirmed as cleared.",
+      "manual_checks_required": "Yes. Manual verification of media integrity, audio sync, visual fidelity, and legal clearance is required before any further processing."
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "QC media evidence must be independently inspected"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

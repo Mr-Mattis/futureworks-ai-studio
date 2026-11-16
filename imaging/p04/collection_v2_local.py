@@ -6,11 +6,13 @@ Journal records exact provider receipts; no blind resubmission.
 import hashlib,json,time,urllib.request,urllib.parse,uuid,sys
 from pathlib import Path
 from PIL import Image,ImageOps,ImageDraw
-ROOT=Path(r"C:\Users\yashi\Documents\futureworks-p04-data\collection-v2")
+ROOT=Path.home()/"Documents"/"futureworks-p04-data"/"collection-v2"
 ROOT.mkdir(parents=True,exist_ok=True)
 JOURNAL=ROOT/"receipts.json"
 API="http://127.0.0.1:8188"
 MODEL="v1-5-pruned-emaonly.safetensors"
+MODEL_SHA="6ce0161689b3853acaa03779ec93eafe75a02f4ced659bee03f50797806fa2fa"
+MODEL_PATH=Path.home()/"Documents"/"futureworks-p04-comfyui"/"models"/"checkpoints"/MODEL
 DESIGNS=[
 ("01","A sleek autonomous manta ray inspired orbital maintenance robot, broad swept wings, six precision microthrusters, dark graphite titanium and electric cyan energy veins, floating above an orbital hangar"),
 ("02","A six legged lunar excavation walker with excavator mantis forelimbs, modular drill shoulders, titanium segmented abdomen, blue optics and dust covered feet on a moon surface"),
@@ -90,6 +92,10 @@ def montage():
             sheet.paste(tile,(x,y));draw.text((x+4,y+180),n+" "+d[:32],fill="white")
     sheet.crop((0,0,1600,500)).save(ROOT/"P04_V2_CONTACT_SHEET.png")
 if __name__=="__main__":
+    if not MODEL_PATH.is_file():raise RuntimeError("Pinned model checkpoint missing")
+    with MODEL_PATH.open("rb") as src:
+        actual=hashlib.file_digest(src,"sha256").hexdigest()
+    if actual!=MODEL_SHA:raise RuntimeError("Pinned model SHA mismatch; generation refused")
     if not call("/system_stats").get("devices"):raise RuntimeError("Comfy backend missing")
     j=json.loads(JOURNAL.read_text()) if JOURNAL.exists() else {}
     count=int(sys.argv[1]) if len(sys.argv)>1 else 10

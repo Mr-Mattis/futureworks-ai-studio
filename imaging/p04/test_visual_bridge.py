@@ -24,6 +24,7 @@ class VisualBridgeTests(unittest.TestCase):
         for i in ids:
             self.runner.submit_one(i)
             self.runner.poll_one(i)
+        self.runner.visual_handoff(RUN)
         self.handoff=self.root/"images"/("VISUAL_DIRECTOR_HANDOFF_"+RUN+".json")
         self.assertTrue(self.handoff.is_file())
 

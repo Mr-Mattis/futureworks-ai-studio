@@ -1,0 +1,24 @@
+import { workflow,trigger,node } from '@n8n/workflow-sdk';
+const triggerNode=trigger({type:'n8n-nodes-base.webhook',version:2.1,config:{name:'P03 development brief webhook',parameters:{httpMethod:'POST',path:'fwai-p03-dev-brief',responseMode:'responseNode',options:{}}}});
+const validation=node({type:'n8n-nodes-base.code',version:2,config:{name:'Validate brief',parameters:{mode:'runOnceForAllItems',jsCode:"const rows=$input.all();\nif(rows.length!==1)throw Error('Only one concept per request');\nconst raw=rows[0].json;\nconst headers=raw.headers??{};\nif(headers['x-fwai-dev-gate']!=='__P03_WEBHOOK_GATE_INJECT_AT_RUNTIME__')throw Error('P03 development webhook authorization failed');\nconst input=raw.body??raw;\nconst keys=['project_id','run_id','brief','manifest_sha256'];\nif(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).sort().join(',')!==keys.slice().sort().join(','))throw Error('Unexpected intake fields');\nif(input.project_id!=='FWAI-EP-0001'||typeof input.run_id!=='string'||!/^[A-Za-z0-9._-]{3,128}$/.test(input.run_id))throw Error('Invalid test identity');\nif(typeof input.manifest_sha256!=='string'||input.manifest_sha256!=='cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87')throw Error('Invalid immutable manifest hash');\nif(typeof input.brief!=='string'||input.brief.length<10||input.brief.length>4000||(!input.brief.includes('The PC That Became a Robot')&&!input.brief.includes('FWAI-EP-0001')))throw Error('Invalid approved concept brief');\nreturn [{json:{project_id:input.project_id,run_id:input.run_id,brief:input.brief,manifest_sha256:input.manifest_sha256}}];"}}});
+const intake=node({type:'n8n-nodes-base.httpRequest',version:4.2,config:{name:'Create durable development intent',parameters:{
+  method:'POST',url:'http://host.docker.internal:18731/v1/intake',sendHeaders:true,
+  headerParameters:{parameters:[{name:'Authorization',value:'Bearer __P03_DEV_API_TOKEN_INJECT_AT_RUNTIME__'},{name:'Content-Type',value:'application/json'}]},
+  sendBody:true,specifyBody:'json',jsonBody:'={{ JSON.stringify($json) }}',
+  options:{timeout:15000},responseFormat:'json'
+}}});
+const drive=node({type:'n8n-nodes-base.httpRequest',version:4.2,config:{name:'Run seven development specialists',parameters:{
+  method:'POST',url:'http://host.docker.internal:18731/v1/drive',sendHeaders:true,
+  headerParameters:{parameters:[{name:'Authorization',value:'Bearer __P03_DEV_API_TOKEN_INJECT_AT_RUNTIME__'},{name:'Content-Type',value:'application/json'}]},
+  sendBody:true,specifyBody:'json',
+  jsonBody:'={{ JSON.stringify({project_id: $(\'Validate brief\').first().json.project_id, run_id: $(\'Validate brief\').first().json.run_id}) }}',
+  options:{timeout:300000},responseFormat:'json'
+}}});
+const dashboard=node({type:'n8n-nodes-base.httpRequest',version:4.2,config:{name:'Read stage dashboard',parameters:{
+  method:'GET',url:'={{ "http://host.docker.internal:18731/v1/dashboard?project_id="+$(\'Validate brief\').first().json.project_id+"&run_id="+$(\'Validate brief\').first().json.run_id }}',
+  sendHeaders:true,headerParameters:{parameters:[{name:'Authorization',value:'Bearer __P03_DEV_API_TOKEN_INJECT_AT_RUNTIME__'}]},options:{timeout:15000},responseFormat:'json'
+}}});
+const gate=node({type:'n8n-nodes-base.code',version:2,config:{name:'Enforce final approval hold',parameters:{mode:'runOnceForAllItems',jsCode:"const report=$input.first().json;const expected=$('Validate brief').first().json;\nif(!report||report.project_id!==expected.project_id||report.run_id!==expected.run_id||!Array.isArray(report.stages)||report.stages.length!==7||report.state!=='awaiting_approval')throw Error('P03 canonical orchestrator did not reach approval gate');\nif(!Array.isArray(report.approvals)||report.approvals.length!==3||report.approvals.some(x=>x.status!=='pending'))throw Error('Human approval bypass attempt');\nif(!report.authorization||Object.values(report.authorization).some(Boolean)||report.dispatch_performed!==false||report.costs_usd!==0||report.assets_ready!==0)throw Error('Unsafe output');\nif(report.stages.some(s=>s.state!=='passed'))throw Error('Planning incomplete');\nreturn [{json:{checkpoint:'P03.01-P03.08',is_test:true,execution_type:'synthetic_replay',status:'awaiting_human_approval',project_id:expected.project_id,run_id:expected.run_id,dashboard:report,authorization:{production_approved:false,spend_authorized:false,publish_authorized:false},dispatch_performed:false}}];"}}});
+const respond=node({type:'n8n-nodes-base.respondToWebhook',version:1.4,config:{name:'Return blocked development dashboard',parameters:{respondWith:'json',responseBody:'={{ JSON.stringify($json) }}',options:{}}}});
+export default workflow('fwai-p03-development-orchestrator','FWAI-DEV — P03 Master Production Orchestrator')
+.add(triggerNode).to(validation).to(intake).to(drive).to(dashboard).to(gate).to(respond);

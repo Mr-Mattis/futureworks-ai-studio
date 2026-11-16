@@ -78,7 +78,9 @@ def load_reference_bundle(path):
     for a in data["assets"]:
         if not {"asset_id", "scene_id", "local_path", "sha256", "prompt", "seed", "model_sha256", "license", "approval_state"} <= set(a):
             raise Rejected("Missing image provenance")
-        file = Path(a["local_path"]).resolve()
+        if not isinstance(a["asset_id"],str) or not re.fullmatch(r"P04_[A-Za-z0-9_]+",a["asset_id"]):
+            raise Rejected("Untrusted asset identifier")
+        file = (p.parent/(a["asset_id"]+".png")).resolve()
         if not file.is_file() or file.suffix.lower() != ".png" or not file.is_relative_to(p.parent):
             raise Rejected("Image must be a local PNG adjacent to trusted index")
         raw = file.read_bytes()

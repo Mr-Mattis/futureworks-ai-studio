@@ -195,6 +195,22 @@ class WorkerTests(unittest.TestCase):
         self.assertEqual(len(self.rows("provider_reservations")), 1)
         self.assertEqual(self.rows("provider_reservations")[0][3], "not_submitted")
 
+    def test_ambiguity_injection_rejects_queued_or_completed_job(self):
+        self.submit()
+        ref = planner.manifest_context(MANIFEST)[1]
+        key = self.worker.operation_key("FWAI-EP-0001", "run", ref["revision"],
+                                        ref["sha256"], "S01", "video", "runway")
+        reserve_provider_operation(
+            self.path, Claim("FWAI-EP-0001", "run", ref["revision"], ref["sha256"]), key)
+        with self.assertRaisesRegex(ValueError, "INVALID_RECONCILIATION_STATE"):
+            self.worker.flag_ambiguous(key, "injected while queued")
+        self.assertEqual(self.worker.status("FWAI-EP-0001", "run")["state"], "queued")
+        self.worker.finish(self.worker.take())
+        with self.assertRaisesRegex(ValueError, "INVALID_RECONCILIATION_STATE"):
+            self.worker.flag_ambiguous(key, "injected after completed planning")
+        self.assertEqual(self.worker.status("FWAI-EP-0001", "run")["state"], "blocked")
+        self.assertEqual(self.rows("dev_operation_reviews"), [])
+
     def test_failed_completion_rolls_back_reservations(self):
         self.submit()
         ticket = self.worker.take()

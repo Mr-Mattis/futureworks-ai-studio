@@ -1,0 +1,77 @@
+{
+  "role": "research_agent",
+  "checkpoint": "P02.03",
+  "workflow_id": "qx8tES2dRjMT9kJ9",
+  "workflow_version": "68231686-f873-4d99-9758-67abdd177ca2",
+  "execution_id": "57",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.03",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "research_questions": [
+        "What are the current thermal limits of standard desktop form factors (ATX, ITX) compared to custom liquid-cooled loops?",
+        "How does airflow dynamics change in a transforming chassis design where vents may be obstructed during movement?",
+        "What materials offer the best strength-to-weight ratio for moving parts in a PC chassis without compromising structural integrity?",
+        "Are there existing patents or prior art regarding 'transforming' computer cases that could pose intellectual property risks?"
+      ],
+      "verified_claims": [],
+      "unverified_claims": [
+        {
+          "claim": "This machine was physically built",
+          "evidence": "None. The input content_type is AI_CONCEPT and sources are empty.",
+          "source_url": null,
+          "confidence": 0
+        },
+        {
+          "claim": "The transformation improves cooling by 40%",
+          "evidence": "No empirical data or simulation results provided in source material.",
+          "source_url": null,
+          "confidence": 0
+        }
+      ],
+      "technical_constraints": [
+        "Mechanical complexity of transforming joints must not interfere with PCIe slot alignment or RAM clearance.",
+        "Cable management becomes critical; flexible flat cables or wireless components may be required for moving sections.",
+        "Thermal paste and liquid cooling lines must accommodate movement without kinking or leaking.",
+        "Weight distribution must remain stable to prevent tipping during the transformation sequence."
+      ],
+      "safety_notes": [
+        "High-voltage components inside a transforming chassis pose pinch-point risks during operation.",
+        "If using real hardware for demonstration, ensure all power is disconnected before any mechanical adjustment.",
+        "Avoid sharp edges on moving parts to prevent injury during the 'transformation' visual sequence.",
+        "Lithium batteries (if used for wireless peripherals) must be secured against impact during movement."
+      ],
+      "rights_risks": [
+        "Potential infringement of existing patents related to modular or transforming computer chassis designs.",
+        "Use of branded component visuals (e.g., NVIDIA, Intel logos) may require licensing for commercial use.",
+        "Ensure all 3D models and textures used in the AI concept are original or properly licensed."
+      ],
+      "concept_only_elements": [
+        "The physical transformation mechanism is a visual effect; no actual mechanical movement occurs in this AI concept.",
+        "The '40% cooling improvement' is a speculative metric for narrative purposes, not an engineering result.",
+        "Any internal component layout shown is illustrative and may not reflect real-world compatibility."
+      ],
+      "followup_needed": "Confirm if the video will use CGI-only visuals or if a physical prop will be constructed for B-roll. If a prop is built, engineering consultation is required to ensure structural safety and electrical isolation."
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "Claims without evidence remain unverified"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

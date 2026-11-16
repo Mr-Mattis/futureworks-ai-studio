@@ -85,22 +85,33 @@ def send_to_visual(handoff, *, ollama_url="http://127.0.0.1:11434/api/chat",
         },
     }
     schema=roles.schema("visual_director")
+    schema["properties"]["shots"].update({
+        "minItems": 10, "maxItems": 10,
+        "items": {"type": "object", "additionalProperties": False,
+                  "required": ["scene_id","reference_asset_id","shot_id","shot_notes"],
+                  "properties": {
+                      "scene_id": {"type":"string"},
+                      "reference_asset_id": {"type":"string"},
+                      "shot_id": {"type":"string"},
+                      "shot_notes": {"type":"string"}}},
+    })
     system=(roles.registry()["visual_director"]["output_instructions"]+
         "\nP04.06 controlled local metadata-only Visual Director intake. You have "
         "NOT seen the pixels and must NOT claim to have viewed or quality-approved "
         "the generated images. Output only valid JSON matching the output_schema. "
-        "Plan at least ten shots: one for each distinct reference asset_id, each "
-        "with exact scene_id and reference_asset_id. "
+        "Output EXACTLY ten shots, each one mapping to precisely ONE unique image asset_id and its exact scene_id. "
+        "Every shot must have exactly shot_id, scene_id, reference_asset_id, and shot_notes. "
+        "Do not omit any asset. Reference image IDs in the input are authoritative. "
         "Keep provenance explicit, do not invent new images/engineering tests, "
         "do not authorize spending/publishing/identity use. "
         "Unresolved assets must include actual visual inspection/rights checks.")
     request={
         "model":"qwen3.6:latest", "stream":False, "think":False, "format":schema,
-        "options":{"temperature":0,"num_predict":4000,"num_ctx":16384},
+        "options":{"temperature":0,"num_predict":7000,"num_ctx":16384},
         "messages":[
             {"role":"system","content":system},
             {"role":"user","content":json.dumps(
-                {"role_input":ctx["role_input"],"output_schema":schema})}
+                {"role_input":ctx["role_input"],"required_asset_scene_pairs":[{"reference_asset_id":r["asset_id"],"scene_id":r["scene_id"]} for r in images],"output_schema":schema})}
         ],
     }
     call=urllib.request.Request(ollama_url,data=compact(request).encode(),

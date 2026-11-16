@@ -18,7 +18,7 @@ def verify_approval(approval_path, bundle_path, *, owner_key):
     if not isinstance(owner_key, bytes) or len(owner_key) < 32:
         raise Rejected("Strong owner-controlled verification key required")
     record = json.loads(Path(approval_path).read_text())
-    expected_fields = {"project_id", "run_id", "manifest_sha256", "asset_sha256",
+    expected_fields = {"source", "project_id", "run_id", "manifest_sha256", "asset_sha256",
                        "decision", "rights_reviewed", "image_quality_reviewed",
                        "consistency_reviewed", "reviewer", "hmac_sha256"}
     if set(record) != expected_fields:

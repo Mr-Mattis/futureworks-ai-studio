@@ -343,9 +343,16 @@ class ImagePipeline:
             raise
         if raw is None:
             return "submitted"
-        if png_dimensions(raw) != (TEMPLATES[job["kind"]]["width"],
-                                    TEMPLATES[job["kind"]]["height"]):
-            raise Rejected("Output image dimensions do not match planned template")
+        try:
+            if png_dimensions(raw) != (TEMPLATES[job["kind"]]["width"],
+                                        TEMPLATES[job["kind"]]["height"]):
+                raise Rejected("Output image dimensions do not match planned template")
+        except Rejected as exc:
+            with self.tx() as db:
+                db.execute("UPDATE image_jobs SET state='needs_review',error=? "
+                           "WHERE image_id=? AND state='submitted'",
+                           (str(exc)[:160], image_id))
+            raise
         path = self.out / (image_id + ".png")
         if path.exists():
             if sha(path.read_bytes()) != sha(raw):

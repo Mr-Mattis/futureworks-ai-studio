@@ -1,0 +1,62 @@
+{
+  "checkpoint": "P05.07 LOCAL NON-GENERATIVE PREVIEW ONLY",
+  "mode": "FFmpeg_Ken_Burns_from_real_P04_Stills",
+  "status": "three_local_storyboards_preserved_not_runway",
+  "clips": [
+    {
+      "scene_id": "S01",
+      "source_asset_id": "P04_P04_GPU_001_01",
+      "source_sha256": "e889931fdc0f335a298f17bec805b266b84ac24aa774296f9ff08ab2f11d4f53",
+      "video_sha256": "41313ac5a1e4de58720d44d7a760d531cde551f5d445bcc10e31d919ef934723",
+      "codec": "h264",
+      "width": 960,
+      "height": 540,
+      "frames": 96,
+      "duration_seconds": 4,
+      "file": "/mnt/c/Users/yashi/Documents/futureworks-p05-data/storyboard-previews/P05_STORYBOARD_S01.mp4",
+      "source_type": "still_image_camera_motion",
+      "generative_video_provider_used": false,
+      "human_continuity_review": "required"
+    },
+    {
+      "scene_id": "S02",
+      "source_asset_id": "P04_P04_GPU_001_03",
+      "source_sha256": "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958",
+      "video_sha256": "2862cc258fb40c6632a4008e0f2d9515fe6fe0d2b42dc9f63410c2a86f6cc1d5",
+      "codec": "h264",
+      "width": 960,
+      "height": 540,
+      "frames": 96,
+      "duration_seconds": 4,
+      "file": "/mnt/c/Users/yashi/Documents/futureworks-p05-data/storyboard-previews/P05_STORYBOARD_S02.mp4",
+      "source_type": "still_image_camera_motion",
+      "generative_video_provider_used": false,
+      "human_continuity_review": "required"
+    },
+    {
+      "scene_id": "S03",
+      "source_asset_id": "P04_P04_GPU_001_05",
+      "source_sha256": "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7",
+      "video_sha256": "4fd9d534bd8cd37abd8a5e123b2f076881889a688e3c47a4e2b859a249d64984",
+      "codec": "h264",
+      "width": 960,
+      "height": 540,
+      "frames": 96,
+      "duration_seconds": 4,
+      "file": "/mnt/c/Users/yashi/Documents/futureworks-p05-data/storyboard-previews/P05_STORYBOARD_S03.mp4",
+      "source_type": "still_image_camera_motion",
+      "generative_video_provider_used": false,
+      "human_continuity_review": "required"
+    }
+  ],
+  "total": 3,
+  "spent_usd": 0,
+  "approved_budget_usd": 0,
+  "runway_video_generation_performed": false,
+  "authorization": {
+    "production_approved": false,
+    "spend_authorized": false,
+    "publish_authorized": false
+  },
+  "locked_P05_exit": "OPEN"
+}

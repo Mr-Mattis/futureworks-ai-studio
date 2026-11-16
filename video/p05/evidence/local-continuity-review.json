@@ -1,0 +1,106 @@
+{
+  "checkpoint": "P05.06",
+  "verdict": "human_review_required",
+  "source": "local_FFmpeg_storyboard_previews_not_generative_video",
+  "sampled_scenes": [
+    {
+      "scene_id": "S01",
+      "file_name": "P05_STORYBOARD_S01.mp4",
+      "frame_times_seconds": [
+        0.25,
+        2,
+        3.5
+      ],
+      "frame_mean_rgb": [
+        [
+          125.202,
+          129.76,
+          136.946
+        ],
+        [
+          125.078,
+          129.89,
+          136.783
+        ],
+        [
+          125.078,
+          129.89,
+          136.783
+        ]
+      ],
+      "motion_proxy_distance": 0.14
+    },
+    {
+      "scene_id": "S02",
+      "file_name": "P05_STORYBOARD_S02.mp4",
+      "frame_times_seconds": [
+        0.25,
+        2,
+        3.5
+      ],
+      "frame_mean_rgb": [
+        [
+          107.527,
+          118.468,
+          128.38
+        ],
+        [
+          107.394,
+          118.564,
+          128.227
+        ],
+        [
+          107.394,
+          118.564,
+          128.227
+        ]
+      ],
+      "motion_proxy_distance": 0.13
+    },
+    {
+      "scene_id": "S03",
+      "file_name": "P05_STORYBOARD_S03.mp4",
+      "frame_times_seconds": [
+        0.25,
+        2,
+        3.5
+      ],
+      "frame_mean_rgb": [
+        [
+          85.43,
+          115.337,
+          129.04
+        ],
+        [
+          85.423,
+          115.326,
+          129.047
+        ],
+        [
+          85.423,
+          115.326,
+          129.047
+        ]
+      ],
+      "motion_proxy_distance": 0.009
+    }
+  ],
+  "cuts": [
+    {
+      "cut": "S01→S02",
+      "color_distance": 13.027
+    },
+    {
+      "cut": "S02→S03",
+      "color_distance": 12.826
+    }
+  ],
+  "correction_requests": [],
+  "always_required": [
+    "Human visual review for robot morphology, silhouette and continuity",
+    "Verify original image licensing and consent before production",
+    "Review actual moving AI-generated clips after budget authorization"
+  ],
+  "publish_authorized": false,
+  "paid_provider_calls": 0
+}

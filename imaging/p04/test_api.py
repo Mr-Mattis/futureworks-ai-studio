@@ -103,10 +103,22 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(data["paid_provider_calls"],0)
 
     def test_early_visual_handoff_denied(self):
-        self.call("POST","/v1/start",self.payload())
-        # Completion is racy, therefore use an unrelated nonexistent batch.
+        # Do not launch a background generator that can race teardown.
+        # A completely absent run must always fail closed.
         status,_=self.call("GET","/v1/visual-handoff?run_id=UNKNOWN")
         self.assertEqual(status,400)
+
+    def test_accepted_run_reaches_stable_completed_state_before_teardown(self):
+        status,_=self.call("POST","/v1/start",self.payload())
+        self.assertEqual(status,202)
+        deadline=time.monotonic()+5
+        while time.monotonic()<deadline:
+            code,report=self.call("GET","/v1/status?run_id="+RUN)
+            if code==200 and report["completed"]==10:
+                break
+            time.sleep(.02)
+        self.assertEqual(report["completed"],10)
+        self.assertEqual(report["needs_review"],0)
 
 
 if __name__=="__main__":

@@ -1,0 +1,208 @@
+{
+  "id": "HBvqaDLfhurpNLlu",
+  "name": "FWAI-LOCAL \u2014 Executive Producer",
+  "active": false,
+  "versionId": "43661066-75d9-4c81-b965-2fb98f7a84b9",
+  "description": "P02.01 local Ollama planning agent; structured role payload and agent_result v1.0.0 handoff; no tools or external paid actions.",
+  "connections": {
+    "P02 manual test": {
+      "main": [
+        [
+          {
+            "node": "Manual role fixture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual role fixture": {
+      "main": [
+        [
+          {
+            "node": "Prepare input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare input": {
+      "main": [
+        [
+          {
+            "node": "Executive Producer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Executive Producer Agent": {
+      "main": [
+        [
+          {
+            "node": "Validate and return agent_result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Executive Producer Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Executive Producer Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Called by orchestrator": {
+      "main": [
+        [
+          {
+            "node": "Prepare input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "88e901e4-8491-4483-80b2-4d217d9b09f6",
+      "name": "P02 manual test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        16
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "faa14c5f-fccd-4368-abc3-79c92a6ad7c3",
+      "name": "Manual role fixture",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        16
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{json:{\"scope\":\"episode\",\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"input_manifest\":{\"schema_version\":\"1.0.0\",\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"revision\":1,\"sha256\":\"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"},\"run_id\":\"P02-executive-producer-test-001\",\"attempt\":1,\"role_input\":{\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"brief\":\"Synthetic planning test for a clearly fictional transforming desktop computer. No build or measurements occurred.\",\"content_pillar\":\"futuristic PC concepts\",\"content_type\":\"AI_CONCEPT\",\"target_duration_seconds\":360,\"expected_scene_count\":5,\"budget_usd\":0,\"avatar_preferences\":\"No likeness or voice use authorized.\",\"output_format\":\"16:9 1080p editable handoff. Planning only.\"}}}];"
+      }
+    },
+    {
+      "id": "d5a9b78a-4ebf-495b-a475-1045f3fa7ee3",
+      "name": "Prepare input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        112
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const x=$input.first().json;if(!x||x.scope!=='episode'||x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256||!x.run_id||!x.role_input) throw new Error('Invalid P02 handoff input');if(!Number.isSafeInteger(x.attempt)||x.attempt<1||typeof x.run_id!=='string'||!x.run_id.trim()||!Number.isSafeInteger(x.input_manifest?.revision)||x.input_manifest.revision<1||!/^[a-f0-9]{64}$/i.test(x.input_manifest?.sha256??'')||!Number.isSafeInteger(x.role_input?.expected_scene_count)||x.role_input.expected_scene_count<1||x.role_input.project_id!==x.project_id||!['REAL_BUILD','AI_CONCEPT','HYBRID'].includes(x.role_input.content_type)||!Number.isSafeInteger(x.role_input.target_duration_seconds)||x.role_input.target_duration_seconds<1) throw new Error('Invalid P02 canonical handoff metadata');return [{json:{...x,prepared_at:new Date().toISOString()}}];"
+      }
+    },
+    {
+      "id": "6b557f66-48eb-4546-ab4e-2de0020a26fc",
+      "name": "Executive Producer Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        672,
+        112
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ JSON.stringify($json.role_input) }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You work for the YouTube channel \"Future Works AI Studio\". Primary formats: futuristic PC builds, transforming computers, RC projects, custom mecha models, Venetian plaster, plaster, painting, and vinyl applications. Distinguish actual builds from hypothetical AI concepts and hybrid demonstrations; never present generated footage as proof of physical construction. Never claim a real-world test or result unless supplied and verified. Work from a user-approved production brief and assign stable project_id and scene_id references. Preserve originality and copyright, and avoid proprietary character branding without authorization. Never publish, delete, spend money, execute n8n workflows, mutate credentials or alter files without a separate explicit approval and deterministic gate. If facts are unverified, identify them as unknown. Output machine-readable JSON, not Markdown prose, unless explicitly asked for commentary.\nROLE: Executive Producer. Interpret the submitted brief, break work into research, script, visual, avatar, budget, assembly and QC work packages. Do not pretend to have delegated or executed work unless tool results confirm. Require approved brand and human authorization before any paid generation. Provide realistic scheduling and explicit blockers.\nINPUT: {project_id,brief,content_pillar,content_type,target_duration_seconds,budget_usd,avatar_preferences,output_format}.\nOUTPUT JSON: {project_id,working_title,content_type,story_goal,target_audience,creative_constraints,work_packages:[{owner,task,required_inputs,deliverable,dependencies}],gates:[{name,owner,pass_conditions}],estimated_scene_count,assumptions,blockers,next_action}. Never invent successful tool calls.\nConnected tools: none. Return one complete JSON object matching the required role fields. This is a controlled planning test; distinguish unknowns and do not claim any actual work was executed.\nP02.01 acceptance: work_packages must contain at least one distinct package owned by each of these exact studio roles: Research Agent, Creative Director, Visual Director, Avatar Director, Budget Controller, Editing Supervisor, Quality Control. Do not substitute job titles or claim delegation occurred. Each package needs owner, task, required_inputs, deliverable and dependencies. Identify missing evidence as blockers. With budget_usd 0, no paid generation can be recommended as authorized; with no likeness/voice consent, Avatar Director must plan prerequisites only. Include a human production approval gate and budget gate before any generation, and a publishing approval gate.\nP02.01 scene-count contract: The input role_input.expected_scene_count is the exact number of narrative SCENES, not the number of shots. Return estimated_scene_count equal to this number. For this 360-second acceptance fixture, use exactly five scenes. Multiple shots inside one scene do not increase scene count. If a different count is needed, flag it as a blocker rather than silently changing the contract.",
+          "maxIterations": 1,
+          "enableStreaming": false
+        }
+      }
+    },
+    {
+      "id": "fabd104f-a950-40b9-9343-8e1d753d2bf9",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        688,
+        336
+      ],
+      "parameters": {
+        "model": "qwen3.6:latest",
+        "options": {
+          "think": false,
+          "format": "json",
+          "temperature": 0.2,
+          "numPredict": 2000
+        }
+      }
+    },
+    {
+      "id": "5d14a34b-895f-4a8a-8aba-0c0309f0c95b",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        816,
+        336
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"project_id\":{\"type\":\"string\",\"minLength\":1},\"working_title\":{\"type\":\"string\"},\"content_type\":{\"type\":\"string\"},\"story_goal\":{\"type\":\"string\"},\"target_audience\":{\"type\":\"string\"},\"next_action\":{\"type\":\"string\"},\"creative_constraints\":{\"type\":\"string\"},\"work_packages\":{\"type\":\"array\"},\"gates\":{\"type\":\"array\"},\"assumptions\":{\"type\":\"array\"},\"blockers\":{\"type\":\"array\"},\"estimated_scene_count\":{\"type\":\"integer\",\"minimum\":1}},\"required\":[\"project_id\",\"working_title\",\"content_type\",\"story_goal\",\"target_audience\",\"next_action\",\"creative_constraints\",\"work_packages\",\"gates\",\"assumptions\",\"blockers\",\"estimated_scene_count\"]}"
+      }
+    },
+    {
+      "id": "64acd1f4-05fc-489b-82f5-3018e20f1dab",
+      "name": "Validate and return agent_result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        112
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const input=$('Prepare input').first().json;let output=$input.first().json.output??$input.first().json;if(typeof output==='string') output=JSON.parse(output);const required=[\"project_id\",\"working_title\",\"content_type\",\"story_goal\",\"target_audience\",\"next_action\",\"creative_constraints\",\"work_packages\",\"gates\",\"assumptions\",\"blockers\",\"estimated_scene_count\"];const types={\"project_id\":\"string\",\"working_title\":\"string\",\"content_type\":\"string\",\"story_goal\":\"string\",\"target_audience\":\"string\",\"next_action\":\"string\",\"creative_constraints\":\"string\",\"work_packages\":\"array\",\"gates\":\"array\",\"assumptions\":\"array\",\"blockers\":\"array\",\"estimated_scene_count\":\"number\"};if(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be object');for(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}if(output.project_id!==input.project_id) throw new Error('Project ID changed');if(Object.prototype.hasOwnProperty.call(output,'authorization')||Object.prototype.hasOwnProperty.call(output,'spend_authorized')||Object.prototype.hasOwnProperty.call(output,'publish_authorized')||Object.prototype.hasOwnProperty.call(output,'production_approved')) throw new Error('Model-supplied authorization is prohibited');if(!Number.isSafeInteger(input.role_input?.expected_scene_count)||input.role_input.expected_scene_count<1) throw new Error('Missing or invalid expected_scene_count input');if(!Number.isSafeInteger(output.estimated_scene_count)||output.estimated_scene_count!==input.role_input.expected_scene_count) throw new Error('SCENE_COUNT_MISMATCH: expected '+input.role_input.expected_scene_count+', received '+output.estimated_scene_count);const requiredOwners=['Research Agent','Creative Director','Visual Director','Avatar Director','Budget Controller','Editing Supervisor','Quality Control'];const owners=new Set(output.work_packages.map(w=>w.owner));if(output.work_packages.some(w=>!w||typeof w!=='object'||typeof w.owner!=='string'||!w.owner.trim())) throw new Error('Invalid work package owner');if(output.work_packages.length!==owners.size) throw new Error('Duplicate specialist assignments');for(const owner of requiredOwners) if(!owners.has(owner)) throw new Error('Missing work package owner '+owner);if(output.work_packages.some(w=>!w.task||!w.deliverable||!w.required_inputs||!w.dependencies)) throw new Error('Incomplete work package');const gateText=output.gates.map(g=>String(g.name)+' '+String(g.pass_conditions)).join(' ').toLowerCase();if(!gateText.includes('approval')||!gateText.includes('budget')||!gateText.includes('publish')) throw new Error('Missing human, budget or publishing gate');if(!Array.isArray(output.blockers)||output.blockers.length===0) throw new Error('Missing planning blockers');const now=new Date().toISOString();return [{json:{schema_version:'1.0.0',result_id:input.run_id+':executive_producer:'+Date.now(),agent:{role:'executive_producer',instance_id:'LFL93qDtb3NHbI6f'},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+      }
+    },
+    {
+      "id": "d86cddb1-5621-4130-b698-cbc858c1de8d",
+      "name": "Called by orchestrator",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    }
+  ],
+  "note": "Credential references omitted. Restore parameters/connections only; reuse current credentials. Snapshot is evidence, not a deployable credential-bearing export."
+}

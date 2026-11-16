@@ -33,7 +33,7 @@ All three development workflows remained inactive after manual test execution. N
 - Reusable source: `engine.py`, `cli.py`, `api.py`, `visual_bridge.py`, `repack_visual.py`, `contact_sheet.py`, JSON model catalog and n8n SDK graphs. Sources contain no credentials.
 - Atomic SQLite idempotency, immutable frozen manifest hash, fail-closed Comfy uncertainty, no blind retries, strict downloaded PNG integrity, tamper checks, canonical P01 Visual Director envelopes, and disabled spend/publish gates.
 - P04 isolated offline tests: **36**, including fake transport/PNG fixtures *separately* identified from the ten real ComfyUI PNGs. n8n Code nodes tested inside a Node VM. Regression coverage for poisoned results, unauthorized input, duplicate jobs, missing references, malformed model output and asynchronous mock completion.
-- Previously verified P01–P03 suite: 190 isolated tests. Full cross-phase re-run requested separately; only count the final re-run after success.
+- **Full current-branch cross-phase re-run PASSED: 226 isolated tests**, zero failures: P01 six contracts 65 (4+10+12+7+15+17); P02 Executive Producer 21; P02 worker 23; P02 atomic concurrency 11; P02 nine-role 21; P03 orchestration 49; P04 image/Visual/n8n/API 36. Each suite was actually invoked on the authorized WSL worktree with read-only Bubblewrap isolation and cleared environment. P04's corrupted-PNG test additionally checks fail-closed `needs_review` and no duplicate submission.
 - No unapproved external image APIs, real provider charges, production workflow activation, publishing, automatic asset licensing approvals or `main` merge.
 
 ## P04 checkpoint disposition

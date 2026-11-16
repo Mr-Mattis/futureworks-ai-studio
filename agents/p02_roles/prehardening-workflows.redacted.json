@@ -1,0 +1,1653 @@
+{
+  "note": "Credential references intentionally excluded; NEVER restore this as a credential-bearing production export.",
+  "workflows": [
+    {
+      "id": "qx8tES2dRjMT9kJ9",
+      "name": "FWAI-LOCAL — Research Agent",
+      "active": false,
+      "versionId": "49960459-bfde-469a-8d0d-1e9a72d1c59d",
+      "nodes": [
+        {
+          "id": "11b23703-9b22-4192-a715-dce70ec03bdf",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "33536fa0-ee93-4696-8f11-467628fef922",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"episode\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"input_manifest\": {\"schema_version\": \"1.0.0\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"run_id\": \"P02-research-agent-test-001\", \"attempt\": 1, \"role_input\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"brief\": \"Fictional transforming desktop computer concept\", \"claims_to_check\": [\"This machine was physically built\", \"The transformation improves cooling by 40%\"], \"sources\": [], \"content_type\": \"AI_CONCEPT\", \"scene_ids\": [\"S01\", \"S02\", \"S03\", \"S04\", \"S05\"]}}}];"
+          }
+        },
+        {
+          "id": "4b84e866-68e9-4f87-820a-7559e8b14c14",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "4a9901d3-c374-4300-bcab-c86f1df8f02d",
+          "name": "Research Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Research Agent. INPUT {project_id,topic,content_type,claims_to_check,source_material}. OUTPUT {project_id,research_questions,verified_claims:[{claim,evidence,source_url,confidence}],unverified_claims,technical_constraints,safety_notes,rights_risks,concept_only_elements,followup_needed}. Without web tools or supplied citations, set claims as unverified; never invent a citation.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No sources were provided. verified_claims must be empty. Put unsupported build and cooling claims in unverified_claims, list technical constraints and follow-up needed. Do not invent citations.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "66fe8ee3-b023-4b9b-9895-08f142674b05",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "9472ed12-dc71-4ac7-b4a9-3259bcddf6d5",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"research_questions\": {\"type\": \"array\"}, \"verified_claims\": {\"type\": \"array\"}, \"unverified_claims\": {\"type\": \"array\"}, \"technical_constraints\": {\"type\": \"array\"}, \"safety_notes\": {\"type\": \"array\"}, \"rights_risks\": {\"type\": \"array\"}, \"concept_only_elements\": {\"type\": \"array\"}, \"followup_needed\": {\"type\": \"string\"}}, \"required\": [\"project_id\", \"research_questions\", \"verified_claims\", \"unverified_claims\", \"technical_constraints\", \"safety_notes\", \"rights_risks\", \"concept_only_elements\", \"followup_needed\"]}"
+          }
+        },
+        {
+          "id": "8f8daa73-b580-43a2-a361-b4b9c5d93183",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"research_questions\", \"verified_claims\", \"unverified_claims\", \"technical_constraints\", \"safety_notes\", \"rights_risks\", \"concept_only_elements\", \"followup_needed\"];const types={\"project_id\": \"string\", \"research_questions\": \"array\", \"verified_claims\": \"array\", \"unverified_claims\": \"array\", \"technical_constraints\": \"array\", \"safety_notes\": \"array\", \"rights_risks\": \"array\", \"concept_only_elements\": \"array\", \"followup_needed\": \"string\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(input.role_input.sources.length===0 && output.verified_claims.length!==0) throw new Error('Invented verified claim');if(output.unverified_claims.length===0||output.technical_constraints.length===0) throw new Error('Missing uncertainty or technical constraints');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"research_agent\"+':'+Date.now(),agent:{role:\"research_agent\",instance_id:\"CjMtsIIQ6cFYHbKJ\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "04b20a6c-b53a-4a20-b971-696f33f9e67f",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Research Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Research Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Research Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Research Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ltRaS3zusgzjeJAU",
+      "name": "FWAI-LOCAL — Visual Director",
+      "active": false,
+      "versionId": "5e94afa3-06ee-4925-b9c7-fecad0015ee5",
+      "nodes": [
+        {
+          "id": "eeee477f-7a2f-42e1-bcfc-1dc0daaeb1a3",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "d09a54a5-2128-42cf-9c64-ecdebb71d959",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"episode\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"input_manifest\": {\"schema_version\": \"1.0.0\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"run_id\": \"P02-visual-director-test-001\", \"attempt\": 1, \"role_input\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"script\": \"Fictional AI concept with a graphite and copper transforming desktop computer; no real build footage.\", \"scenes\": [{\"scene_id\": \"S01\", \"duration_seconds\": 72}, {\"scene_id\": \"S02\", \"duration_seconds\": 72}, {\"scene_id\": \"S03\", \"duration_seconds\": 72}, {\"scene_id\": \"S04\", \"duration_seconds\": 72}, {\"scene_id\": \"S05\", \"duration_seconds\": 72}], \"visual_references\": [], \"budget_constraints\": {\"paid_generation_authorized\": false}}}}];"
+          }
+        },
+        {
+          "id": "fa9eb300-5f15-4948-b496-d7f85f32b74c",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "8d1a6323-b2b2-4ba4-a868-5d69c4b362a4",
+          "name": "Visual Director Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Visual Director. INPUT {project_id,script,scenes,visual_references,budget_constraints}. OUTPUT {project_id,look_bible:{colors,materials,lighting,environment},continuity_rules,shots:[{scene_id,shot_id,shot_type,subject,camera,motion,lighting,reference_asset_ids,positive_prompt,negative_prompt,target_seconds,concept_disclosure}],unresolved_assets,quality_criteria}. No claim actual clips rendered.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: Provide a shot for each supplied scene ID S01-S05. Each shot needs continuity-controlled camera, lighting, positive and negative prompt, and concept disclosure. No clips or images were generated.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "cc025a82-1691-4061-ba72-65f3cf386132",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 2500
+            }
+          }
+        },
+        {
+          "id": "9d8c54ad-e6a8-4cbf-877d-9e50123ffd90",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"continuity_rules\": {\"type\": \"array\"}, \"shots\": {\"type\": \"array\"}, \"unresolved_assets\": {\"type\": \"array\"}, \"quality_criteria\": {\"type\": \"array\"}, \"look_bible\": {\"type\": \"object\"}}, \"required\": [\"project_id\", \"continuity_rules\", \"shots\", \"unresolved_assets\", \"quality_criteria\", \"look_bible\"]}"
+          }
+        },
+        {
+          "id": "5c013fb5-51a4-44b4-8531-ca3a3b2a0670",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"continuity_rules\", \"shots\", \"unresolved_assets\", \"quality_criteria\", \"look_bible\"];const types={\"project_id\": \"string\", \"continuity_rules\": \"array\", \"shots\": \"array\", \"unresolved_assets\": \"array\", \"quality_criteria\": \"array\", \"look_bible\": \"object\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nconst ids=new Set(output.shots.map(s=>s.scene_id));for(const id of input.role_input.scenes.map(s=>s.scene_id)) if(!ids.has(id)) throw new Error('Missing shot for '+id);if(output.shots.some(s=>!s.positive_prompt||!s.negative_prompt||!s.camera||!s.lighting||!s.concept_disclosure)) throw new Error('Incomplete shot plan or disclosure');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"visual_director\"+':'+Date.now(),agent:{role:\"visual_director\",instance_id:\"rh9g0toSiBLc1r9D\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "a5f31d17-693c-4da9-a4af-ec3417759bf0",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Visual Director Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Visual Director Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Visual Director Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Visual Director Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "Uj3C8kkSV3NMlbvs",
+      "name": "FWAI-LOCAL — Avatar Director",
+      "active": false,
+      "versionId": "cedd6ffe-d168-4238-8e1c-26f40f87ef85",
+      "nodes": [
+        {
+          "id": "90977fab-4bcd-45e9-9bc1-91552f25be78",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "feb82588-8949-45cb-862f-c08d4232bce8",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"episode\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"input_manifest\": {\"schema_version\": \"1.0.0\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"run_id\": \"P02-avatar-director-test-001\", \"attempt\": 1, \"role_input\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"scene_ids\": [\"S01\", \"S02\", \"S03\", \"S04\", \"S05\"], \"approved_identity_profile\": null, \"approved_likeness\": false, \"approved_voice\": false, \"consent_records\": [], \"presenter_goal\": \"Planning only; no likeness generation\"}}}];"
+          }
+        },
+        {
+          "id": "231668b8-45c1-4983-a01b-4c704b32dbfc",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "dad6f2c1-beec-4aa3-9553-aceb11f24970",
+          "name": "Avatar Director Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Avatar Director. Only use explicitly approved owner likeness and consented voice. INPUT {project_id,avatar_profile,approved_asset_ids,script}. OUTPUT {project_id,identity_profile_version,presenter_scenes:[{scene_id,script_excerpt,wardrobe,setting,expression,gesture,voice_style}],required_consents,missing_assets,continuity_checks,disclosure_flags}. Never invent an avatar ID, clone consent, or finished generated video.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No likeness, voice, identity profile or consent was approved. Keep presenter_scenes empty, list required consents and missing assets, and never claim identity use is authorized.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "82368600-49d3-40af-98b8-88dc205e1b64",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "3e87f0e9-e0be-4f15-9c24-138c37b16300",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"identity_profile_version\": {\"type\": \"string\"}, \"presenter_scenes\": {\"type\": \"array\"}, \"required_consents\": {\"type\": \"array\"}, \"missing_assets\": {\"type\": \"array\"}, \"continuity_checks\": {\"type\": \"array\"}, \"disclosure_flags\": {\"type\": \"array\"}}, \"required\": [\"project_id\", \"identity_profile_version\", \"presenter_scenes\", \"required_consents\", \"missing_assets\", \"continuity_checks\", \"disclosure_flags\"]}"
+          }
+        },
+        {
+          "id": "c47119b2-3063-44a5-a566-9fa525df0a34",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"identity_profile_version\", \"presenter_scenes\", \"required_consents\", \"missing_assets\", \"continuity_checks\", \"disclosure_flags\"];const types={\"project_id\": \"string\", \"identity_profile_version\": \"string\", \"presenter_scenes\": \"array\", \"required_consents\": \"array\", \"missing_assets\": \"array\", \"continuity_checks\": \"array\", \"disclosure_flags\": \"array\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(input.role_input.approved_likeness===false && output.presenter_scenes.length!==0) throw new Error('Unapproved presenter scene');if(output.required_consents.length===0||output.missing_assets.length===0) throw new Error('Missing consent or asset blockers');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"avatar_director\"+':'+Date.now(),agent:{role:\"avatar_director\",instance_id:\"W3eKFChCiz6s391f\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "f6f005c9-86be-4838-a9c7-8644156065d9",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Avatar Director Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Avatar Director Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Avatar Director Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Avatar Director Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "Cx2Gx2N3iEwWUURE",
+      "name": "FWAI-LOCAL — Budget Controller",
+      "active": false,
+      "versionId": "aea8b7e3-870f-4088-b16f-1e1eba207576",
+      "nodes": [
+        {
+          "id": "3e04b7b9-eba1-4714-829d-e449d6e470d4",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "8a4a7563-9b75-4a00-8d08-660d1a799039",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"episode\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"input_manifest\": {\"schema_version\": \"1.0.0\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"run_id\": \"P02-budget-controller-test-001\", \"attempt\": 1, \"role_input\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"budget_cap_usd\": 0, \"provider_rates\": {}, \"proposed_assets\": [], \"paid_generation_authorized\": false, \"currency\": \"USD\"}}}];"
+          }
+        },
+        {
+          "id": "097b782c-e835-4071-9839-96bd1ee72975",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "68fdabd9-73dd-41a9-a0c3-9cac6e8cb714",
+          "name": "Budget Controller Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Budget Controller. INPUT {project_id,budget_usd,provider_rate_card,scene_plan,prior_actual_costs}. OUTPUT {project_id,currency:\"USD\",budget_cap_usd,forecast_line_items:[{provider,units,unit_rate_usd,estimated_cost_usd,assumptions}],forecast_total_usd,contingency_usd,under_budget,tradeoffs,approval_required,missing_rates}. Rates must come from provided rate cards, never assumed current facts. An independent deterministic service enforces hard caps.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: The hard cap is zero USD and no provider rates were supplied. Forecast actual authorized spend as zero, list missing rates, set approval_required true. The agent cannot authorize spend.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "048d2a9c-2ecf-4d4b-9b04-46c4e57be768",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "90145c43-dfaa-48b7-b6ae-f1057d1d6f7b",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"currency\": {\"type\": \"string\"}, \"forecast_line_items\": {\"type\": \"array\"}, \"tradeoffs\": {\"type\": \"array\"}, \"missing_rates\": {\"type\": \"array\"}, \"budget_cap_usd\": {\"type\": \"number\"}, \"forecast_total_usd\": {\"type\": \"number\"}, \"contingency_usd\": {\"type\": \"number\"}, \"under_budget\": {\"type\": \"boolean\"}, \"approval_required\": {\"type\": \"boolean\"}}, \"required\": [\"project_id\", \"currency\", \"forecast_line_items\", \"tradeoffs\", \"missing_rates\", \"budget_cap_usd\", \"forecast_total_usd\", \"contingency_usd\", \"under_budget\", \"approval_required\"]}"
+          }
+        },
+        {
+          "id": "2514425c-3167-467e-9de7-2bd7c527fb4b",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"currency\", \"forecast_line_items\", \"tradeoffs\", \"missing_rates\", \"budget_cap_usd\", \"forecast_total_usd\", \"contingency_usd\", \"under_budget\", \"approval_required\"];const types={\"project_id\": \"string\", \"currency\": \"string\", \"forecast_line_items\": \"array\", \"tradeoffs\": \"array\", \"missing_rates\": \"array\", \"budget_cap_usd\": \"number\", \"forecast_total_usd\": \"number\", \"contingency_usd\": \"number\", \"under_budget\": \"boolean\", \"approval_required\": \"boolean\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(output.currency!=='USD'||output.budget_cap_usd!==0||output.forecast_total_usd!==0||output.approval_required!==true) throw new Error('Zero-budget boundary violated');if(output.forecast_line_items.length!==0 && output.missing_rates.length===0 && Object.keys(input.role_input.provider_rates).length===0) throw new Error('Unpriced planned assets');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"budget_controller\"+':'+Date.now(),agent:{role:\"budget_controller\",instance_id:\"0hPqx6ja4eP7NhlL\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "ff8cf987-3ba8-4474-8a43-a9832b5e4f0c",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Budget Controller Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Budget Controller Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Budget Controller Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Budget Controller Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "Mc7y7rXWx5PGF9Xe",
+      "name": "FWAI-LOCAL — Editing Supervisor",
+      "active": false,
+      "versionId": "445e3de9-9386-4664-a7e5-6fcfff0a74ca",
+      "nodes": [
+        {
+          "id": "78c5a627-fb40-4171-b11e-043eff8060d1",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "2c3fd2ed-40af-4738-879b-ac7e3d1050c0",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"episode\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"input_manifest\": {\"schema_version\": \"1.0.0\", \"project_id\": \"FWAI-P0105-LIVE-TEST\", \"revision\": 1, \"sha256\": \"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"}, \"run_id\": \"P02-editing-supervisor-test-001\", \"attempt\": 1, \"role_input\": {\"project_id\": \"FWAI-P0105-LIVE-TEST\", \"scene_ids\": [\"S01\", \"S02\", \"S03\", \"S04\", \"S05\"], \"timeline\": null, \"assets\": [], \"narration_timing\": null, \"review_goal\": \"Identify missing prerequisites; do not claim edit completed\"}}}];"
+          }
+        },
+        {
+          "id": "27f15856-23c2-400e-9dcf-f60cdee10d09",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "87b6dde2-d839-4d3a-9ae6-9927ac72f5ba",
+          "name": "Editing Supervisor Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Editing Supervisor. INPUT {project_id,script,timeline_manifest,transcript,qc_findings}. OUTPUT {project_id,edit_notes:[{scene_id,issue,severity,proposed_change,rationale}],pacing_review,audio_alignment_review,missing_transitions,recommendations,manual_review_required}. Without media access, do not claim you watched the video; base findings only on supplied manifests or reports.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No timeline, assets or timing were supplied. Set manual_review_required true, identify missing media/timing and targeted next steps. Never claim an edit was inspected.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "d36cbee3-4cf3-4883-b941-5f97b3897a4d",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "7c41c3ea-9816-4c6e-bfa5-6afb02d1ddb3",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"edit_notes\": {\"type\": \"array\"}, \"pacing_review\": {\"type\": \"string\"}, \"audio_alignment_review\": {\"type\": \"string\"}, \"missing_transitions\": {\"type\": \"array\"}, \"recommendations\": {\"type\": \"array\"}, \"manual_review_required\": {\"type\": \"boolean\"}}, \"required\": [\"project_id\", \"edit_notes\", \"pacing_review\", \"audio_alignment_review\", \"missing_transitions\", \"recommendations\", \"manual_review_required\"]}"
+          }
+        },
+        {
+          "id": "0fc2c0a0-a427-4c26-aac7-7fabf0e19ea9",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"edit_notes\", \"pacing_review\", \"audio_alignment_review\", \"missing_transitions\", \"recommendations\", \"manual_review_required\"];const types={\"project_id\": \"string\", \"edit_notes\": \"array\", \"pacing_review\": \"string\", \"audio_alignment_review\": \"string\", \"missing_transitions\": \"array\", \"recommendations\": \"array\", \"manual_review_required\": \"boolean\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(input.role_input.timeline===null && output.manual_review_required!==true) throw new Error('Invented edit review');if(output.recommendations.length===0) throw new Error('Missing targeted editing steps');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"editing_supervisor\"+':'+Date.now(),agent:{role:\"editing_supervisor\",instance_id:\"TdtCnYj8pa3WdDZ7\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "eb557d60-f67f-4861-891a-9b0273074702",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Editing Supervisor Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Editing Supervisor Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Editing Supervisor Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Editing Supervisor Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "xxpGERneD6wzi61c",
+      "name": "FWAI-LOCAL — Quality Control",
+      "active": false,
+      "versionId": "7cd50696-004f-405a-b91a-d9d2be86e594",
+      "nodes": [
+        {
+          "id": "fceda550-828f-4209-9181-bbefe5ba976e",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "5908c29f-01d4-4025-a850-ac6d059f3095",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\":\"episode\",\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"input_manifest\":{\"schema_version\":\"1.0.0\",\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"revision\":1,\"sha256\":\"483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd\"},\"run_id\":\"P02-quality-control-test-001\",\"attempt\":1,\"role_input\":{\"project_id\":\"FWAI-P0105-LIVE-TEST\",\"manifest_state\":\"draft\",\"assets\":[],\"research_evidence\":[],\"approvals\":[],\"review_goal\":\"Flag missing media, approvals and unsupported claims\",\"scene_ids\":[\"S01\",\"S02\",\"S03\",\"S04\",\"S05\"]}}}];"
+          }
+        },
+        {
+          "id": "2b297a90-d8dd-4b97-9b19-fa19563bfc4e",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "1d4e2bf8-729d-44bd-b3f5-4b55022cc767",
+          "name": "Quality Control Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Quality Control. INPUT {project_id,asset_manifest,ffprobe_report,transcript,scene_plan,render_report}. OUTPUT {project_id,checks:[{check_id,type,pass,confidence,evidence}],defects:[{scene_id,severity,description,repair_plan}],rights_disclosure_review,overall_verdict:\"pass|needs_review|fail\",manual_checks_required}. Reserve PASS for evidenced checks. Mark unperformed checks as needs_review; never assert technical measurements not observed.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No assets, research evidence or approvals were supplied. The verdict cannot be pass; list concrete defects and manual checks. Never claim a completed video passed QC.\nCanonical P01.02 reference rule: For findings applying to the entire episode, use scene_id: null. Never use N/A, unknown or invented scene IDs. For scene-specific findings, only S01-S05 are allowed.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "f02ad542-d77d-4c17-9fe1-2677116949dd",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "8beb0124-5dda-4e26-886f-62b8ed77d414",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"project_id\": {\"type\": \"string\"}, \"overall_verdict\": {\"type\": \"string\"}, \"checks\": {\"type\": \"array\"}, \"defects\": {\"type\": \"array\"}, \"rights_disclosure_review\": {\"type\": \"string\"}, \"manual_checks_required\": {\"type\": \"string\"}}, \"required\": [\"project_id\", \"overall_verdict\", \"checks\", \"defects\", \"rights_disclosure_review\", \"manual_checks_required\"]}"
+          }
+        },
+        {
+          "id": "a073c38d-aaae-4d1b-84e8-efcfb0a788fe",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"project_id\", \"overall_verdict\", \"checks\", \"defects\", \"rights_disclosure_review\", \"manual_checks_required\"];const types={\"project_id\": \"string\", \"overall_verdict\": \"string\", \"checks\": \"array\", \"defects\": \"array\", \"rights_disclosure_review\": \"string\", \"manual_checks_required\": \"string\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(input.role_input.assets.length===0 && /^(pass|passed|approved|ready)$/i.test(output.overall_verdict)) throw new Error('Invented QC pass');if(output.defects.length===0) throw new Error('Missing incomplete-media finding');\nfor(const d of output.defects){if(d&&typeof d==='object'&&'scene_id' in d&&d.scene_id!==null&&!input.role_input.scene_ids.includes(d.scene_id)) throw new Error('Invalid defect scene ID');}const now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"quality_control\"+':'+Date.now(),agent:{role:\"quality_control\",instance_id:\"T0Cgw2NdOsE7HrdF\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "fdcc0f33-f37b-475c-91f0-cf22ea3c5ed0",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Quality Control Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Quality Control Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Quality Control Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Quality Control Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "WdldwQYxMn4el9I0",
+      "name": "FWAI-LOCAL — Growth Strategist",
+      "active": false,
+      "versionId": "c49d7557-2bf9-462a-b24f-e5e2cf3575d8",
+      "nodes": [
+        {
+          "id": "3ac6025f-700f-49a0-aa2f-ac4ed00d7e99",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "3a80e540-eda2-4af7-955f-9ae9dbbcd323",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"studio\", \"project_id\": null, \"input_manifest\": null, \"run_id\": \"P02-growth-strategist-test-001\", \"attempt\": 1, \"role_input\": {\"reporting_period\": \"synthetic P02 diagnostic\", \"video_metrics\": null, \"production_costs\": null, \"channel_goals\": [\"test the analysis handoff without inventing performance\"]}}}];"
+          }
+        },
+        {
+          "id": "15f17b9f-ebb1-4533-8a2e-474d100baa59",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "75bc4a76-4401-4a7c-bd82-f7908c33de0f",
+          "name": "Growth Strategist Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE Growth Strategist. INPUT {reporting_period,video_metrics,production_costs,channel_goals}. OUTPUT {reporting_period,observed_patterns:[{metric,observation,evidence}],candidate_experiments:[{hypothesis,change,success_metric}],content_mix_recommendation,financial_notes,data_gaps}. Do not invent YouTube numbers, current trends, revenue, or causality. Do not publish anything.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No video metrics or costs were supplied. observed_patterns must be empty; identify data gaps. Experiments are hypotheses, not conclusions about actual performance.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "bf7da6fe-2988-45fb-ab52-de5a1f25166c",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "fb5dae88-c463-4d2c-9463-ee1c72d30001",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"reporting_period\": {\"type\": \"string\"}, \"observed_patterns\": {\"type\": \"array\"}, \"candidate_experiments\": {\"type\": \"array\"}, \"content_mix_recommendation\": {\"type\": \"string\"}, \"financial_notes\": {\"type\": \"string\"}, \"data_gaps\": {\"type\": \"array\"}}, \"required\": [\"reporting_period\", \"observed_patterns\", \"candidate_experiments\", \"content_mix_recommendation\", \"financial_notes\", \"data_gaps\"]}"
+          }
+        },
+        {
+          "id": "c7bb477b-f548-4895-a009-fec9f7e2ddaf",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"reporting_period\", \"observed_patterns\", \"candidate_experiments\", \"content_mix_recommendation\", \"financial_notes\", \"data_gaps\"];const types={\"reporting_period\": \"string\", \"observed_patterns\": \"array\", \"candidate_experiments\": \"array\", \"content_mix_recommendation\": \"string\", \"financial_notes\": \"string\", \"data_gaps\": \"array\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(input.role_input.video_metrics===null && output.observed_patterns.length!==0) throw new Error('Invented observed pattern');if(output.data_gaps.length===0) throw new Error('Missing analytics data gap');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"growth_strategist\"+':'+Date.now(),agent:{role:\"growth_strategist\",instance_id:\"s49Lt35tuDj7azAB\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "1d890593-ff4a-4c17-ad39-fe973ae05fd6",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "Growth Strategist Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Growth Strategist Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "Growth Strategist Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "Growth Strategist Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "VPvcZLGOfblpGKCq",
+      "name": "FWAI-LOCAL — SOP & Knowledge",
+      "active": false,
+      "versionId": "593d71cb-fd1e-4be7-8880-b152f49340e9",
+      "nodes": [
+        {
+          "id": "9188be0d-c182-4bcc-8c15-cd28c3dfd1ba",
+          "name": "P02 manual test",
+          "type": "n8n-nodes-base.manualTrigger",
+          "typeVersion": 1,
+          "position": [
+            0,
+            16
+          ],
+          "parameters": {}
+        },
+        {
+          "id": "3cb8e059-c2a4-4afd-af31-05592d041ff0",
+          "name": "Manual role fixture",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            224,
+            16
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "return [{json:{\"scope\": \"studio\", \"project_id\": null, \"input_manifest\": null, \"run_id\": \"P02-sop-knowledge-test-001\", \"attempt\": 1, \"role_input\": {\"sop_version\": \"1.0\", \"approved_documents\": [], \"production_issues\": [\"P02 test: no approved SOP change evidence provided\"], \"decisions\": [], \"change_requests\": [\"Draft a proposed test-only documentation note; require owner approval\"]}}}];"
+          }
+        },
+        {
+          "id": "1271a754-3162-48a3-93b6-a53190a5ca0c",
+          "name": "Prepare input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            448,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const x=$input.first().json;\nif(!x||!['episode','studio'].includes(x.scope)||!x.run_id||!Number.isInteger(x.attempt)||x.attempt<1||!x.role_input||typeof x.role_input!=='object') throw new Error('Invalid P02 handoff input');\nif(x.scope==='episode' && (x.project_id!==x.input_manifest?.project_id||x.input_manifest?.schema_version!=='1.0.0'||!x.input_manifest?.sha256)) throw new Error('Invalid manifest handoff');\nif(x.scope==='studio' && x.input_manifest!==null) throw new Error('Studio handoff cannot carry a manifest');\nreturn [{json:{...x,prepared_at:new Date().toISOString()}}];"
+          }
+        },
+        {
+          "id": "e34e6c00-dbb7-4136-9c2c-9a37752da6e2",
+          "name": "SOP & Knowledge Agent",
+          "type": "@n8n/n8n-nodes-langchain.agent",
+          "typeVersion": 3.1,
+          "position": [
+            672,
+            112
+          ],
+          "parameters": {
+            "promptType": "define",
+            "text": "={{ JSON.stringify($json.role_input) }}",
+            "hasOutputParser": true,
+            "options": {
+              "systemMessage": "You are an internal specialist for Future Works AI Studio, an AI-assisted YouTube production operation covering transforming computers, futuristic computer builds, RC builds, original mecha-model builds, Venetian plaster, plasterwork, painting, and vinyl installation. Strictly distinguish REAL BUILD / AI CONCEPT / HYBRID DEMONSTRATION and never claim fictional physical processes or tests occurred in reality. For construction how-to content, note safety and practical constraints and flag uncertainty; never fabricate sources, test results, provider outputs, or production completion. Keep the consistent brand concept: graphite/titanium, electric cyan, restrained orange. Do not spend, publish, delete, modify external assets or run workflows. These drafts have no connected tools. Output strictly structured JSON unless the owner requests a readable explanation. Use stable project_id, scene_id and revision fields.\nROLE SOP & Knowledge Agent. INPUT {sop_version,approved_documents,production_issues,decisions,change_requests}. OUTPUT {proposed_version,changes:[{document,section,reason,proposed_text,evidence}],change_log,owner_approval_required,unresolved_questions}. Never overwrite official SOPs or pretend to have read documents not supplied; drafts only until human approval.\nConnected tools: none. Return only one complete JSON object with all specified role-native fields. This is a controlled planning test. Identify unknowns and never claim any task or media was executed.\nP02 acceptance: No approved documents were supplied. Draft only a proposed change, mark owner_approval_required true, and do not claim any SOP was changed.",
+              "maxIterations": 1,
+              "enableStreaming": false
+            }
+          }
+        },
+        {
+          "id": "95ee22ff-e936-42d6-92f2-e7fb0ebe8d78",
+          "name": "Ollama Chat Model",
+          "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+          "typeVersion": 1,
+          "position": [
+            688,
+            336
+          ],
+          "parameters": {
+            "model": "qwen3.6:latest",
+            "options": {
+              "think": false,
+              "format": "json",
+              "temperature": 0.2,
+              "numPredict": 1200
+            }
+          }
+        },
+        {
+          "id": "42934668-7c74-46f8-b48f-ee03249bcbff",
+          "name": "Structured Output Parser",
+          "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+          "typeVersion": 1.3,
+          "position": [
+            816,
+            336
+          ],
+          "parameters": {
+            "schemaType": "manual",
+            "inputSchema": "{\"type\": \"object\", \"additionalProperties\": true, \"properties\": {\"proposed_version\": {\"type\": \"string\"}, \"changes\": {\"type\": \"array\"}, \"change_log\": {\"type\": \"string\"}, \"unresolved_questions\": {\"type\": \"array\"}, \"owner_approval_required\": {\"type\": \"boolean\"}}, \"required\": [\"proposed_version\", \"changes\", \"change_log\", \"unresolved_questions\", \"owner_approval_required\"]}"
+          }
+        },
+        {
+          "id": "f3164da9-2f2e-49cb-9bee-6dc9aa3f4261",
+          "name": "Validate and return agent_result",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1024,
+            112
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "jsCode": "const input=$('Prepare input').first().json;\nlet output=$input.first().json.output??$input.first().json;\nif(typeof output==='string') output=JSON.parse(output);\nconst required=[\"proposed_version\", \"changes\", \"change_log\", \"unresolved_questions\", \"owner_approval_required\"];const types={\"proposed_version\": \"string\", \"changes\": \"array\", \"change_log\": \"string\", \"unresolved_questions\": \"array\", \"owner_approval_required\": \"boolean\"};\nif(!output||typeof output!=='object'||Array.isArray(output)) throw new Error('Role output must be an object');\nfor(const k of required){if(!(k in output)) throw new Error('Missing role field '+k);const t=Array.isArray(output[k])?'array':typeof output[k];if(t!==types[k]) throw new Error('Wrong role field type '+k);}\nif(input.scope==='episode' && output.project_id!==input.project_id) throw new Error('Project ID changed');\nif(output.owner_approval_required!==true) throw new Error('SOP owner approval missing');if(output.changes.some(c=>/approved|applied|published/i.test(String(c.status??'')))) throw new Error('Claimed SOP change applied');\nconst now=new Date().toISOString();\nreturn [{json:{schema_version:'1.0.0',result_id:input.run_id+':'+\"sop_knowledge\"+':'+Date.now(),agent:{role:\"sop_knowledge\",instance_id:\"7g1LuYGdutw73OPO\"},scope:input.scope,input_manifest:input.input_manifest,execution:{run_id:input.run_id,attempt:input.attempt,started_at:input.prepared_at,finished_at:now,status:'succeeded'},output,validation:{status:'passed',findings:[]},errors:[],blockers:[],authorization:{spend_authorized:false,publish_authorized:false,production_approved:false}}}];"
+          }
+        },
+        {
+          "id": "a325e51e-9f74-4ab5-9edd-6a9f9c7401fd",
+          "name": "Called by orchestrator",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.3,
+          "position": [
+            224,
+            208
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        }
+      ],
+      "connections": {
+        "P02 manual test": {
+          "main": [
+            [
+              {
+                "node": "Manual role fixture",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Manual role fixture": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare input": {
+          "main": [
+            [
+              {
+                "node": "SOP & Knowledge Agent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "SOP & Knowledge Agent": {
+          "main": [
+            [
+              {
+                "node": "Validate and return agent_result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Ollama Chat Model": {
+          "ai_languageModel": [
+            [
+              {
+                "node": "SOP & Knowledge Agent",
+                "type": "ai_languageModel",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Structured Output Parser": {
+          "ai_outputParser": [
+            [
+              {
+                "node": "SOP & Knowledge Agent",
+                "type": "ai_outputParser",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Called by orchestrator": {
+          "main": [
+            [
+              {
+                "node": "Prepare input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

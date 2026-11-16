@@ -141,6 +141,13 @@ def checked_output(role, output, context):
             raise Rejected("Narrative scene durations do not sum to target")
         if output.get("content_type") != inp.get("content_type"):
             raise Rejected("Content classification changed")
+        # Structural duration is not narration timing. A 72s scene with
+        # 25 spoken words cannot be accepted as a complete narrated script.
+        for scene in scenes:
+            words = len(scene["narration"].split())
+            seconds = scene["duration_seconds"]
+            if not (120 * seconds / 60 <= words <= 160 * seconds / 60):
+                raise Rejected("Narration pacing does not fit scene duration")
     return copy.deepcopy(output)
 
 

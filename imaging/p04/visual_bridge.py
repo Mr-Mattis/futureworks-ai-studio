@@ -48,8 +48,8 @@ def inspect_handoff(path):
             raise Rejected("Visual reference hash or project mismatch")
         if item["approval_state"]!="requires_visual_director_review":
             raise Rejected("Image approval was fabricated")
-        if item["model_sha256"]!=
-                "6ce0161689b3853acaa03779ec93eafe75a02f4ced659bee03f50797806fa2fa":
+        if item["model_sha256"] != (
+                "6ce0161689b3853acaa03779ec93eafe75a02f4ced659bee03f50797806fa2fa"):
             raise Rejected("Model provenance changed")
         images.append({k:item[k] for k in (
             "asset_id","scene_id","sha256","seed","template",

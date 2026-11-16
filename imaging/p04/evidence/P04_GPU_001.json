@@ -1,0 +1,116 @@
+{
+  "evidence_type": "Actual ComfyUI GPU image batch metadata independently verified on owner's Windows workstation",
+  "status": "ten_real_comfyui_pngs_downloaded_indexed_delivered_to_local_visual_director_for_planning",
+  "run_id": "P04_GPU_001",
+  "project_id": "FWAI-EP-0001",
+  "model_id": "sd15-openrail-m",
+  "model_file": "v1-5-pruned-emaonly.safetensors",
+  "model_sha256": "6ce0161689b3853acaa03779ec93eafe75a02f4ced659bee03f50797806fa2fa",
+  "model_license": "creativeml-openrail-m",
+  "device": "AMD Radeon RX 9070 XT",
+  "backend": "ROCm 7.2",
+  "comfyui_version": "0.45.0",
+  "pytorch": "2.9.1+rocmsdk20260116",
+  "generation_count": 10,
+  "actual_image_bytes_committed_to_git": false,
+  "local_output_directory": "Documents/futureworks-p04-data/images",
+  "visual_director": {
+    "agent": "visual_director",
+    "actual_local_ollama_inference": true,
+    "canonical_p01_validation": "passed",
+    "blocked": true,
+    "shots": 10,
+    "distinct_reference_assets": 10,
+    "model_pixel_review": "not_performed (metadata-only)",
+    "human_visual_review": "required",
+    "output_name": "VISUAL_DIRECTOR_PLAN_P04_GPU_001.json"
+  },
+  "authorization": {
+    "production_approved": false,
+    "spend_authorized": false,
+    "publish_authorized": false
+  },
+  "paid_provider_calls": 0,
+  "images": [
+    {
+      "asset_id": "P04_P04_GPU_001_01",
+      "scene_id": "S01",
+      "template": "thumbnail",
+      "seed": 10042026,
+      "sha256": "e889931fdc0f335a298f17bec805b266b84ac24aa774296f9ff08ab2f11d4f53",
+      "comfy_prompt_id": "5bf499d5-48df-4b2c-b644-ce6553d16b9a"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_02",
+      "scene_id": "S01",
+      "template": "establishing",
+      "seed": 10042745,
+      "sha256": "2ccc5620041a7b0f6094b323ccad48f8d7fa0ea8a4fa96d492e3aa2c96aed6fe",
+      "comfy_prompt_id": "fdbe8ed4-0260-4f12-8fa0-e8c1821ad5cf"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_03",
+      "scene_id": "S02",
+      "template": "mechanical",
+      "seed": 10043464,
+      "sha256": "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958",
+      "comfy_prompt_id": "6f426a1f-0dc0-40d7-8a15-e5f754b0a7a1"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_04",
+      "scene_id": "S02",
+      "template": "texture",
+      "seed": 10044183,
+      "sha256": "513699d9881cf05d9fc88917f73341e1af42f685d591bf8020f032509a0f6513",
+      "comfy_prompt_id": "99f263a4-ad17-4650-a120-8baebf5826df"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_05",
+      "scene_id": "S03",
+      "template": "establishing",
+      "seed": 10044902,
+      "sha256": "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7",
+      "comfy_prompt_id": "f62bd5ef-240f-40e7-9c00-e8e50544155c"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_06",
+      "scene_id": "S03",
+      "template": "mechanical",
+      "seed": 10045621,
+      "sha256": "9ad61ef28b95729f247d5f288456d4d465285560750124e7dc2ab80a84e578b7",
+      "comfy_prompt_id": "8e681bc2-dc55-4f5e-8ae5-2fedaade1964"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_07",
+      "scene_id": "S04",
+      "template": "thumbnail",
+      "seed": 10046340,
+      "sha256": "2de5fca517152e2724e2a31642d218dc626226755327c9ea91dcb497d954fa71",
+      "comfy_prompt_id": "11b6a215-5b29-4290-aeb0-9a188ad3a1d9"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_08",
+      "scene_id": "S04",
+      "template": "texture",
+      "seed": 10047059,
+      "sha256": "791dd0889900a2eadac5396e1de63b0e6b692d0fb76a71103714d9d9ade2173e",
+      "comfy_prompt_id": "9eb9828b-ef3a-4151-bcae-2eff0dcce758"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_09",
+      "scene_id": "S05",
+      "template": "establishing",
+      "seed": 10047778,
+      "sha256": "21a7c6f0d687cf1e30f4ef96981e04972331507d081f6def58cf038b5da15646",
+      "comfy_prompt_id": "c772a9a4-75fc-4e9f-b2d6-535e04a0a26b"
+    },
+    {
+      "asset_id": "P04_P04_GPU_001_10",
+      "scene_id": "S05",
+      "template": "mechanical",
+      "seed": 10048497,
+      "sha256": "d09d1f76c78b4d503fa6b5bddd8a8d33dea7f4006a9124e173a071369febda15",
+      "comfy_prompt_id": "4996b583-56e0-44fa-814f-dff0d6b7f450"
+    }
+  ]
+}

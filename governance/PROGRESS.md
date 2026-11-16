@@ -38,3 +38,11 @@ migration, paid-provider submission, publication or merge is authorized by this
 record. The locked checklist, accepted contracts and production worker/compose
 bytes are unchanged. This development verification does not increase the
 established phase count or establish real provider-side exactly-once behavior.
+
+## P02.01 acceptance closeout — November 15, 2026
+
+**P02.01 Executive Producer: COMPLETE for the isolated local-agent development milestone.** The owner requested P02.01 closure following the authorized formal PR review. Current acceptance record: `agents/executive_producer/recovery/P02.01-ACCEPTANCE.md`.
+
+The final authorized WSL re-run passed **120** offline-isolated tests (21 Executive Producer, 23 development worker and n8n wrapper, 65 canonical contracts, 11 atomic claims). It includes a new guard against invalid synthetic ambiguous-operation state transitions. n8n execution 54 is a successful blocked candidate with five scenes, seven work packages, preserved blockers, no dispatch and all authorization false. Both development workflows remain inactive. Production worker, compose, locked checklist and `main` are unchanged.
+
+P02.01.08 evidence consolidation and P02.01.09 formal review are complete. Draft PR #1 stays **unmerged**; owner acceptance of the development role does **not** approve merging, production deployment, provider charges or publication. Permanent service wiring, external provider reconciliation and production validation belong to later gated integration work. **P02.02 is the next sequential role checkpoint; not started here.** P02 roles accepted in development: **1/10**. No other phase status is advanced.

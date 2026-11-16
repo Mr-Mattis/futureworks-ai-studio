@@ -293,6 +293,12 @@ class DevelopmentWorker:
             ).fetchone()
             if row is None:
                 raise ValueError("UNKNOWN_OPERATION")
+            parent = db.execute(
+                "SELECT state FROM dev_jobs WHERE project_id=? AND run_id=?",
+                tuple(row),
+            ).fetchone()
+            if parent is None or parent["state"] not in ("running", "needs_review"):
+                raise ValueError("INVALID_RECONCILIATION_STATE")
             db.execute("INSERT OR IGNORE INTO dev_operation_reviews VALUES(?,?)",
                        (operation_key, reason))
             db.execute(

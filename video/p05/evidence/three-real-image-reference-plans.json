@@ -1,0 +1,67 @@
+{
+  "status": "three_real_P04_reference_scene_intents_stored",
+  "mode": "NO_PROVIDER_REQUESTS_DRY_RUN_ONLY",
+  "run_id": "P05_REAL_P04_REFERENCES_001",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "reference_sha256": "e889931fdc0f335a298f17bec805b266b84ac24aa774296f9ff08ab2f11d4f53",
+      "reference_asset_id": "P04_P04_GPU_001_01",
+      "provider_mode": "text_to_video",
+      "model": "gen4.5",
+      "duration": 5,
+      "adapter": {
+        "endpoint": "/v1/text_to_video",
+        "version": "2024-11-06",
+        "body": {
+          "model": "gen4.5",
+          "duration": 5,
+          "ratio": "1280:720",
+          "promptText": "Original fictional graphite-titanium computer transforms into a futuristic robot. Cyan accents and recognizable silhouette, slow cinematic camera motion; do not imply this is footage of real working hardware. Original fictional AI_CONCEPT scene. NEVER portray verified real engineering, a product photo or tested functionality. Original graphite and electric cyan concept gaming PC; hook and the AI-concept disclosure; cinematic continuity of the same fictional chassis; no unsupported engineering claims.. high contrast heroic composition, dramatic cyan rim lighting, visually striking original technology concept, clear central silhouette, no lettering. Keep consistent graphite titanium computer transforming into a robot with electric cyan highlights; fictional concept art."
+        }
+      },
+      "actual_provider_submitted": false
+    },
+    {
+      "scene_id": "S02",
+      "reference_sha256": "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958",
+      "reference_asset_id": "P04_P04_GPU_001_03",
+      "provider_mode": "image_to_video",
+      "model": "gen4.5",
+      "duration": 5,
+      "adapter": {
+        "endpoint": "/v1/image_to_video",
+        "version": "2024-11-06",
+        "requires_real_uploaded_image_uri": true,
+        "source_image_sha256": "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958"
+      },
+      "actual_provider_submitted": false
+    },
+    {
+      "scene_id": "S03",
+      "reference_sha256": "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7",
+      "reference_asset_id": "P04_P04_GPU_001_05",
+      "provider_mode": "image_to_video",
+      "model": "gen4.5",
+      "duration": 5,
+      "adapter": {
+        "endpoint": "/v1/image_to_video",
+        "version": "2024-11-06",
+        "requires_real_uploaded_image_uri": true,
+        "source_image_sha256": "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7"
+      },
+      "actual_provider_submitted": false
+    }
+  ],
+  "job_count": 3,
+  "actual_paid_generation_calls": 0,
+  "actual_runway_clips": 0,
+  "approval_state": "blocked",
+  "actual_spend_usd": 0,
+  "authorization": {
+    "production_approved": false,
+    "spend_authorized": false,
+    "publish_authorized": false
+  },
+  "P05_locked_exit": "OPEN"
+}

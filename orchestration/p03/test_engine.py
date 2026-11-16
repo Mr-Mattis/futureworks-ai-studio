@@ -9,7 +9,7 @@ import tempfile
 import unittest
 
 from engine import AUTH, GATES, REPO, ROLES, Rejected, STAGE_DEPENDENCIES, Studio
-from model import ReplayModel
+from model import ReplayModel, VerifiedCreativeCache
 
 MANIFEST = REPO / "contracts/production-manifest/v1.0.0/example.valid.json"
 EP = REPO / "agents/executive_producer/reconciliation/execution-54.json"
@@ -252,6 +252,26 @@ class OrchestrationTests(unittest.TestCase):
             self.assertEqual(db.execute("SELECT COUNT(*) FROM costs").fetchone()[0], 0)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM assets").fetchone()[0], 0)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM provider_queue").fetchone()[0], 0)
+
+    def test_exact_manifest_creative_cache_can_be_reused_without_new_model_call(self):
+        self.submit()
+        self.studio._step(PROJECT, RUN, "research", ReplayModel())
+        ticket = self.studio.claim(PROJECT, RUN, "script")
+        context = self.studio.context(ticket)
+        candidate = VerifiedCreativeCache()("creative_director", context)
+        self.assertEqual(candidate["project_id"], PROJECT)
+        self.assertEqual([s["scene_id"] for s in candidate["scenes"]],
+                         ["S01", "S02", "S03", "S04", "S05"])
+        self.assertEqual(self.studio.complete(ticket, candidate)["execution"]["status"], "blocked")
+
+    def test_creative_cache_rejects_different_manifest_digest(self):
+        self.submit()
+        self.studio._step(PROJECT, RUN, "research", ReplayModel())
+        ticket = self.studio.claim(PROJECT, RUN, "script")
+        context = self.studio.context(ticket)
+        context["input_manifest"]["sha256"] = "b" * 64
+        with self.assertRaisesRegex(Rejected, "manifest mismatch"):
+            VerifiedCreativeCache()("creative_director", context)
 
     def test_model_does_not_need_any_network_for_replay(self):
         self.submit()

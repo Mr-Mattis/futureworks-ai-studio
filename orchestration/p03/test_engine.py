@@ -6,9 +6,10 @@ import json
 from pathlib import Path
 import sqlite3
 import tempfile
+import time
 import unittest
 
-from engine import AUTH, GATES, REPO, ROLES, Rejected, STAGE_DEPENDENCIES, Studio
+from engine import AUTH, GATES, REPO, ROLES, Rejected, STAGE_DEPENDENCIES, Studio, MockPoller
 from model import ReplayModel, VerifiedCreativeCache
 
 MANIFEST = REPO / "contracts/production-manifest/v1.0.0/example.valid.json"
@@ -205,11 +206,40 @@ class OrchestrationTests(unittest.TestCase):
         self.studio.set_mock_receipt("MOCK-PENDING-0001", "pending")
         outcome = self.studio.poll_due_mock()
         self.assertEqual(outcome[0]["state"], "mock_polling")
-        outcome = self.studio.poll_due_mock()
+        self.assertEqual(self.studio.poll_due_mock(), [])
+        outcome = self.studio.poll_due_mock(at="9999-12-31T00:00:00+00:00")
         self.assertEqual(outcome[0]["state"], "needs_review")
         self.assertEqual(outcome[0]["attempt"], 2)
         self.assertEqual(self.studio.poll_due_mock(), [])
         self.assertEqual(len(self.studio.dashboard(PROJECT, RUN)["issues"]), 1)
+
+    def test_p03_07_background_poller_consumes_due_synthetic_receipts(self):
+        self.submit()
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-ASYNC-0001")
+        self.studio.set_mock_receipt("MOCK-ASYNC-0001", "pending")
+        with MockPoller(self.studio, interval_seconds=0.02,
+                        retry_delay_seconds=0.05) as poller:
+            deadline = time.monotonic() + 3
+            while time.monotonic() < deadline:
+                state = self.studio.dashboard(PROJECT, RUN)["provider_jobs"][0]["state"]
+                if state == "needs_review":
+                    break
+                time.sleep(0.025)
+            self.assertEqual(state, "needs_review")
+            self.assertEqual(poller.errors, [])
+        self.assertEqual(self.studio.dashboard(PROJECT, RUN)["provider_jobs"][0]["attempt"], 2)
+        self.assertFalse(any(self.studio.dashboard(PROJECT, RUN)["authorization"].values()))
+
+    def test_p03_07_durable_mock_polling_survives_new_studio_instance(self):
+        self.submit()
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-RESTART-0001")
+        self.studio.set_mock_receipt("MOCK-RESTART-0001", "pending")
+        self.assertEqual(self.studio.poll_due_mock(retry_delay_seconds=0.1)[0]["attempt"], 1)
+        restarted = Studio(self.path)
+        self.assertEqual(restarted.poll_due_mock(), [])
+        outcome = restarted.poll_due_mock(at="9999-12-31T00:00:00+00:00")[0]
+        self.assertEqual(outcome["state"], "needs_review")
+        self.assertEqual(outcome["attempt"], 2)
 
     def test_p03_07_unknown_mock_receipt_requires_review_without_retry(self):
         self.submit()

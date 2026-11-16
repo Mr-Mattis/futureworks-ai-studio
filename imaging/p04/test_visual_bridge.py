@@ -74,11 +74,22 @@ class VisualBridgeTests(unittest.TestCase):
                 return json.dumps({"message":{"content":json.dumps(candidate)}}).encode()
         with patch("visual_bridge.urllib.request.urlopen",return_value=Response()):
             result=send_to_visual(self.handoff,target=self.root/"images"/"visual-result.json")
-        self.assertEqual(result["agent"]["role"],"visual_director")
-        self.assertEqual(result["execution"]["status"],"blocked")
-        self.assertEqual(result["validation"]["status"],"passed")
-        self.assertFalse(any(result["authorization"].values()))
+        self.assertEqual(result["agent_result"]["agent"]["role"],"visual_director")
+        self.assertEqual(result["agent_result"]["execution"]["status"],"blocked")
+        self.assertEqual(result["agent_result"]["validation"]["status"],"passed")
+        self.assertFalse(any(result["agent_result"]["authorization"].values()))
         self.assertEqual(len(result["p04_reference_assets"]),10)
+        canonical=result["agent_result"]
+        # Prove adding P04 reference metadata never breaks the locked P01
+        # envelope's additionalProperties=false contract.
+        import importlib.util
+        src=REPO/"contracts/agent-result/v1.0.0/validate_agent_result.py"
+        spec=importlib.util.spec_from_file_location("p04_canonical_check",src)
+        module=importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(module.validate(canonical,MANIFEST,
+            REPO/"contracts/production-manifest/v1.0.0"),[])
+
 
     def test_model_cannot_drop_reference_assets(self):
         _,refs=inspect_handoff(self.handoff)

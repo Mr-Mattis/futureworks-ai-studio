@@ -73,3 +73,14 @@ The eight prior drafts and new Creative Director provide planning output only; t
 The working production webhook, active Creative Director, Python production worker, Dockerfile, Compose, accepted P01 contracts and locked checklist were not changed in this phase. Spending, publishing, likeness generation, production activation and merging are **not authorized** by this report.
 
 **Next gate:** draft pull request, formal code/security review and owner acceptance of the development P02 exit criterion. Do not advance to P03 or merge without explicit authorization.
+
+## Current installed Ollama model fingerprint
+
+A read-only inspection of the Windows host's local Ollama `GET /api/tags` endpoint after the successful runs reported:
+
+- Name: `qwen3.6:latest`
+- Digest: `07d35212591fc27746f0a317c975a6d68754fb38e9053d82e25f06057af28522`
+
+This is a **post-run installed-model fingerprint**, not an inference-time signed attestation. Keep it for later regression comparison; do not assume a mutable `latest` tag still identifies these model bytes after an update. No model was installed, updated or restarted during this inspection.
+
+Formal PR #2 non-approving review: GitHub review ID `5913894431`. The draft remains unmerged and does not authorize P03 advancement.

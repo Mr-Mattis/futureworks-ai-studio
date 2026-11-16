@@ -15,6 +15,10 @@ from test_engine import mock_mp4
 
 class DownloadTests(unittest.TestCase):
     URL="https://files.example.cloudfront.net/final.mp4?_jwt=dummy_signed_value"
+    TASK="74db306e-9a42-4089-a53c-5ccde5c33385"
+    def receipt(self, *, task=None, url=None):
+        return {"id":task or self.TASK, "status":"SUCCEEDED",
+                "output":[url or self.URL]}
     def setUp(self):
         x=tempfile.TemporaryDirectory()
         self.addCleanup(x.cleanup)
@@ -43,19 +47,27 @@ class DownloadTests(unittest.TestCase):
     def test_archive_atomic_and_immutable(self):
         mp4=mock_mp4()
         dest=self.folder/"three-scene-01.mp4"
-        out=archive_provider_result(self.URL,dest,transport=lambda _:mp4,
+        out=archive_provider_result(self.receipt(),self.TASK,dest,transport=lambda _:mp4,
              verifier=lambda _:{"codec":"h264","duration_seconds":5,
                                 "width":1280,"height":720})
         self.assertEqual(out["sha256"],hashlib.sha256(mp4).hexdigest())
         self.assertEqual(dest.read_bytes(),mp4)
         self.assertFalse(out["publication_approved"])
         with self.assertRaises(Rejected):
-            archive_provider_result(self.URL,dest,transport=lambda _:mp4,
+            archive_provider_result(self.receipt(),self.TASK,dest,transport=lambda _:mp4,
                  verifier=lambda _:{"duration_seconds":5})
+    def test_wrong_task_receipt_id_cannot_archive_media(self):
+        dest=self.folder/"untrusted.mp4"
+        with self.assertRaisesRegex(Rejected,"identity mismatch"):
+            archive_provider_result(self.receipt(task="82bb11b7-93c8-4dbd-a7a1-40feaf5cfbcb"),
+                                    self.TASK,dest,transport=lambda _:mock_mp4(),
+                                    verifier=lambda _:{"codec":"h264"})
+        self.assertFalse(dest.exists())
+
     def test_invalid_media_not_archived(self):
         dest=self.folder/"bad.mp4"
         with self.assertRaises(Rejected):
-            archive_provider_result(self.URL,dest,transport=lambda _:b"not an mp4",
+            archive_provider_result(self.receipt(),self.TASK,dest,transport=lambda _:b"not an mp4",
                 verifier=lambda _:{"duration_seconds":5})
         self.assertFalse(dest.exists())
     def test_ffprobe_failure_blocks_acceptance(self):

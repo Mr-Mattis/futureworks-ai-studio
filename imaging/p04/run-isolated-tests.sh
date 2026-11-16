@@ -11,4 +11,4 @@ exec bwrap --unshare-all --new-session --die-with-parent \
   --ro-bind "$REPO" /mnt --chdir /mnt/imaging/p04 --clearenv \
   --setenv PATH /usr/bin:/bin --setenv PYTHONDONTWRITEBYTECODE 1 \
   /usr/bin/python3 -B -m unittest -v \
-  test_engine.py test_n8n.py test_visual_bridge.py
+  test_engine.py test_n8n.py test_visual_bridge.py test_api.py

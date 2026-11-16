@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 from engine import REPO, Studio
-from model import ReplayModel, OllamaModel
+from model import ReplayModel, OllamaModel, VerifiedCreativeCache
 
 MANIFEST = REPO / "contracts/production-manifest/v1.0.0/example.valid.json"
 PLAN = json.loads((REPO / "agents/executive_producer/reconciliation/execution-54.json"
@@ -23,13 +23,17 @@ def main():
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--brief", default="The PC That Became a Robot — "
                         "a fictional computer transformation concept, not real hardware.")
-    parser.add_argument("--fresh-local-ollama", action="store_true")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--fresh-local-ollama", action="store_true")
+    group.add_argument("--verified-creative-cache", action="store_true")
     args = parser.parse_args()
     studio = Studio(args.database)
     receipt = studio.submit(MANIFEST, PLAN, args.run_id, args.brief)
-    model = OllamaModel() if args.fresh_local_ollama else ReplayModel()
+    model = (OllamaModel() if args.fresh_local_ollama else
+             VerifiedCreativeCache() if args.verified_creative_cache else ReplayModel())
     report = studio.drive(receipt["project_id"], args.run_id, model)
     out = dict(mode="fresh_local_ollama" if args.fresh_local_ollama else
+               "fresh_roles_plus_exact_P02_creative_cache" if args.verified_creative_cache else
                "synthetic_replay_from_verified_P02_outputs",
                receipt=receipt, dashboard=report)
     print(json.dumps(out, indent=2))

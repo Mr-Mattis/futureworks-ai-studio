@@ -17,6 +17,7 @@ fi
 (
   cd "$REPO"
   P03_DEV_TOKEN=$(cat "$STATE/token") P03_ALLOW_PRIVATE_BIND=1 \
+    P03_ALLOW_ONE_SHOT_DEMO=${P03_ALLOW_ONE_SHOT_DEMO:-0} \
     nohup /usr/bin/python3 -B orchestration/p03/api.py \
       --database "$STATE/orchestrator.sqlite3" --bind 0.0.0.0 --port 18731 \
       > "$STATE/server.log" 2>&1 < /dev/null &

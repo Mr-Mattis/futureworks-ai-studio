@@ -50,19 +50,13 @@ class Rejected(ValueError):
 
 
 def validate_approval(approval):
-    """Development approvals are independently signed off, never model-authored."""
-    if not isinstance(approval, dict) or approval.get("source") != "owner_signed_gate":
-        raise Rejected("Human-approved manifest authorization missing")
-    if set(approval) != {"source", "manifest_sha256", "project_id", "approved_scene_ids", "approved_image_sha256", "owner_acknowledged_rights", "signature_verification"}:
-        raise Rejected("Incomplete human approval evidence")
-    if approval["signature_verification"] is not True:
-        raise Rejected("Signed approval cryptographic verification required")
-    if approval["owner_acknowledged_rights"] is not True:
-        raise Rejected("Asset rights approval required")
-    if approval["approved_scene_ids"] != list(STAGES):
-        raise Rejected("Three approved scene IDs required")
-    return True
+    """Never trust caller-authored approval booleans or a claimed signature result.
 
+    Only a separate cryptographic P04 owner approval verifier may authorize
+    future workflows. This P05 development adapter intentionally has no
+    authority to perform such a promotion.
+    """
+    raise Rejected("P05 caller approval flags cannot authorize production or paid use; independently signed P04 gate required")
 
 def load_reference_bundle(path):
     p = Path(path).resolve()
@@ -124,13 +118,7 @@ def make_scene_requests(bundle, *, approval=None):
             "requires_human_review": True,
         })
     if approval is not None:
-        validate_approval(approval)
-        if approval["manifest_sha256"] != manifest_sha or approval["project_id"] != data["project_id"]:
-            raise Rejected("Owner-approved manifest identity mismatch")
-        if set(approval["approved_image_sha256"]) != {x["reference_sha256"] for x in requests}:
-            raise Rejected("Owner approval must enumerate exact source images")
-        if manifest.get("approval_state", {}).get("status") != "approved":
-            raise Rejected("Canonical manifest remains unapproved")
+        validate_approval(approval)  # Untrusted user/model fields cannot grant permission.
     return requests
 
 

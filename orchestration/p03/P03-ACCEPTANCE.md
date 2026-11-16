@@ -90,8 +90,8 @@ Last complete retained source and WSL test rounds:
 | P02.01 development-worker/bridge | 23 | passed |
 | P02.01 atomic concurrency/recovery | 11 | passed |
 | P02.02–P02.10 nine-role suite | 21 | passed |
-| P03 engine, API, exact n8n VM source and one-shot transport | 47 | passed |
-| **TOTAL** | **188** | **zero failures** |
+| P03 engine, API, exact n8n VM source, one-shot transport and asynchronous mock polling | 49 | passed |
+| **TOTAL** | **190** | **zero failures** |
 
 Bubblewrap used `--unshare-all`, read-only checkout binding, cleared
 environment, private `/tmp`, no network, production mounts, host
@@ -116,6 +116,16 @@ owner's local inference endpoint.
   before arbitrary new concepts can consistently complete without cache.
 - All real user approval workflows and production release processes remain
   explicitly outside this isolated development proof.
+
+### Additional asynchronous recovery hardening
+
+The latest isolated P03 regression suite has **49** tests (two additional
+tests over the initial 47). P03.07 now uses a bounded, temporary,
+**actual background polling thread** for *mock-only* receipts, persisted
+`next_poll_at` backoff, exactly two attempts, and durable restart
+continuation. Tests verify background scheduling, crash-safe resumption and
+unresolved status quarantine, without opening provider HTTP connections.
+The full P01–P03 local regression total is therefore **190 passed**.
 
 ## Disposition
 

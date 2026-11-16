@@ -5,9 +5,9 @@ const deny=node({type:'n8n-nodes-base.code',version:2,config:{name:'Require sign
 const locked=node({type:'n8n-nodes-base.httpRequest',version:4.2,config:{
 name:'DISABLED Credentialed P04 image batch writer',
 disabled:true,
-credentials:{httpHeaderAuth:newCredential('FWAI-P04-Development-HTTP-Header-Credential')},
+credentials:{httpTemplatedCustomAuth:newCredential('FWAI-P04-Development-HTTP-Header-Credential')},
 parameters:{method:'POST',url:'http://host.docker.internal:18741/v1/start',
-authentication:'genericCredentialType',genericAuthType:'httpHeaderAuth',
+authentication:'genericCredentialType',genericAuthType:'httpTemplatedCustomAuth',
 sendBody:true,specifyBody:'json',jsonBody:'={{ JSON.stringify({project_id:$json.project_id,run_id:"P04_REVIEW_REQUIRED",manifest_sha256:$json.manifest_sha256}) }}',
 options:{timeout:20000}}
 }});

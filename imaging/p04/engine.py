@@ -74,7 +74,7 @@ def validate_backend(url):
 
 def png_dimensions(raw):
     """Validate PNG chunk bounds/checksums, not merely its image signature."""
-    if len(raw) < 57 or raw[:8] != b"\\x89PNG\\r\\n\\x1a\\n":
+    if len(raw) < 57 or raw[:8] != b"\x89PNG\r\n\x1a\n":
         raise Rejected("ComfyUI did not return a complete PNG")
     cursor, dimensions, seen_image, seen_end = 8, None, False, False
     while cursor + 12 <= len(raw):

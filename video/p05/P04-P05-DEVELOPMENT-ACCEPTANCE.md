@@ -108,8 +108,8 @@ Runway reference pages verified on November 15, 2026:
 - Original merged P01–P04 suite: **226** passing isolated tests.
 - P04 additional approval tests: **7** Bubblewrap-isolated tests passing.
 - P05 video contract, download, async mock, and exact n8n Code-node tests:
-  **30** Bubblewrap-isolated tests passing.
-- **Total verified across P01–P05: 263 isolated passing tests; zero failures.**
+  **31** Bubblewrap-isolated tests passing.
+- **Total verified across P01–P05: 264 isolated passing tests; zero failures.**
   The initial aggregate test command had a path-binding typo for the
   11-test atomic suite; all other cross-phase suites passed, and the
   atomic suite was rerun separately in the same strict Bubblewrap

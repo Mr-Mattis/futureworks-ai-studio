@@ -1,0 +1,104 @@
+WSL Ubuntu 24.04.4; Python 3.12.3; Bubblewrap offline namespaces
+COMMAND: sh agents/executive_producer/run-isolated-tests.sh
+test_invalid_cli_input_returns_rejection (__main__.CliTests.test_invalid_cli_input_returns_rejection) ... ok
+test_offline_request_and_evaluation (__main__.CliTests.test_offline_request_and_evaluation) ... ok
+test_checkout_is_mounted_read_only (__main__.IsolationTests.test_checkout_is_mounted_read_only) ... ok
+test_environment_has_no_provider_credentials (__main__.IsolationTests.test_environment_has_no_provider_credentials) ... ok
+test_loopback_cannot_reach_production (__main__.IsolationTests.test_loopback_cannot_reach_production) ... ok
+test_no_network_interfaces_except_loopback (__main__.IsolationTests.test_no_network_interfaces_except_loopback) ... ok
+test_production_home_and_runtime_sockets_absent (__main__.IsolationTests.test_production_home_and_runtime_sockets_absent) ... ok
+test_canonical_contract_tampering_is_rejected (__main__.PlannerTests.test_canonical_contract_tampering_is_rejected) ... ok
+test_canonical_result_is_blocked_without_authority (__main__.PlannerTests.test_canonical_result_is_blocked_without_authority) ... ok
+test_duplicate_keys_and_nonfinite_json_rejected (__main__.PlannerTests.test_duplicate_keys_and_nonfinite_json_rejected) ... ok
+test_external_paths_rejected (__main__.PlannerTests.test_external_paths_rejected) ... ok
+test_manifest_exact_byte_identity_and_no_mutation (__main__.PlannerTests.test_manifest_exact_byte_identity_and_no_mutation) ... ok
+test_missing_optional_keys_fail_closed (__main__.PlannerTests.test_missing_optional_keys_fail_closed) ... ok
+test_new_profile_is_valid_json_schema (__main__.PlannerTests.test_new_profile_is_valid_json_schema) ... ok
+test_payload_claims_never_grant_permissions (__main__.PlannerTests.test_payload_claims_never_grant_permissions) ... ok
+test_schema_and_semantic_rejections (__main__.PlannerTests.test_schema_and_semantic_rejections) ... ok
+test_unique_attempt_ids (__main__.PlannerTests.test_unique_attempt_ids) ... ok
+test_unknown_manifest_fields_fail_closed (__main__.PlannerTests.test_unknown_manifest_fields_fail_closed) ... ok
+test_graph_has_only_planning_capabilities (__main__.WorkflowTests.test_graph_has_only_planning_capabilities) ... ok
+test_node_vm_and_python_accept_same_corpus (__main__.WorkflowTests.test_node_vm_and_python_accept_same_corpus) ... ok
+test_workflow_reproducible (__main__.WorkflowTests.test_workflow_reproducible) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.703s
+
+OK
+COMMAND: isolated python3 -B -m unittest -v test_atomic_claim.py
+test_create_and_replay (test_atomic_claim.AtomicClaimTests.test_create_and_replay) ... ok
+test_hash_conflict_does_not_overwrite (test_atomic_claim.AtomicClaimTests.test_hash_conflict_does_not_overwrite) ... ok
+test_interruption_recovery_and_replay (test_atomic_claim.AtomicClaimTests.test_interruption_recovery_and_replay) ... ok
+test_invalid_metadata (test_atomic_claim.AtomicClaimTests.test_invalid_metadata) ... ok
+test_many_simultaneous_processes_get_one_claim (test_atomic_claim.AtomicClaimTests.test_many_simultaneous_processes_get_one_claim) ... ok
+test_no_paid_provider_submission_or_approval_capability (test_atomic_claim.AtomicClaimTests.test_no_paid_provider_submission_or_approval_capability) ... ok
+test_parallel_provider_reservations_stay_unique (test_atomic_claim.AtomicClaimTests.test_parallel_provider_reservations_stay_unique) ... ok
+test_provider_key_conflict (test_atomic_claim.AtomicClaimTests.test_provider_key_conflict) ... ok
+test_provider_operation_is_only_reserved_once (test_atomic_claim.AtomicClaimTests.test_provider_operation_is_only_reserved_once) ... ok
+test_reservation_requires_matching_parent (test_atomic_claim.AtomicClaimTests.test_reservation_requires_matching_parent) ... ok
+test_revision_conflict (test_atomic_claim.AtomicClaimTests.test_revision_conflict) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.116s
+
+OK
+COMMAND: sh worker/run-isolated-dev-tests.sh
+test_actual_n8n_54_candidate_survives_concurrent_worker_handoff (test_dev_worker.WorkerTests.test_actual_n8n_54_candidate_survives_concurrent_worker_handoff) ... ok
+test_claim_and_work_intent_rollback_together (test_dev_worker.WorkerTests.test_claim_and_work_intent_rollback_together) ... ok
+test_cli_submit_drain_and_duplicate (test_dev_worker.WorkerTests.test_cli_submit_drain_and_duplicate) ... ok
+test_crash_after_submit_commit_has_durable_work_without_enqueue (test_dev_worker.WorkerTests.test_crash_after_submit_commit_has_durable_work_without_enqueue) ... ok
+test_crash_after_take_requires_explicit_fenced_recovery (test_dev_worker.WorkerTests.test_crash_after_take_requires_explicit_fenced_recovery) ... ok
+test_distinct_run_ids_remain_distinct_and_reservations_unique (test_dev_worker.WorkerTests.test_distinct_run_ids_remain_distinct_and_reservations_unique) ... ok
+test_failed_completion_rolls_back_reservations (test_dev_worker.WorkerTests.test_failed_completion_rolls_back_reservations) ... ok
+test_invalid_metadata_and_plan_do_not_create_jobs (test_dev_worker.WorkerTests.test_invalid_metadata_and_plan_do_not_create_jobs) ... ok
+test_isolation_has_no_production_credentials_or_network (test_dev_worker.WorkerTests.test_isolation_has_no_production_credentials_or_network) ... ok
+test_manifest_revision_and_hash_conflicts_are_atomic (test_dev_worker.WorkerTests.test_manifest_revision_and_hash_conflicts_are_atomic) ... ok
+test_missing_and_malformed_manifest_rejected (test_dev_worker.WorkerTests.test_missing_and_malformed_manifest_rejected) ... ok
+test_plan_conflict_rolls_back_and_preserves_original (test_dev_worker.WorkerTests.test_plan_conflict_rolls_back_and_preserves_original) ... ok
+test_production_storage_path_is_rejected (test_dev_worker.WorkerTests.test_production_storage_path_is_rejected) ... ok
+test_real_immutable_revision_conflict (test_dev_worker.WorkerTests.test_real_immutable_revision_conflict) ... ok
+test_reservation_survives_recovery_without_duplicate (test_dev_worker.WorkerTests.test_reservation_survives_recovery_without_duplicate) ... ok
+test_revision_bytes_cannot_change_under_a_different_run_id (test_dev_worker.WorkerTests.test_revision_bytes_cannot_change_under_a_different_run_id) ... ok
+test_twelve_simultaneous_full_submissions_and_consumers (test_dev_worker.WorkerTests.test_twelve_simultaneous_full_submissions_and_consumers) ... ok
+test_uncertain_provider_operation_blocks_all_replay_and_recovery (test_dev_worker.WorkerTests.test_uncertain_provider_operation_blocks_all_replay_and_recovery) ... ok
+test_patch_disables_dispatch_entry_and_has_no_credentials_or_activation (test_live_reconciliation.LiveReconciliationTests.test_patch_disables_dispatch_entry_and_has_no_credentials_or_activation) ... ok
+test_preparation_rejects_changes_to_frozen_fixture (test_live_reconciliation.LiveReconciliationTests.test_preparation_rejects_changes_to_frozen_fixture) ... ok
+test_real_wrapper_preserves_blockers_and_grants_no_authority (test_live_reconciliation.LiveReconciliationTests.test_real_wrapper_preserves_blockers_and_grants_no_authority) ... ok
+test_wrapper_rejects_dependency_gate_scene_and_authority_injection (test_live_reconciliation.LiveReconciliationTests.test_wrapper_rejects_dependency_gate_scene_and_authority_injection) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 4.003s
+
+OK
+COMMAND: sh agents/executive_producer/reconciliation/run-contract-regressions.sh
+production-manifest:
+----------------------------------------------------------------------
+Ran 4 tests in 0.013s
+
+OK
+agent-result:
+----------------------------------------------------------------------
+Ran 10 tests in 1.714s
+
+OK
+job-state:
+----------------------------------------------------------------------
+Ran 12 tests in 0.075s
+
+OK
+data-tables:
+----------------------------------------------------------------------
+Ran 7 tests in 0.005s
+
+OK
+revision-guard:
+----------------------------------------------------------------------
+Ran 15 tests in 0.410s
+
+OK
+recovery-policy:
+----------------------------------------------------------------------
+Ran 17 tests in 0.236s
+
+OK

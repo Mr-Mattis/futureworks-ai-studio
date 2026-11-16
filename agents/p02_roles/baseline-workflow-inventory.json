@@ -1,0 +1,658 @@
+{
+  "version": "P02.02-P02.10 dev 1",
+  "status": "inventory-not-accepted",
+  "roles": [
+    {
+      "checkpoint": "P02.02",
+      "role": "creative_director",
+      "name": "Creative Director",
+      "id": "xs4sxANjgMcQS25p",
+      "production": true,
+      "current_name": "FWAI-LOCAL — Creative Director",
+      "active": true,
+      "parserSchema": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content_type": {
+            "type": "string",
+            "enum": [
+              "REAL_BUILD",
+              "AI_CONCEPT",
+              "HYBRID"
+            ]
+          },
+          "target_duration_seconds": {
+            "type": "integer",
+            "enum": [
+              360
+            ]
+          },
+          "scenes": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "properties": {
+                "scene_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "duration_seconds": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "narration": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "video_prompt": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "scene_id",
+                "duration_seconds",
+                "narration",
+                "video_prompt"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "project_id",
+          "title",
+          "content_type",
+          "target_duration_seconds",
+          "scenes"
+        ],
+        "additionalProperties": false
+      },
+      "fixture": null,
+      "has_calling_trigger": false,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.03",
+      "role": "research_agent",
+      "name": "Research Agent",
+      "id": "qx8tES2dRjMT9kJ9",
+      "current_name": "FWAI-LOCAL — Research Agent",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "research_questions": {
+            "type": "array"
+          },
+          "verified_claims": {
+            "type": "array"
+          },
+          "unverified_claims": {
+            "type": "array"
+          },
+          "technical_constraints": {
+            "type": "array"
+          },
+          "safety_notes": {
+            "type": "array"
+          },
+          "rights_risks": {
+            "type": "array"
+          },
+          "concept_only_elements": {
+            "type": "array"
+          },
+          "followup_needed": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "research_questions",
+          "verified_claims",
+          "unverified_claims",
+          "technical_constraints",
+          "safety_notes",
+          "rights_risks",
+          "concept_only_elements",
+          "followup_needed"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-research-agent-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "brief": "Fictional transforming desktop computer concept",
+          "claims_to_check": [
+            "This machine was physically built",
+            "The transformation improves cooling by 40%"
+          ],
+          "sources": [],
+          "content_type": "AI_CONCEPT",
+          "scene_ids": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ]
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.04",
+      "role": "visual_director",
+      "name": "Visual Director",
+      "id": "ltRaS3zusgzjeJAU",
+      "current_name": "FWAI-LOCAL — Visual Director",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "continuity_rules": {
+            "type": "array"
+          },
+          "shots": {
+            "type": "array"
+          },
+          "unresolved_assets": {
+            "type": "array"
+          },
+          "quality_criteria": {
+            "type": "array"
+          },
+          "look_bible": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "project_id",
+          "continuity_rules",
+          "shots",
+          "unresolved_assets",
+          "quality_criteria",
+          "look_bible"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-visual-director-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "script": "Fictional AI concept with a graphite and copper transforming desktop computer; no real build footage.",
+          "scenes": [
+            {
+              "scene_id": "S01",
+              "duration_seconds": 72
+            },
+            {
+              "scene_id": "S02",
+              "duration_seconds": 72
+            },
+            {
+              "scene_id": "S03",
+              "duration_seconds": 72
+            },
+            {
+              "scene_id": "S04",
+              "duration_seconds": 72
+            },
+            {
+              "scene_id": "S05",
+              "duration_seconds": 72
+            }
+          ],
+          "visual_references": [],
+          "budget_constraints": {
+            "paid_generation_authorized": false
+          }
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.05",
+      "role": "avatar_director",
+      "name": "Avatar Director",
+      "id": "Uj3C8kkSV3NMlbvs",
+      "current_name": "FWAI-LOCAL — Avatar Director",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "identity_profile_version": {
+            "type": "string"
+          },
+          "presenter_scenes": {
+            "type": "array"
+          },
+          "required_consents": {
+            "type": "array"
+          },
+          "missing_assets": {
+            "type": "array"
+          },
+          "continuity_checks": {
+            "type": "array"
+          },
+          "disclosure_flags": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "project_id",
+          "identity_profile_version",
+          "presenter_scenes",
+          "required_consents",
+          "missing_assets",
+          "continuity_checks",
+          "disclosure_flags"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-avatar-director-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "scene_ids": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "approved_identity_profile": null,
+          "approved_likeness": false,
+          "approved_voice": false,
+          "consent_records": [],
+          "presenter_goal": "Planning only; no likeness generation"
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.06",
+      "role": "budget_controller",
+      "name": "Budget Controller",
+      "id": "Cx2Gx2N3iEwWUURE",
+      "current_name": "FWAI-LOCAL — Budget Controller",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "forecast_line_items": {
+            "type": "array"
+          },
+          "tradeoffs": {
+            "type": "array"
+          },
+          "missing_rates": {
+            "type": "array"
+          },
+          "budget_cap_usd": {
+            "type": "number"
+          },
+          "forecast_total_usd": {
+            "type": "number"
+          },
+          "contingency_usd": {
+            "type": "number"
+          },
+          "under_budget": {
+            "type": "boolean"
+          },
+          "approval_required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "project_id",
+          "currency",
+          "forecast_line_items",
+          "tradeoffs",
+          "missing_rates",
+          "budget_cap_usd",
+          "forecast_total_usd",
+          "contingency_usd",
+          "under_budget",
+          "approval_required"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-budget-controller-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "budget_cap_usd": 0,
+          "provider_rates": {},
+          "proposed_assets": [],
+          "paid_generation_authorized": false,
+          "currency": "USD"
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.07",
+      "role": "editing_supervisor",
+      "name": "Editing Supervisor",
+      "id": "Mc7y7rXWx5PGF9Xe",
+      "current_name": "FWAI-LOCAL — Editing Supervisor",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "edit_notes": {
+            "type": "array"
+          },
+          "pacing_review": {
+            "type": "string"
+          },
+          "audio_alignment_review": {
+            "type": "string"
+          },
+          "missing_transitions": {
+            "type": "array"
+          },
+          "recommendations": {
+            "type": "array"
+          },
+          "manual_review_required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "project_id",
+          "edit_notes",
+          "pacing_review",
+          "audio_alignment_review",
+          "missing_transitions",
+          "recommendations",
+          "manual_review_required"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-editing-supervisor-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "scene_ids": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ],
+          "timeline": null,
+          "assets": [],
+          "narration_timing": null,
+          "review_goal": "Identify missing prerequisites; do not claim edit completed"
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.08",
+      "role": "quality_control",
+      "name": "Quality Control",
+      "id": "xxpGERneD6wzi61c",
+      "current_name": "FWAI-LOCAL — Quality Control",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "project_id": {
+            "type": "string"
+          },
+          "overall_verdict": {
+            "type": "string"
+          },
+          "checks": {
+            "type": "array"
+          },
+          "defects": {
+            "type": "array"
+          },
+          "rights_disclosure_review": {
+            "type": "string"
+          },
+          "manual_checks_required": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "overall_verdict",
+          "checks",
+          "defects",
+          "rights_disclosure_review",
+          "manual_checks_required"
+        ]
+      },
+      "fixture": {
+        "scope": "episode",
+        "project_id": "FWAI-P0105-LIVE-TEST",
+        "input_manifest": {
+          "schema_version": "1.0.0",
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "revision": 1,
+          "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+        },
+        "run_id": "P02-quality-control-test-001",
+        "attempt": 1,
+        "role_input": {
+          "project_id": "FWAI-P0105-LIVE-TEST",
+          "manifest_state": "draft",
+          "assets": [],
+          "research_evidence": [],
+          "approvals": [],
+          "review_goal": "Flag missing media, approvals and unsupported claims",
+          "scene_ids": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ]
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.09",
+      "role": "growth_strategist",
+      "name": "Growth Strategist",
+      "id": "WdldwQYxMn4el9I0",
+      "current_name": "FWAI-LOCAL — Growth Strategist",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "reporting_period": {
+            "type": "string"
+          },
+          "observed_patterns": {
+            "type": "array"
+          },
+          "candidate_experiments": {
+            "type": "array"
+          },
+          "content_mix_recommendation": {
+            "type": "string"
+          },
+          "financial_notes": {
+            "type": "string"
+          },
+          "data_gaps": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "reporting_period",
+          "observed_patterns",
+          "candidate_experiments",
+          "content_mix_recommendation",
+          "financial_notes",
+          "data_gaps"
+        ]
+      },
+      "fixture": {
+        "scope": "studio",
+        "project_id": null,
+        "input_manifest": null,
+        "run_id": "P02-growth-strategist-test-001",
+        "attempt": 1,
+        "role_input": {
+          "reporting_period": "synthetic P02 diagnostic",
+          "video_metrics": null,
+          "production_costs": null,
+          "channel_goals": [
+            "test the analysis handoff without inventing performance"
+          ]
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    },
+    {
+      "checkpoint": "P02.10",
+      "role": "sop_knowledge",
+      "name": "SOP & Knowledge",
+      "id": "VPvcZLGOfblpGKCq",
+      "current_name": "FWAI-LOCAL — SOP & Knowledge",
+      "active": false,
+      "parserSchema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "proposed_version": {
+            "type": "string"
+          },
+          "changes": {
+            "type": "array"
+          },
+          "change_log": {
+            "type": "string"
+          },
+          "unresolved_questions": {
+            "type": "array"
+          },
+          "owner_approval_required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "proposed_version",
+          "changes",
+          "change_log",
+          "unresolved_questions",
+          "owner_approval_required"
+        ]
+      },
+      "fixture": {
+        "scope": "studio",
+        "project_id": null,
+        "input_manifest": null,
+        "run_id": "P02-sop-knowledge-test-001",
+        "attempt": 1,
+        "role_input": {
+          "sop_version": "1.0",
+          "approved_documents": [],
+          "production_issues": [
+            "P02 test: no approved SOP change evidence provided"
+          ],
+          "decisions": [],
+          "change_requests": [
+            "Draft a proposed test-only documentation note; require owner approval"
+          ]
+        }
+      },
+      "has_calling_trigger": true,
+      "agentType": "@n8n/n8n-nodes-langchain.agent"
+    }
+  ]
+}

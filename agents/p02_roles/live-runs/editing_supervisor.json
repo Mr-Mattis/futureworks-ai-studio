@@ -1,0 +1,84 @@
+{
+  "role": "editing_supervisor",
+  "checkpoint": "P02.07",
+  "workflow_id": "Mc7y7rXWx5PGF9Xe",
+  "workflow_version": "4b260059-eb19-4f3c-9d5e-66d4544823be",
+  "execution_id": "62",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.07",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "edit_notes": [
+        {
+          "scene_id": "S01",
+          "issue": "Missing Prerequisites: No script or transcript provided for scene S01. Cannot verify if build steps (e.g., safety gear, tool prep) are explicitly stated.",
+          "severity": "High",
+          "proposed_change": "Request raw footage manifest and narration script for S01 to confirm prerequisite disclosure.",
+          "rationale": "Safety compliance requires explicit mention of prerequisites in the first scene. Without source text, verification is impossible."
+        },
+        {
+          "scene_id": "S02",
+          "issue": "Missing Prerequisites: No timeline or asset list provided for S02. Unclear if specific material constraints (e.g., Venetian plaster curing time) are addressed.",
+          "severity": "Medium",
+          "proposed_change": "Request detailed shot list and material specifications for S02.",
+          "rationale": "Futuristic build content often involves specialized materials; their handling prerequisites must be documented."
+        },
+        {
+          "scene_id": "S03",
+          "issue": "Missing Prerequisites: No data provided for S03. Cannot determine if RC/mecha assembly steps include necessary calibration or safety checks.",
+          "severity": "Medium",
+          "proposed_change": "Request technical specs and assembly sequence documentation for S03.",
+          "rationale": "RC builds involve electrical components; safety prerequisites are critical."
+        },
+        {
+          "scene_id": "S04",
+          "issue": "Missing Prerequisites: No data provided for S04. Unclear if painting/vinyl installation steps include ventilation or surface prep requirements.",
+          "severity": "Medium",
+          "proposed_change": "Request environmental control and surface prep documentation for S04.",
+          "rationale": "Painting and vinyl installation have strict environmental prerequisites."
+        },
+        {
+          "scene_id": "S05",
+          "issue": "Missing Prerequisites: No data provided for S05. Cannot verify final assembly or testing safety protocols.",
+          "severity": "High",
+          "proposed_change": "Request final assembly checklist and safety test protocols for S05.",
+          "rationale": "Final stages often involve high-risk activities requiring explicit safety disclaimers."
+        }
+      ],
+      "pacing_review": "Unable to assess pacing due to lack of timeline_manifest, narration_timing, or transcript data. No temporal structure is available for analysis.",
+      "audio_alignment_review": "Unable to assess audio alignment. No audio tracks, narration timing, or transcript synchronization data provided.",
+      "missing_transitions": [
+        "Transition from S01 to S02: No source material to verify logical flow between initial build/setup and subsequent steps.",
+        "Transition from S02 to S03: No source material to verify continuity in RC/mecha assembly context.",
+        "Transition from S03 to S04: No source material to verify shift from mechanical to aesthetic processes.",
+        "Transition from S04 to S05: No source material to verify conclusion of aesthetic work and final assembly."
+      ],
+      "recommendations": [
+        "Provide complete script, transcript, and timeline manifests for all scenes (S01-S05) to enable accurate prerequisite verification.",
+        "Explicitly document safety prerequisites for each build phase (electrical, chemical, mechanical) in the script.",
+        "Ensure AI concept segments are clearly labeled as such to distinguish from real-world build steps.",
+        "Verify that all material constraints (e.g., curing times, ventilation needs) are stated before the relevant visual steps."
+      ],
+      "manual_review_required": true
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

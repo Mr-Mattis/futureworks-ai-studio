@@ -1,0 +1,213 @@
+{
+  "role": "visual_director",
+  "checkpoint": "P02.04",
+  "workflow_id": "ltRaS3zusgzjeJAU",
+  "workflow_version": "2846f95e-452e-4a02-86b4-a717a972eaeb",
+  "execution_id": "58",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.04",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "continuity_rules": [
+        "The transforming desktop computer must maintain a consistent silhouette throughout the sequence, only altering its form factor.",
+        "Electric Cyan elements represent active data flow; they should pulse rhythmically during transformation phases.",
+        "Restrained Orange is reserved for critical mechanical joints or heat sinks to indicate thermal activity.",
+        "Copper accents are static and decorative, contrasting with the moving graphite/titanium parts.",
+        "Camera movements must be smooth and deliberate, emphasizing the precision of the fictional AI concept."
+      ],
+      "shots": [
+        {
+          "scene_id": "S01",
+          "shot_id": "S01-01",
+          "shot_type": "Close-up",
+          "subject": "Graphite chassis surface with copper inlay",
+          "camera": "Macro lens, static",
+          "motion": "Slow pan across the texture",
+          "lighting": "Rim light highlighting the copper edge, cyan glow emanating from within",
+          "reference_asset_ids": [],
+          "positive_prompt": "Hyper-realistic macro shot of brushed graphite surface with embedded antique copper lines, electric cyan light leaking from seams, 8k resolution, unreal engine 5 render, futuristic tech aesthetic",
+          "negative_prompt": "blurry, low resolution, cartoonish, realistic wood, organic textures",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S01",
+          "shot_id": "S01-02",
+          "shot_type": "Medium Shot",
+          "subject": "Initial state of the desktop tower",
+          "camera": "Eye-level, slight dolly in",
+          "motion": "Slow push-in towards the front panel",
+          "lighting": "Key light from top-left, cyan backlight creating a halo effect",
+          "reference_asset_ids": [],
+          "positive_prompt": "Sleek futuristic desktop computer tower made of graphite and titanium, standing in a dark void, electric cyan accents, restrained orange heat vents, minimalist design, high-tech concept art",
+          "negative_prompt": "cluttered background, messy cables, realistic office environment, dust, scratches",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S02",
+          "shot_id": "S02-01",
+          "shot_type": "Wide Shot",
+          "subject": "Transformation sequence start",
+          "camera": "Static wide angle",
+          "motion": "Mechanical parts shifting and sliding (simulated)",
+          "lighting": "Dynamic lighting shifts as panels open, cyan intensity increases",
+          "reference_asset_ids": [],
+          "positive_prompt": "Futuristic computer transforming, graphite panels sliding apart, titanium inner structure revealed, electric cyan energy flow, smooth mechanical motion, sci-fi concept, clean lines",
+          "negative_prompt": "glitchy video artifacts, realistic human hands, tools, workshop setting, smoke, fire",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S02",
+          "shot_id": "S02-02",
+          "shot_type": "Close-up",
+          "subject": "Internal mechanism detail",
+          "camera": "Macro, tracking shot following a moving part",
+          "motion": "Follow the sliding graphite rail",
+          "lighting": "Focused cyan light on the moving joint, orange glow from internal components",
+          "reference_asset_ids": [],
+          "positive_prompt": "Close-up of futuristic mechanical joint, graphite sliding on titanium rails, electric cyan lubricant or energy, restrained orange thermal indicator, precision engineering, macro photography style",
+          "negative_prompt": "rust, dirt, oil leaks, realistic metal grinding noise visuals, blurry focus",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S03",
+          "shot_id": "S03-01",
+          "shot_type": "Medium Shot",
+          "subject": "Mid-transformation state",
+          "camera": "Orbiting camera around the object",
+          "motion": "Slow 360-degree orbit",
+          "lighting": "Multi-point lighting to highlight complex geometry, cyan highlights on new surfaces",
+          "reference_asset_ids": [],
+          "positive_prompt": "Mid-transformation state of a futuristic computer, graphite and copper parts rearranging, electric cyan light patterns shifting, dynamic pose, sleek design, 3d render, octane render",
+          "negative_prompt": "static image, frozen motion, realistic desk, monitor, keyboard, mouse",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S03",
+          "shot_id": "S03-02",
+          "shot_type": "Extreme Close-up",
+          "subject": "Copper circuitry activation",
+          "camera": "Static macro",
+          "motion": "Pulsing light effect on copper traces",
+          "lighting": "Dark background, bright cyan and orange glow from the circuits",
+          "reference_asset_ids": [],
+          "positive_prompt": "Antique copper circuit board with electric cyan energy flowing through it, glowing lines, high contrast, futuristic tech detail, macro shot, sharp focus",
+          "negative_prompt": "plastic components, green PCB, realistic soldering iron, smoke, burnt wires",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S04",
+          "shot_id": "S04-01",
+          "shot_type": "Wide Shot",
+          "subject": "Final transformed state (e.g., portable or modular form)",
+          "camera": "Low angle, looking up",
+          "motion": "Slow tilt up to reveal the new form",
+          "lighting": "Dramatic top-down lighting, cyan rim light defining the new silhouette",
+          "reference_asset_ids": [],
+          "positive_prompt": "Final transformed state of a futuristic computer, compact modular design, graphite and titanium finish, electric cyan active lights, restrained orange accents, heroic angle, sci-fi concept art",
+          "negative_prompt": "original tower shape, cluttered background, realistic office, cables connected to wall",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S04",
+          "shot_id": "S04-02",
+          "shot_type": "Close-up",
+          "subject": "Interface panel activation",
+          "camera": "Static close-up on the interface",
+          "motion": "Light patterns scrolling across the surface",
+          "lighting": "Cyan light from the interface illuminating the surrounding graphite",
+          "reference_asset_ids": [],
+          "positive_prompt": "Futuristic computer interface panel, graphite surface, electric cyan holographic display elements, restrained orange status lights, sleek design, high-tech UI concept",
+          "negative_prompt": "physical buttons, screen glare, realistic fingers, touchpad, mouse cursor",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S05",
+          "shot_id": "S05-01",
+          "shot_type": "Medium Shot",
+          "subject": "Final product showcase",
+          "camera": "Slow dolly out",
+          "motion": "Retreating from the object to show full context",
+          "lighting": "Balanced studio lighting, cyan and orange accents visible but not overpowering",
+          "reference_asset_ids": [],
+          "positive_prompt": "Final transformed futuristic computer on a dark pedestal, graphite and copper materials, electric cyan and restrained orange lights, clean composition, product photography style, 8k, highly detailed",
+          "negative_prompt": "hands holding it, tools, workshop, dust, scratches, realistic desk clutter",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        },
+        {
+          "scene_id": "S05",
+          "shot_id": "S05-02",
+          "shot_type": "Fade Out",
+          "subject": "Logo or abstract graphic",
+          "camera": "Static",
+          "motion": "Fade to black with cyan glow fading last",
+          "lighting": "Dimming cyan light",
+          "reference_asset_ids": [],
+          "positive_prompt": "Abstract electric cyan light fading into darkness, minimalist, futuristic, clean end card background",
+          "negative_prompt": "text, logos, complex patterns, bright lights, noise",
+          "target_seconds": 14.4,
+          "concept_disclosure": "AI CONCEPT: This is a fictional visualization of a transforming computer; no physical build exists."
+        }
+      ],
+      "unresolved_assets": [
+        "Specific texture maps for graphite and copper need to be generated or sourced.",
+        "Animation rigging data for the transformation sequence is conceptual only.",
+        "Sound design assets (mechanical whirring, energy hum) are not included in this visual draft."
+      ],
+      "quality_criteria": [
+        "All renders must maintain 8k resolution and photorealistic material properties.",
+        "Color grading must strictly adhere to the graphite/titanium/electric cyan/restrained orange palette.",
+        "No realistic human interaction or physical tools should be visible in any shot.",
+        "Lighting must emphasize the 'futuristic' and 'fictional' nature of the object, avoiding mundane realism."
+      ],
+      "look_bible": {
+        "colors": [
+          "Graphite Black (#2C2C2C)",
+          "Titanium Grey (#878787)",
+          "Electric Cyan (#00FFFF)",
+          "Restrained Orange (#FF6B35)",
+          "Deep Copper (#B87333)"
+        ],
+        "materials": [
+          "Brushed Graphite Composite",
+          "Polished Titanium Alloy",
+          "Translucent Resin (for cyan glow)",
+          "Antique Copper Plating"
+        ],
+        "lighting": {
+          "primary": "High-contrast studio lighting with sharp shadows",
+          "accent": "Electric Cyan rim lights to define edges",
+          "mood": "Cold, precise, futuristic, slightly industrial"
+        },
+        "environment": "Abstract digital void with floating geometric graphite shards and faint circuit board patterns in the background."
+      }
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

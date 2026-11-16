@@ -20,3 +20,41 @@ Counting discrepancy: the supplied phase denominators sum to 111, while the supp
 Next sequential checkpoint is P02.01 Executive Producer. Preserve the working production webhook. No paid generation, publishing or stack substitution authorized by this status record.
 
 Owner preference: after completing each checkpoint, ask whether to move on to the next checkpoint; do not automatically advance.
+
+## P02.01 WSL continuation - November 15, 2026
+
+P02.01.07 is verified complete for isolated, zero-cost development integration:
+transactional claims and durable work intent, cross-process exclusion, fenced
+recovery, immutable manifest references and unsubmitted provider reservations.
+P02.01.08 evidence is consolidated in
+agents/executive_producer/recovery/WSL-ACCEPTANCE.md and WSL-TEST-RESULTS.txt.
+The final WSL offline run passed 119 tests. n8n execution 53 failed closed;
+reconciled execution 54 passed, and its exact candidate passed concurrent canonical
+worker ingestion. The Executive Producer development workflow remains inactive.
+
+P02.01.09 is prepared for draft branch review. Overall P02.01 owner acceptance and
+production validation remain pending; P02.02 is not started. No production
+migration, paid-provider submission, publication or merge is authorized by this
+record. The locked checklist, accepted contracts and production worker/compose
+bytes are unchanged. This development verification does not increase the
+established phase count or establish real provider-side exactly-once behavior.
+
+## P02.01 acceptance closeout — November 15, 2026
+
+**P02.01 Executive Producer: COMPLETE for the isolated local-agent development milestone.** The owner requested P02.01 closure following the authorized formal PR review. Current acceptance record: `agents/executive_producer/recovery/P02.01-ACCEPTANCE.md`.
+
+The final authorized WSL re-run passed **120** offline-isolated tests (21 Executive Producer, 23 development worker and n8n wrapper, 65 canonical contracts, 11 atomic claims). It includes a new guard against invalid synthetic ambiguous-operation state transitions. n8n execution 54 is a successful blocked candidate with five scenes, seven work packages, preserved blockers, no dispatch and all authorization false. Both development workflows remain inactive. Production worker, compose, locked checklist and `main` are unchanged.
+
+P02.01.08 evidence consolidation and P02.01.09 formal review are complete. Draft PR #1 stays **unmerged**; owner acceptance of the development role does **not** approve merging, production deployment, provider charges or publication. Permanent service wiring, external provider reconciliation and production validation belong to later gated integration work. **P02.02 is the next sequential role checkpoint; not started here.** P02 roles accepted in development: **1/10**. No other phase status is advanced.
+
+## P02.02–P02.10 nine-role development verification — November 15, 2026
+
+**Nine additional specialist agents are built and individually development-verified; P02 technical local-agent exit criterion: 10/10 roles. Formal owner acceptance and draft PR merge review remain open.** Full evidence: `agents/p02_roles/P02-NINE-AGENTS-ACCEPTANCE.md`.
+
+PR #1 was confirmed merged into `dev/p02.01-executive-producer` at `e1b4ad0`; the nine-role development branch `dev/p02.02-p02.10-local-agents` was created from that merged state, not from `main`.
+
+The eight existing inactive Ollama specialist workflows were hardened with frozen synthetic input, stricter role-native structured output, fail-closed role policies, canonical blocked handoff and disabled/disconnected orchestrator triggers. A separate inactive Creative Director workflow was built without modifying the active production Creative Director. Successful manual Ollama evidence: P02.02 **59**, P02.03 **57**, P02.04 **58**, P02.05 **60**, P02.06 **64**, P02.07 **62**, P02.08 **63**, P02.09 **65**, P02.10 **66**. Rejected diagnostic outputs (Creative **56** and Budget **61**) were hardened and successfully retested; negative results were not counted as passes.
+
+A WSL2 Bubblewrap-isolated regression run passed **141 tests** (21 Executive Producer + 23 development worker + 65 P01 contracts + 11 atomic concurrency + 21 nine-agent role, wrapper and live-result tests); all accepted role candidates passed P01 canonical envelope validation in an offline handoff. All role authorization flags remain false, dispatch remains false, and all development workflows are inactive. No paid calls, likeness generation, publishing, production changes, or merge into `main` occurred.
+
+**Status:** P02.02–P02.10 implemented and verified for controlled local-agent development; P02 10/10 technical verification, subject to formal review/owner acceptance. Do **not** automatically advance to P03 orchestration or deploy. The P02 development-workflow PR remains to be reviewed and merged only with owner authorization.

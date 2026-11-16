@@ -93,3 +93,25 @@ class OllamaModel:
         except (KeyError, TypeError, ValueError) as exc:
             raise Rejected("Local Ollama output is not a JSON role object") from exc
         return roles.checked_output(role, candidate, ctx)
+
+class VerifiedCreativeCache:
+    """Use the ORIGINAL P02.02 Ollama output only for exact matching manifest.
+
+    The Creative Director was already executed as P02.02 n8n execution 59.
+    No other role is fabricated or redirected to a mismatched manifest.
+    """
+    def __init__(self):
+        self.fresh = OllamaModel()
+
+    def __call__(self, role, ctx):
+        if role != "creative_director":
+            return self.fresh(role, ctx)
+        path = REPO / "agents/p02_roles/live-runs/creative_director.json"
+        record = json.loads(path.read_text())
+        if (record["role"] != role or record["execution_id"] != "59" or
+                record["handoff"]["input_manifest"] != ctx["input_manifest"] or
+                record["handoff"]["dispatch_performed"] or
+                any(record["handoff"]["authorization"].values())):
+            raise Rejected("Cached Creative Director manifest mismatch")
+        return roles.checked_output(role, copy.deepcopy(
+            record["handoff"]["candidate"]), ctx)

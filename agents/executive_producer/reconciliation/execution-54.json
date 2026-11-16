@@ -1,0 +1,185 @@
+{
+  "workflow_id": "HBvqaDLfhurpNLlu",
+  "execution_id": "54",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.01",
+    "is_test": true,
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-EP-0001",
+      "revision": 1,
+      "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+    },
+    "candidate": {
+      "project_id": "FWAI-EP-0001",
+      "working_title": "The PC That Became a Robot",
+      "content_type": "AI_CONCEPT",
+      "story_goal": "Present a fictional, AI-generated visualization of a gaming PC transforming into a robot. The narrative serves as an ethical disclosure and artistic concept study, explicitly stating that no physical engineering or working hardware exists. The goal is to entertain through speculative design while maintaining strict transparency about the synthetic nature of the content.",
+      "target_audience": "Viewers interested in speculative design, AI art, and fictional tech concepts who require clear disclaimers regarding the non-functional nature of the depicted machinery.",
+      "creative_constraints": [
+        "All hardware transformations must be clearly identified as fictional visualizations.",
+        "No unsupported engineering claims or functional demonstrations are permitted.",
+        "Visual continuity must maintain the same graphite and electric cyan chassis silhouette across all scenes.",
+        "Audio must use licensed tracks only; no unlicensed music.",
+        "The project is an AI_CONCEPT, not a REAL_BUILD or HYBRID physical prototype."
+      ],
+      "estimated_scene_count": 5,
+      "assumptions": [
+        "The audience accepts the premise of speculative fiction and AI-generated media.",
+        "Licensed audio tracks are available for use in post-production.",
+        "Visual prompts provided in the manifest are sufficient for generating consistent concept art without additional reference materials.",
+        "No physical assets or real-world engineering data are required for this AI_CONCEPT."
+      ],
+      "blockers": [
+        "Missing brand identity guidelines or specific logo assets for the fictional PC brand.",
+        "Lack of explicit consent documentation for any voice actors if synthetic voices are not used (though ElevenLabs is listed, human oversight on voice selection is needed).",
+        "No spending evidence or budget caps provided; budget approval cannot be granted without deterministic cost caps.",
+        "Service readiness for paid providers (Runway, ElevenLabs) must be verified before any financial commitment.",
+        "Missing source evidence IDs for any factual claims about PC hardware design principles referenced in the narration."
+      ],
+      "next_action": "Review the proposed work packages and gates to ensure alignment with the AI_CONCEPT disclosure requirements. Verify that no execution commands are issued and that all dependencies on external approvals (budget, human) are clearly marked as pending.",
+      "work_packages": [
+        {
+          "package_id": "wp-research-01",
+          "stage": "research",
+          "owner": "research_agent",
+          "task": "Compile a list of fictional design constraints and ethical disclosures relevant to the 'PC to Robot' concept. Verify that no real-world engineering data is misinterpreted as fact.",
+          "required_inputs": [
+            "Manifest disclosure statement",
+            "Target duration (360s)"
+          ],
+          "deliverable": "Research brief confirming the fictional nature of the project and listing required ethical disclaimers for each scene.",
+          "dependencies": []
+        },
+        {
+          "package_id": "wp-script-02",
+          "stage": "script",
+          "owner": "creative_director",
+          "task": "Draft narration scripts for all 5 scenes, ensuring the hook and closing recap explicitly state that the content is an AI-generated fictional concept.",
+          "required_inputs": [
+            "wp-research-01"
+          ],
+          "deliverable": "Finalized narration script with scene-by-scene timing and mandatory disclosure text.",
+          "dependencies": [
+            "wp-research-01"
+          ]
+        },
+        {
+          "package_id": "wp-visual-03",
+          "stage": "visual",
+          "owner": "visual_director",
+          "task": "Define visual prompts and keyframes for the graphite/titanium/cyan chassis, ensuring cinematic continuity across the 5 scenes without implying physical functionality.",
+          "required_inputs": [
+            "wp-script-02"
+          ],
+          "deliverable": "Visual style guide and image/video generation prompts for all scenes.",
+          "dependencies": [
+            "wp-script-02"
+          ]
+        },
+        {
+          "package_id": "wp-avatar-04",
+          "stage": "avatar",
+          "owner": "avatar_director",
+          "task": "Evaluate avatar requirements. Since no presenter is required in the manifest, confirm that avatar generation is not needed and document this decision.",
+          "required_inputs": [
+            "wp-script-02"
+          ],
+          "deliverable": "Decision record: Avatar assets are not required for this production.",
+          "dependencies": [
+            "wp-script-02"
+          ]
+        },
+        {
+          "package_id": "wp-budget-05",
+          "stage": "budget",
+          "owner": "budget_controller",
+          "task": "Estimate costs for paid services (Runway, ElevenLabs) based on the visual and audio requirements. Note that deterministic cost caps are outside this model's scope.",
+          "required_inputs": [
+            "wp-visual-03",
+            "wp-avatar-04"
+          ],
+          "deliverable": "Budget proposal with estimated costs for paid generation services, pending external cost cap verification.",
+          "dependencies": [
+            "wp-visual-03",
+            "wp-avatar-04"
+          ]
+        },
+        {
+          "package_id": "wp-assembly-06",
+          "stage": "assembly",
+          "owner": "editing_supervisor",
+          "task": "Plan the assembly of video, audio, and captions. Ensure the final timeline includes all mandatory disclosures.",
+          "required_inputs": [
+            "wp-visual-03",
+            "wp-avatar-04",
+            "wp-budget-05"
+          ],
+          "deliverable": "Assembly plan detailing the integration of AI-generated visuals, licensed audio, and captions into the OTIOZ timeline.",
+          "dependencies": [
+            "wp-visual-03",
+            "wp-avatar-04",
+            "wp-budget-05"
+          ]
+        },
+        {
+          "package_id": "wp-qc-07",
+          "stage": "qc",
+          "owner": "quality_control",
+          "task": "Review the assembled concept for compliance with the AI_CONCEPT disclosure, visual continuity, and audio licensing requirements.",
+          "required_inputs": [
+            "wp-assembly-06"
+          ],
+          "deliverable": "QC report confirming adherence to creative constraints and ethical disclosures.",
+          "dependencies": [
+            "wp-assembly-06"
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "name": "human_approval",
+          "owner": "human_owner",
+          "pass_conditions": [
+            "Creative director confirms narration aligns with AI_CONCEPT disclosure.",
+            "Visual director confirms no misleading engineering claims in visuals.",
+            "Human owner explicitly approves the fictional nature of the content."
+          ]
+        },
+        {
+          "name": "budget_approval",
+          "owner": "human_owner",
+          "pass_conditions": [
+            "Deterministic cost caps for paid services (Runway, ElevenLabs) are provided and approved by finance.",
+            "Spending evidence or budget authorization is obtained outside this model."
+          ]
+        },
+        {
+          "name": "publication_approval",
+          "owner": "human_owner",
+          "pass_conditions": [
+            "QC report confirms all ethical disclosures are present and accurate.",
+            "Licensing for all audio assets is verified.",
+            "Human owner approves final release of the AI_CONCEPT media."
+          ]
+        }
+      ]
+    },
+    "blockers": [
+      "Missing brand identity guidelines or specific logo assets for the fictional PC brand.",
+      "Lack of explicit consent documentation for any voice actors if synthetic voices are not used (though ElevenLabs is listed, human oversight on voice selection is needed).",
+      "No spending evidence or budget caps provided; budget approval cannot be granted without deterministic cost caps.",
+      "Service readiness for paid providers (Runway, ElevenLabs) must be verified before any financial commitment.",
+      "Missing source evidence IDs for any factual claims about PC hardware design principles referenced in the narration.",
+      "Canonical worker validation and independent approvals required"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

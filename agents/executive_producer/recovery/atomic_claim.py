@@ -60,37 +60,46 @@ def initialize(path: Path | str) -> None:
         connection.close()
 
 
+def claim_in_transaction(connection: sqlite3.Connection, request: Claim, *, interrupted: bool = False) -> dict:
+    """Claim within an existing transaction; caller commits identity and durable work together."""
+    request.validate()
+    if not connection.in_transaction:
+        raise ValueError("An active transaction is required")
+    row = connection.execute(
+        "SELECT revision,sha256,status,attempt FROM requests WHERE project_id=? AND run_id=?",
+        (request.project_id, request.run_id),
+    ).fetchone()
+    if row is None:
+        state = "interrupted" if interrupted else "claimed"
+        connection.execute(
+            "INSERT INTO requests(project_id,run_id,revision,sha256,status,attempt) "
+            "VALUES(?,?,?,?,?,1)",
+            (request.project_id, request.run_id, request.revision, request.sha256.lower(), state),
+        )
+        result = {"action": "created", "status": state, "attempt": 1}
+    else:
+        revision, sha256, state, attempt = row
+        if revision != request.revision or sha256 != request.sha256.lower():
+            raise ValueError("IDEMPOTENCY_CONFLICT")
+        if interrupted and state == "interrupted":
+            connection.execute(
+                "UPDATE requests SET status='recovered',attempt=attempt+1 "
+                "WHERE project_id=? AND run_id=? AND status='interrupted'",
+                (request.project_id, request.run_id),
+            )
+            result = {"action": "resumed", "status": "recovered", "attempt": attempt + 1}
+        else:
+            result = {"action": "replay_skipped", "status": state, "attempt": attempt}
+    return result
+
+
 def claim(path: Path | str, request: Claim, *, interrupted: bool = False) -> dict:
     """Atomically claim or replay a logical job. Caller must initialize storage first."""
     request.validate()
     connection = _connect(path)
     try:
         connection.execute("BEGIN IMMEDIATE")
-        row = connection.execute(
-            "SELECT revision,sha256,status,attempt FROM requests WHERE project_id=? AND run_id=?",
-            (request.project_id, request.run_id),
-        ).fetchone()
-        if row is None:
-            state = "interrupted" if interrupted else "claimed"
-            connection.execute(
-                "INSERT INTO requests(project_id,run_id,revision,sha256,status,attempt) "
-                "VALUES(?,?,?,?,?,1)",
-                (request.project_id, request.run_id, request.revision, request.sha256.lower(), state),
-            )
-            result = {"action": "created", "status": state, "attempt": 1}
-        else:
-            revision, sha256, state, attempt = row
-            if revision != request.revision or sha256 != request.sha256.lower():
-                raise ValueError("IDEMPOTENCY_CONFLICT")
-            if interrupted and state == "interrupted":
-                connection.execute(
-                    "UPDATE requests SET status='recovered',attempt=attempt+1 "
-                    "WHERE project_id=? AND run_id=? AND status='interrupted'",
-                    (request.project_id, request.run_id),
-                )
-                result = {"action": "resumed", "status": "recovered", "attempt": attempt + 1}
-            else:
-                result = {"action": "replay_skipped", "status": state, "attempt": attempt}
+        result = claim_in_transaction(connection, request, interrupted=interrupted)
         connection.commit()
         return result
     except BaseException:

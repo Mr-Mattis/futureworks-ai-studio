@@ -1,0 +1,26 @@
+{
+  "version": "P04.02-dev-1",
+  "license_disclaimer": "Model cards and licenses independently checked; legal acceptance requires user review of license restrictions and prohibitions. No third-party weights redistributed or committed.",
+  "primary": {
+    "id": "sd15-openrail-m",
+    "repo": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+    "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5",
+    "filename": "v1-5-pruned-emaonly.safetensors",
+    "sha256": "6ce0161689b3853acaa03779ec93eafe75a02f4ced659bee03f50797806fa2fa",
+    "license": "creativeml-openrail-m",
+    "license_url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/blob/main/LICENSE",
+    "status": "license_metadata_verified; file_digest_must_be_verified_locally"
+  },
+  "candidates": [
+    {
+      "id": "sdxl-base-1.0",
+      "repo": "stabilityai/stable-diffusion-xl-base-1.0",
+      "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "filename": "sd_xl_base_1.0.safetensors",
+      "license": "creativeml-openrail++-m",
+      "sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+      "status": "licensing_metadata_checked; GPU benchmark and artifact download pending"
+    }
+  ],
+  "selection": "Start with verified SD1.5 file as minimum-risk functional GPU benchmark; compare SDXL technical output before selecting production model. Technical accuracy, photorealism and rights of generated content remain independent review requirements."
+}

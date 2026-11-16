@@ -98,6 +98,42 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertFalse(r["provider_submission_performed"])
 
+    def test_one_shot_demo_disabled_by_default(self):
+        payload = dict(project_id="FWAI-EP-0001",
+            run_id="P03-DEV-N8N-ONE-SHOT-001",
+            manifest_sha256=self.manifest_sha,
+            brief="The PC That Became a Robot — clearly fictional concept.")
+        status, result = self.call("POST", "/v1/demo-once", payload, token="")
+        self.assertEqual(status, 404)
+        self.assertEqual(result["error"], "DEMO_DISABLED")
+
+    def test_one_shot_demo_accepts_only_frozen_synthetic_identity(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.handler = service(tmp.name + "/dev-demo.db", TOKEN, demo_enabled=True)
+        payload = dict(project_id="FWAI-EP-0001",
+            run_id="P03-DEV-N8N-ONE-SHOT-001",
+            manifest_sha256=self.manifest_sha,
+            brief="The PC That Became a Robot — clearly fictional concept.")
+        for candidate in (
+            dict(payload, run_id="UNAPPROVED"),
+            dict(payload, publish_authorized=True),
+            dict(payload, manifest_sha256="a" * 64),
+            dict(payload, brief="Changed unverified concept"),
+        ):
+            with self.subTest(candidate=candidate):
+                self.assertEqual(self.call("POST", "/v1/demo-once", candidate, token="")[0], 400)
+        status, result = self.call("POST", "/v1/demo-once", payload, token="")
+        self.assertEqual(status, 200)
+        self.assertEqual(result["mode"], "one_shot_synthetic_replay")
+        report = result["dashboard"]
+        self.assertEqual(report["state"], "awaiting_approval")
+        self.assertEqual(len(report["stages"]), 7)
+        self.assertFalse(any(report["authorization"].values()))
+        self.assertFalse(report["dispatch_performed"])
+        self.assertEqual(self.call("POST", "/v1/demo-once", payload, token="")[1]["receipt"]["action"],
+                         "replay_skipped")
+
     def test_health_explicitly_disables_production(self):
         status, result = self.call("GET", "/v1/health")
         self.assertEqual(status, 200)

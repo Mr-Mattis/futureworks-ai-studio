@@ -17,7 +17,7 @@ from urllib.parse import urlsplit
 from urllib.request import Request, build_opener, HTTPHandler, HTTPSHandler, HTTPRedirectHandler
 from urllib.error import HTTPError, URLError
 
-from engine import Rejected, MAX_BYTES, sha
+from engine import Rejected, MAX_BYTES, sha, RunwayWire, REPO
 
 ALLOWED_OUTPUT_DOMAINS = ("cloudfront.net", "runwayml.com")
 MIN_OUTPUT_BYTES = 32
@@ -98,10 +98,19 @@ def ffprobe_clip(filepath, *, runner=subprocess.run):
             "width":width,"height":height}
 
 
-def archive_provider_result(url, output_path, *, transport=None, verifier=ffprobe_clip):
-    """Persist immutable bytes, then ffprobe. No approval or publication changes."""
+def archive_provider_result(task_receipt, task_id, output_path, *, transport=None,
+                            verifier=ffprobe_clip):
+    """Preserve exactly one verified SUCCEEDED provider task output, never an arbitrary URL.
+
+    The caller must have obtained task_receipt via the authenticated task
+    retrieval API; verification here checks identity and result shape.
+    """
+    status,url=RunwayWire.parse_status(task_receipt,task_id)
+    if status!="SUCCEEDED" or url is None:
+        raise Rejected("Only a successful, identity-matched task can be archived")
     dest=Path(output_path).resolve()
-    if dest.suffix.lower() != ".mp4" or dest.is_relative_to(Path("/data")):
+    if (dest.suffix.lower() != ".mp4" or
+            dest.is_relative_to(Path("/data")) or dest.is_relative_to(REPO)):
         raise Rejected("Destination must be a dedicated non-production .mp4")
     if dest.exists():
         raise Rejected("Never replace an existing indexed clip")

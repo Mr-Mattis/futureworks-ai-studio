@@ -1,0 +1,39 @@
+{
+  "role": "growth_strategist",
+  "checkpoint": "P02.09",
+  "workflow_id": "WdldwQYxMn4el9I0",
+  "workflow_version": "1f248940-6294-4347-aa72-a159a6d85985",
+  "execution_id": "65",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.09",
+    "is_test": true,
+    "scope": "studio",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": null,
+    "candidate": {
+      "reporting_period": "synthetic P02 diagnostic",
+      "observed_patterns": [],
+      "candidate_experiments": [],
+      "content_mix_recommendation": "Insufficient data to recommend specific content mix adjustments. Recommend gathering baseline metrics for graphite/titanium build videos, RC builds, and Venetian plaster tutorials before optimizing allocation.",
+      "financial_notes": "No production cost data provided. Cannot calculate ROI or budget efficiency. Recommend tracking material costs (e.g., plaster, vinyl, electronics) against revenue per video upon data availability.",
+      "data_gaps": [
+        "video_metrics",
+        "production_costs",
+        "audience_retention_data",
+        "click_through_rate_data",
+        "revenue_per_mille_rates"
+      ]
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "No real YouTube analytics were provided"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

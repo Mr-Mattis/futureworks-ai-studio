@@ -50,7 +50,7 @@ def sample(role):
             item[key] = [
                 {"scene_id": "S" + str(i).zfill(2), "duration_seconds": 72,
                  "description": "One original fictional computer concept scene.",
-                 "narration": "Original, clearly fictional script narration.",
+                 "narration": " ".join(["Fictional computer transformation, never an actual build."] * 22),
                  "visual_intent": "An original computer concept, not recorded reality."}
                 for i in range(1, 6)
             ]

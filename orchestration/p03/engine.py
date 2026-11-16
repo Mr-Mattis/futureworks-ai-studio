@@ -89,7 +89,7 @@ class Studio:
             CREATE TABLE IF NOT EXISTS provider_queue(
               operation_key TEXT PRIMARY KEY, project_id TEXT NOT NULL,
               run_id TEXT NOT NULL, provider TEXT NOT NULL,
-              state TEXT NOT NULL CHECK(state IN ('not_submitted','needs_review')),
+              state TEXT NOT NULL CHECK(state IN ('not_submitted','mock_polling','mock_complete','needs_review')),
               attempt INTEGER NOT NULL DEFAULT 0,
               receipt TEXT, next_poll_at TEXT,
               FOREIGN KEY(project_id,run_id) REFERENCES runs(project_id,run_id)
@@ -349,6 +349,54 @@ class Studio:
                 raise Rejected("Only simulated operations can be polled")
             return {"state": row["state"], "provider_submission_performed": False,
                     "next_action": "human_review_required"}
+
+    def set_mock_receipt(self, operation_key, outcome):
+        """Record synthetic provider status; no HTTP, no actual submission."""
+        if outcome not in ("pending", "success", "temporary_error", "unknown"):
+            raise Rejected("Only explicit synthetic statuses permitted")
+        with self.transaction() as db:
+            row = db.execute("SELECT provider,state FROM provider_queue WHERE operation_key=?",
+                             (operation_key,)).fetchone()
+            if not row or row["provider"] != "mock" or row["state"] != "not_submitted":
+                raise Rejected("Unknown or finalized mock operation")
+            db.execute("UPDATE provider_queue SET receipt=?,state='mock_polling' WHERE "
+                       "operation_key=?", ("MOCK:" + outcome, operation_key))
+            return "mock_polling"
+
+    def poll_due_mock(self, *, limit=10):
+        """P03.07 durable synthetic polling with two attempts and fail-closed queue.
+
+        Mock receipts are explicitly injected by tests. Never makes a provider
+        request or retries a real submission. Unknown outcomes are quarantined.
+        """
+        if type(limit) is not int or not 1 <= limit <= 100:
+            raise Rejected("Bounded poll limit required")
+        results = []
+        with self.transaction() as db:
+            pending = db.execute(
+                "SELECT operation_key,project_id,run_id,receipt,attempt FROM provider_queue "
+                "WHERE provider='mock' AND state='mock_polling' "
+                "ORDER BY operation_key LIMIT ?", (limit,)).fetchall()
+            for row in pending:
+                outcome = (row["receipt"] or "").removeprefix("MOCK:")
+                attempts = row["attempt"] + 1
+                if outcome == "success":
+                    status = "mock_complete"
+                elif outcome == "pending" and attempts < MAX_RETRIES:
+                    status = "mock_polling"
+                else:
+                    status = "needs_review"
+                db.execute("UPDATE provider_queue SET attempt=?,state=? WHERE operation_key=?",
+                           (attempts, status, row["operation_key"]))
+                if status == "needs_review":
+                    db.execute("INSERT INTO issues(project_id,run_id,stage,message,recorded_at) "
+                               "VALUES(?,?,?,?,?)",
+                               (row["project_id"], row["run_id"], "provider_mock",
+                                "Synthetic provider outcome requires human review: " + outcome,
+                                now()))
+                results.append({"operation_key": row["operation_key"], "state": status,
+                                "attempt": attempts, "provider_submission_performed": False})
+        return results
 
     def dashboard(self, project_id, run_id):
         self._key(project_id, run_id)

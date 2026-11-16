@@ -49,8 +49,9 @@ def sample(role):
         elif key == "scenes":
             item[key] = [
                 {"scene_id": "S" + str(i).zfill(2), "duration_seconds": 72,
-                 "narration": "Original, clearly fictional, script narration.",
-                 "video_prompt": "Original future-computer concept visualization."}
+                 "description": "One original fictional computer concept scene.",
+                 "narration": "Original, clearly fictional script narration.",
+                 "visual_intent": "An original computer concept, not recorded reality."}
                 for i in range(1, 6)
             ]
         elif key == "shots":

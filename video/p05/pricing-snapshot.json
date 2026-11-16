@@ -1,0 +1,17 @@
+{
+  "snapshot_date": "2026-11-15",
+  "source": "https://docs.dev.runwayml.com/guides/pricing/",
+  "api_schema_source": "https://docs.dev.runwayml.com/api/",
+  "api_version": "2024-11-06",
+  "selected_model": "gen4.5",
+  "credits_per_second": 12,
+  "usd_per_credit": "0.01",
+  "duration_seconds_per_scene": 5,
+  "scenes": 3,
+  "estimated_generation_credits": 180,
+  "estimated_generation_usd": "1.80",
+  "note": "Illustrative current list rate, excludes taxes, future pricing changes, upload costs and ancillary services; NOT an approved spending budget.",
+  "real_spend_cap_cents": 0,
+  "runway_api_credential_status": "NOT_CONFIGURED_IN_THIS_BRANCH",
+  "real_provider_submission_enabled": false
+}

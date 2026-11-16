@@ -117,6 +117,14 @@ def patch(role):
         "All actual provider submissions, publication, SOP writes, and expenses are forbidden. "
         "No extra root properties; meet required uncertainty and consent disclosures."
     )
+    if role == "budget_controller":
+        sys += (
+            "\\nBUDGET ACCEPTANCE: approval_required MUST be true even if the spending "
+            "cap and planned costs are zero; this model never grants financial approval. "
+            "With an empty provider_rates object, missing_rates MUST be a non-empty "
+            "array describing unavailable independently verified provider pricing, "
+            "even when proposed_assets is empty. Do not infer rates or permission."
+        )
     agent = AGENT_NODE_NAMES[role]
     operations = [
         {"type": "updateNodeParameters", "nodeName": "Manual role fixture",

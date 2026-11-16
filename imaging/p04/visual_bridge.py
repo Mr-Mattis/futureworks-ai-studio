@@ -129,9 +129,15 @@ def send_to_visual(handoff, *, ollama_url="http://127.0.0.1:11434/api/chat",
         raise Rejected("Visual Director did not consume all ten image references")
     if any(s.get("scene_id") != references.get(s.get("reference_asset_id")) for s in shots):
         raise Rejected("Visual Director changed image-to-scene lineage")
-    result=roles.envelope("visual_director",checked,ctx,manifest_path=MANIFEST)
-    result["p04_reference_assets"]=images
-    result["p04_visual_media_status"]="metadata_only; pixel/rights review pending"
+    # Keep the P01.02 agent_result IMMUTABLE and schema-valid. P04 provenance
+    # belongs in an outer transport envelope, never extra canonical root keys.
+    canonical=roles.envelope("visual_director",checked,ctx,manifest_path=MANIFEST)
+    result={
+        "checkpoint":"P04.06",
+        "agent_result":canonical,
+        "p04_reference_assets":images,
+        "p04_visual_media_status":"metadata_only; pixel/rights review pending",
+    }
     if target is not None:
         dest=Path(target).resolve()
         if not dest.is_relative_to(Path(handoff).resolve().parent):
@@ -150,8 +156,8 @@ def main():
         result=send_to_visual(args.handoff,target=args.output,ollama_url=args.ollama_url)
         print(json.dumps({"status":"BLOCKED_VISUAL_DIRECTOR_PLAN_RECEIVED",
                           "assets":len(result["p04_reference_assets"]),
-                          "shots":len(result["output"]["shots"]),
-                          "authorization":result["authorization"]}))
+                          "shots":len(result["agent_result"]["output"]["shots"]),
+                          "authorization":result["agent_result"]["authorization"]}))
         return 0
     except (Rejected,ValueError,OSError) as exc:
         print(json.dumps({"status":"REJECTED","reason":str(exc)[:200]}),file=sys.stderr)

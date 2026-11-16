@@ -1,0 +1,43 @@
+{
+  "role": "sop_knowledge",
+  "checkpoint": "P02.10",
+  "workflow_id": "VPvcZLGOfblpGKCq",
+  "workflow_version": "61bbc5c8-8912-44d5-b82f-b2a510ec5908",
+  "execution_id": "66",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.10",
+    "is_test": true,
+    "scope": "studio",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": null,
+    "candidate": {
+      "proposed_version": "1.1-draft",
+      "changes": [
+        {
+          "document": "SOP_P02_Testing_Guidelines",
+          "section": "Documentation Requirements",
+          "reason": "Address production issue P02: lack of approved SOP change evidence for test documentation.",
+          "proposed_text": "All test-only documentation notes must be explicitly flagged as 'DRAFT - PENDING OWNER APPROVAL'. No test results, provider outputs, or physical build completions may be claimed as verified until this flag is removed and the owner approval field is set to true. This note serves as a placeholder for the required evidence.",
+          "evidence": "Input production_issues: 'P02 test: no approved SOP change evidence provided'"
+        }
+      ],
+      "change_log": "Drafted proposed documentation note for SOP version 1.1-draft to address P02. No external assets modified. No publication occurred.",
+      "unresolved_questions": [
+        "Which specific test case requires this documentation note?",
+        "Who is the designated owner for final approval of this SOP change?"
+      ],
+      "owner_approval_required": true
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "SOP changes are only proposals, not applied"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

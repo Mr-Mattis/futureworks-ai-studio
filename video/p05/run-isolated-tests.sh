@@ -19,4 +19,4 @@ bwrap --unshare-all --new-session --die-with-parent \
   --ro-bind "$REPO" /mnt --chdir /mnt/video/p05 --clearenv \
   --setenv PATH /usr/bin:/bin --setenv PYTHONDONTWRITEBYTECODE 1 \
   /usr/bin/python3 -B -m unittest -v \
-  test_engine.py test_download.py test_n8n.py
+  test_engine.py test_download.py test_n8n.py test_reference_intake.py

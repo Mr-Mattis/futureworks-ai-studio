@@ -60,7 +60,7 @@ remains inactive; no authenticated live n8n→image writer test is claimed.
 | P05.04 Polling/throttling/timeouts/retries | Durable SQLite task identities, mock `PENDING/THROTTLED/RUNNING/SUCCEEDED/FAILED/CANCELLED` handling, due timestamps, exponential-ish bounded backoff and 10-poll review quarantine. Reopen receipt after restart; no duplicate mock submissions. | **Mock-tested; real 429/network behavior pending** |
 | P05.05 Preserve expiring media | HTTPS output host allowlist, redirect suppression, 64MB cap, temporary atomic file, ffprobe validation, SHA256 index, no overwrites; injected-transport tests only. Current provider output URLs expire within 24–48h. | **Offline download logic tested; no actual Runway output URL downloaded** |
 | P05.06 Continuity and correction requests | Human-blocked `continuity_review`, plus actual FFmpeg 3-point RGB frame sampling of three real local storyboards and cut-distance reporting. Original-shape/motion visual QA remains human dependent. | **Local QC triage run; real generative clip review pending** |
-| P05.07 Three-scene cinematic acceptance | Three genuine, reproducible H.264 **Ken-Burns camera-motion storyboards** built locally from prior P04 real AI stills. Four seconds/scene, 24 fps, 960×540, outside Git. This is **NOT** generative text-to-video or image-to-video; no Runway output or approved budget. | **Locked three-generated-clip exit NOT met** |
+| P05.07 Three-scene cinematic acceptance | Three genuine, reproducible H.268 **Ken-Burns camera-motion storyboards** built locally from prior P04 real AI stills. Four seconds/scene, 24 fps, 960×540, outside Git. This is **NOT** generative text-to-video or image-to-video; no Runway output or approved budget. | **Locked three-generated-clip exit NOT met** |
 
 ### Real no-cost preview evidence (not provider generation)
 
@@ -68,7 +68,7 @@ Output retained only on owner's PC:
 
 `C:\Users\yashi\Documents\futureworks-p05-data\storyboard-previews`
 
-Three independently FFprobe-validated actual H.264 preview MP4s were created
+Three independently FFprobe-validated actual H.268 preview MP4s were created
 from P04 images S01, S02, S03. `PREVIEW_EVIDENCE.json` stores source
 image hashes, output video hashes, codecs, frame counts and file names.
 `CONTINUITY_REVIEW.json` records representative RGB frame samples, intercut
@@ -108,8 +108,8 @@ Runway reference pages verified on November 15, 2026:
 - Original merged P01–P04 suite: **226** passing isolated tests.
 - P04 additional approval tests: **7** Bubblewrap-isolated tests passing.
 - P05 video contract, download, async mock, and exact n8n Code-node tests:
-  **31** Bubblewrap-isolated tests passing.
-- **Total verified across P01–P05: 264 isolated passing tests; zero failures.**
+  **35** Bubblewrap-isolated tests passing.
+- **Total verified across P01–P05: 268 isolated passing tests; zero failures.**
   The initial aggregate test command had a path-binding typo for the
   11-test atomic suite; all other cross-phase suites passed, and the
   atomic suite was rerun separately in the same strict Bubblewrap
@@ -131,3 +131,7 @@ not a substitute for this requirement.
 **PR review and merge are separate authorization gates**. Do not merge,
 activate, provision paid credentials, generate paid clips, or advance P06
 without explicit owner instruction.
+
+### Verified actual Comfy reference ingestion
+
+An additional zero-spend live-local development CLI run `P05_REAL_P04_REFERENCES_001` imported the **actual ten indexed P04 PNGs**, checked each SHA on the owner's Windows filesystem through WSL, and atomically planned three persistent Runway-schema scene intents: S01 text-to-video and S02/S03 image-to-video, with real source asset hashes. No Runway upload URI was invented. Evidence: `video/p05/evidence/three-real-image-reference-plans.json`. Added four offline negative tests to reject P04 pixel tampering and forged caller-provided approvals. The P05 model adapter now deliberately denies untrusted approval booleans even if they claim signature verification; only an independently verified P04 owner gate can authorize later real usage. **No provider upload or paid generation occurred.**

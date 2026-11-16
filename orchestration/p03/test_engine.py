@@ -104,10 +104,10 @@ class OrchestrationTests(unittest.TestCase):
         self.submit()
         t = self.studio.claim(PROJECT, RUN, "research")
         with self.assertRaisesRegex(Rejected, "STALE_OWNERSHIP"):
-            self.studio.complete(dict(t, token="wrong"), ReplayModel()("research", self.studio.context(t)))
+            self.studio.complete(dict(t, token="wrong"), ReplayModel()("research_agent", self.studio.context(t)))
         self.studio.recover(t)
         with self.assertRaisesRegex(Rejected, "STALE_OWNERSHIP"):
-            self.studio.complete(t, ReplayModel()("research", self.studio.context(t)))
+            self.studio.complete(t, ReplayModel()("research_agent", self.studio.context(t)))
 
     def test_recover_fenced_and_bounded(self):
         self.submit()

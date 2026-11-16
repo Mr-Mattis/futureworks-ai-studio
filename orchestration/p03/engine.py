@@ -8,13 +8,14 @@ from __future__ import annotations
 
 import concurrent.futures
 import copy
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import hashlib
 import json
 from pathlib import Path
 import sqlite3
 import sys
 import time
+import threading
 import uuid
 
 REPO = Path(__file__).resolve().parents[2]
@@ -359,11 +360,11 @@ class Studio:
                              (operation_key,)).fetchone()
             if not row or row["provider"] != "mock" or row["state"] != "not_submitted":
                 raise Rejected("Unknown or finalized mock operation")
-            db.execute("UPDATE provider_queue SET receipt=?,state='mock_polling' WHERE "
-                       "operation_key=?", ("MOCK:" + outcome, operation_key))
+            db.execute("UPDATE provider_queue SET receipt=?,state='mock_polling',next_poll_at=? WHERE "
+                       "operation_key=?", ("MOCK:" + outcome, now(), operation_key))
             return "mock_polling"
 
-    def poll_due_mock(self, *, limit=10):
+    def poll_due_mock(self, *, limit=10, at=None, retry_delay_seconds=1.0):
         """P03.07 durable synthetic polling with two attempts and fail-closed queue.
 
         Mock receipts are explicitly injected by tests. Never makes a provider
@@ -371,12 +372,17 @@ class Studio:
         """
         if type(limit) is not int or not 1 <= limit <= 100:
             raise Rejected("Bounded poll limit required")
+        if not isinstance(retry_delay_seconds, (int, float)) or not 0 < retry_delay_seconds <= 3600:
+            raise Rejected("Bounded retry backoff required")
+        clock = now() if at is None else at
+        if not isinstance(clock, str) or len(clock) < 20:
+            raise Rejected("Invalid poll clock")
         results = []
         with self.transaction() as db:
             pending = db.execute(
                 "SELECT operation_key,project_id,run_id,receipt,attempt FROM provider_queue "
-                "WHERE provider='mock' AND state='mock_polling' "
-                "ORDER BY operation_key LIMIT ?", (limit,)).fetchall()
+                "WHERE provider='mock' AND state='mock_polling' AND next_poll_at<=? "
+                "ORDER BY operation_key LIMIT ?", (clock, limit)).fetchall()
             for row in pending:
                 outcome = (row["receipt"] or "").removeprefix("MOCK:")
                 attempts = row["attempt"] + 1
@@ -386,8 +392,11 @@ class Studio:
                     status = "mock_polling"
                 else:
                     status = "needs_review"
-                db.execute("UPDATE provider_queue SET attempt=?,state=? WHERE operation_key=?",
-                           (attempts, status, row["operation_key"]))
+                next_due = ((datetime.now(timezone.utc) + timedelta(seconds=retry_delay_seconds)).isoformat()
+                            if status == "mock_polling" else None)
+                db.execute("UPDATE provider_queue SET attempt=?,state=?,next_poll_at=? "
+                           "WHERE operation_key=?",
+                           (attempts, status, next_due, row["operation_key"]))
                 if status == "needs_review":
                     db.execute("INSERT INTO issues(project_id,run_id,stage,message,recorded_at) "
                                "VALUES(?,?,?,?,?)",
@@ -457,6 +466,52 @@ class Studio:
         except Exception as exc:
             self.fail(ticket, exc, ambiguous=False)
             return False
+
+
+class MockPoller:
+    """Background *synthetic-only* due-receipt poller, never a provider client.
+
+    Polling itself runs in a bounded daemon thread and uses transactional
+    persisted due timestamps so a new process can resume after a crash.
+    """
+    def __init__(self, studio, *, interval_seconds=0.1, retry_delay_seconds=0.2):
+        if not (0.01 <= interval_seconds <= 5 and
+                0.01 <= retry_delay_seconds <= 30):
+            raise Rejected("Mock poller intervals outside controlled bounds")
+        self.studio = studio
+        self.interval = interval_seconds
+        self.delay = retry_delay_seconds
+        self._stop = threading.Event()
+        self.errors = []
+        self.thread = threading.Thread(target=self._loop, daemon=True,
+                                       name="fwai-p03-mock-only-poller")
+
+    def _loop(self):
+        while not self._stop.is_set():
+            try:
+                self.studio.poll_due_mock(retry_delay_seconds=self.delay)
+            except Exception as exc:
+                self.errors.append(str(exc)[:160])
+                self._stop.set()
+                break
+            self._stop.wait(self.interval)
+
+    def start(self):
+        self.thread.start()
+        return self
+
+    def close(self):
+        self._stop.set()
+        if self.thread.is_alive():
+            self.thread.join(timeout=5)
+        if self.thread.is_alive():
+            raise Rejected("Mock poller did not stop cleanly")
+
+    def __enter__(self):
+        return self.start()
+
+    def __exit__(self, typ, value, traceback):
+        self.close()
 
 
 class _Transaction:

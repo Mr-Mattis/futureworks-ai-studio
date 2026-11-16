@@ -46,6 +46,11 @@ class OllamaModel:
     def __call__(self, role, ctx):
         record = roles.registry()[role]
         schema = roles.schema(role)
+        if role == "creative_director":
+            # Extra local formatting constraint: preserve P01's role-native
+            # fields while preventing short, unusable narrated scenes.
+            schema["properties"]["scenes"]["items"]["properties"]["narration"].update(
+                minLength=900, maxLength=1500)
         instructions = (record["output_instructions"] +
                         "\nP03 controlled development ONLY. No tools or permission. "
                         "Return exactly ONE JSON object adhering to the supplied "
@@ -56,7 +61,12 @@ class OllamaModel:
                         "approval, even with zero spend. 5 Creative Director scenes "
                         "S01–S05, 72s each and 144–192 narration words per scene. "
                         "Never invent a provider result, spending authorization, "
-                        "approved SOP, real footage or analytics.")
+                        "approved SOP, real footage or analytics. For Creative Director "
+                        "write 150–175 distinct spoken words per 72-second scene; "
+                        "count every scene's words before final output and avoid "
+                        "repeated filler. For Budget Controller always set "
+                        "approval_required=true and missing_rates nonempty when "
+                        "trusted rate cards are absent.")
         data = {
             "model": "qwen3.6:latest", "stream": False, "think": False,
             "format": schema,

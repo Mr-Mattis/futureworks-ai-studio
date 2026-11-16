@@ -194,6 +194,42 @@ class OrchestrationTests(unittest.TestCase):
         with sqlite3.connect(self.path) as db:
             self.assertEqual(db.execute("SELECT COUNT(*) FROM provider_queue").fetchone()[0], 1)
 
+    def test_p03_07_async_mock_success_and_bounded_pending_queue(self):
+        self.submit()
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-SUCCESS-0001")
+        self.assertEqual(self.studio.set_mock_receipt("MOCK-SUCCESS-0001", "success"),
+                         "mock_polling")
+        self.assertEqual(self.studio.poll_due_mock()[0]["state"], "mock_complete")
+        self.assertEqual(self.studio.poll_due_mock(), [])
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-PENDING-0001")
+        self.studio.set_mock_receipt("MOCK-PENDING-0001", "pending")
+        outcome = self.studio.poll_due_mock()
+        self.assertEqual(outcome[0]["state"], "mock_polling")
+        outcome = self.studio.poll_due_mock()
+        self.assertEqual(outcome[0]["state"], "needs_review")
+        self.assertEqual(outcome[0]["attempt"], 2)
+        self.assertEqual(self.studio.poll_due_mock(), [])
+        self.assertEqual(len(self.studio.dashboard(PROJECT, RUN)["issues"]), 1)
+
+    def test_p03_07_unknown_mock_receipt_requires_review_without_retry(self):
+        self.submit()
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-UNKNOWN-0001")
+        self.studio.set_mock_receipt("MOCK-UNKNOWN-0001", "unknown")
+        result = self.studio.poll_due_mock()[0]
+        self.assertEqual(result["attempt"], 1)
+        self.assertEqual(result["state"], "needs_review")
+        self.assertFalse(result["provider_submission_performed"])
+        with self.assertRaisesRegex(Rejected, "finalized"):
+            self.studio.set_mock_receipt("MOCK-UNKNOWN-0001", "success")
+
+    def test_p03_07_poll_limit_and_invalid_simulation_rejected(self):
+        self.submit()
+        self.studio.reserve_mock(PROJECT, RUN, "MOCK-POLL-0001")
+        with self.assertRaises(Rejected):
+            self.studio.set_mock_receipt("MOCK-POLL-0001", "real_provider_success")
+        with self.assertRaises(Rejected):
+            self.studio.poll_due_mock(limit=0)
+
     def test_mock_collision_rejected(self):
         self.submit()
         self.submit("P03-CONTROLLED-RUN-002")

@@ -91,6 +91,37 @@ class VisualBridgeTests(unittest.TestCase):
             REPO/"contracts/production-manifest/v1.0.0"),[])
 
 
+    def test_repack_legacy_visual_result_preserves_canonical_p01_contract(self):
+        _,refs=inspect_handoff(self.handoff)
+        source=REPO/"agents/p02_roles/live-runs/visual_director.json"
+        candidate=copy.deepcopy(json.loads(source.read_text())["handoff"]["candidate"])
+        candidate["project_id"]="FWAI-EP-0001"
+        candidate["shots"]=[
+            {"reference_asset_id":item["asset_id"],
+             "scene_id":item["scene_id"],
+             "shot_id":"SH"+str(i+1).zfill(2),
+             "shot_notes":"Synthetic metadata only; pixel review pending."}
+            for i,item in enumerate(refs)
+        ]
+        class Response:
+            def __enter__(self):return self
+            def __exit__(self,*args):return None
+            def read(self,limit=None):
+                return json.dumps({"message":{"content":json.dumps(candidate)}}).encode()
+        legacy=self.root/"images"/"visual-old.json"
+        with patch("visual_bridge.urllib.request.urlopen",return_value=Response()):
+            bundle=send_to_visual(self.handoff,target=legacy)
+        canonical=copy.deepcopy(bundle["agent_result"])
+        canonical["p04_reference_assets"]=bundle["p04_reference_assets"]
+        canonical["p04_visual_media_status"]=bundle["p04_visual_media_status"]
+        legacy.write_text(json.dumps(canonical))
+        from repack_visual import repack
+        fixed=repack(self.handoff,legacy)
+        self.assertEqual(fixed["agent_result"],bundle["agent_result"])
+        self.assertEqual(repack(self.handoff,legacy),fixed)
+        self.assertEqual(set(fixed),{
+            "checkpoint","agent_result","p04_reference_assets","p04_visual_media_status"})
+
     def test_model_cannot_drop_reference_assets(self):
         _,refs=inspect_handoff(self.handoff)
         candidate={

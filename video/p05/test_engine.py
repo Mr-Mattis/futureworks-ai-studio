@@ -93,6 +93,33 @@ class VideoEngineTests(unittest.TestCase):
         self.assertEqual(self.studio.poll_mock(self.run,"S01",
                         {"id":task,"status":"SUCCEEDED","output":["https://example.invalid/x.mp4"]},
                         at="9999-12-31T00:00:00+00:00"),"mock_output_pending")
+    def test_throttled_task_has_bounded_backoff_and_quarantine(self):
+        self.plan()
+        task=self.studio.stage_mock_receipt(self.run,"S01",str(uuid.uuid4()))
+        observed=[]
+        for n in range(10):
+            state=self.studio.poll_mock(self.run,"S01",
+                {"id":task,"status":"THROTTLED"},
+                at="9999-12-31T00:00:00+00:00")
+            observed.append(state)
+        self.assertEqual(observed[:9],["mock_running"]*9)
+        self.assertEqual(observed[-1],"needs_review")
+        with self.assertRaises(Rejected):
+            self.studio.poll_mock(self.run,"S01",
+                {"id":task,"status":"SUCCEEDED","output":["https://test.invalid/a.mp4"]},
+                at="9999-12-31T00:00:00+00:00")
+
+    def test_poll_receipt_survives_new_process_database_reopen(self):
+        self.plan()
+        task=self.studio.stage_mock_receipt(self.run,"S02",str(uuid.uuid4()))
+        self.studio.poll_mock(self.run,"S02",{"id":task,"status":"RUNNING"})
+        restarted=VideoStore(self.studio.database,self.studio.output)
+        self.assertEqual(restarted.poll_mock(self.run,"S02",
+             {"id":task,"status":"SUCCEEDED",
+              "output":["https://example.invalid/temporary.mp4"]},
+              at="9999-12-31T00:00:00+00:00"),"mock_output_pending")
+        self.assertEqual(restarted.dashboard(self.run)["clips"][1]["poll_count"],2)
+
     def test_mock_failed_and_cancelled_needs_review(self):
         self.plan()
         for scene,state in [("S01","FAILED"),("S02","CANCELLED")]:

@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 
@@ -33,8 +34,13 @@ def preview(bundle_path, out, *, fps=24, seconds=4):
     for idx,(scene,ref) in enumerate(originals.items()):
         if ref is None:
             raise Rejected("Missing approved test scene reference")
-        img=Path(ref["local_path"]).resolve()
-        if not img.is_relative_to(path.parent) or sha(img.read_bytes())!=ref["sha256"]:
+        # WSL sees Windows-created output via /mnt/c; the recorded original
+        # absolute Windows path is not portable. Resolve by immutable asset ID
+        # beside the trusted handoff, then verify SHA instead of path trust.
+        if not isinstance(ref["asset_id"],str) or not re.fullmatch(r"P04_[A-Za-z0-9_]+",ref["asset_id"]):
+            raise Rejected("Invalid fixed image asset ID")
+        img=(path.parent/(ref["asset_id"]+".png")).resolve()
+        if not img.is_relative_to(path.parent) or not img.is_file() or sha(img.read_bytes())!=ref["sha256"]:
             raise Rejected("Source-image SHA or path mismatch")
         dest=target/("P05_STORYBOARD_"+scene+".mp4")
         if dest.exists():

@@ -145,6 +145,9 @@ class ImagePipelineTests(unittest.TestCase):
         with self.assertRaises(Rejected):
             self.engine.poll_one(first)
         self.assertEqual(self.engine.dashboard(RUN)["completed"],0)
+        self.assertEqual(self.engine.dashboard(RUN)["images"][0]["state"],"needs_review")
+        self.assertEqual(self.engine.submit_one(first),"needs_review")
+        self.assertEqual(len(self.mock.submissions),1)
 
     def test_ten_downloads_are_indexed_without_manual_transfer(self):
         ids = self.prepare()

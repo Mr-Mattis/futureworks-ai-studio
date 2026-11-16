@@ -26,7 +26,7 @@ MANIFEST = REPO / "contracts/production-manifest/v1.0.0/example.valid.json"
 MAX_BODY = 8192
 
 
-def service(database, bearer_secret, *, live_model=False):
+def service(database, bearer_secret, *, live_model=False, demo_enabled=False):
     if not isinstance(bearer_secret, str) or len(bearer_secret) < 32:
         raise Rejected("P03 development bearer token must be >= 32 characters")
     studio = Studio(database)
@@ -90,6 +90,30 @@ def service(database, bearer_secret, *, live_model=False):
             return req["project_id"], req["run_id"]
 
         def do_POST(self):
+            # One-shot synthetic intake for a controlled real n8n transport test.
+            # Not authentication, not a general API; disabled by default and
+            # hard-pinned to a single immutable no-provider replay. Stop after test.
+            if urlparse(self.path).path == "/v1/demo-once":
+                if not demo_enabled:
+                    self._send(404, {"error": "DEMO_DISABLED"})
+                    return
+                try:
+                    request = self._read()
+                    expected = {
+                        "project_id": "FWAI-EP-0001",
+                        "run_id": "P03-DEV-N8N-ONE-SHOT-001",
+                        "manifest_sha256": ref,
+                        "brief": "The PC That Became a Robot — clearly fictional concept.",
+                    }
+                    if request != expected or any(type(request[k]) is not str for k in expected):
+                        raise Rejected("Only the frozen one-shot development fixture is accepted")
+                    receipt = studio.submit(MANIFEST, plan, expected["run_id"], expected["brief"])
+                    report = studio.drive(expected["project_id"], expected["run_id"], ReplayModel())
+                    self._send(200, {"mode": "one_shot_synthetic_replay",
+                                     "receipt": receipt, "dashboard": report})
+                except (Rejected, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+                    self._send(400, {"error": type(exc).__name__, "detail": str(exc)[:160]})
+                return
             if not self._authorized():
                 return
             try:
@@ -155,7 +179,8 @@ def main():
     if args.bind != "127.0.0.1" and os.getenv("P03_ALLOW_PRIVATE_BIND") != "1":
         raise SystemExit("Non-loopback dev bind requires explicit opt-in")
     handler = service(args.database, bearer,
-                      live_model=os.getenv("P03_LIVE_LOCAL_OLLAMA") == "1")
+                      live_model=os.getenv("P03_LIVE_LOCAL_OLLAMA") == "1",
+                      demo_enabled=os.getenv("P03_ALLOW_ONE_SHOT_DEMO") == "1")
     ThreadingHTTPServer((args.bind, args.port), handler).serve_forever()
 
 

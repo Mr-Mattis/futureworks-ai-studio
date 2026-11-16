@@ -309,11 +309,18 @@ class Studio:
                 db.execute("UPDATE tasks SET state='needs_review',token=NULL WHERE "
                            "project_id=? AND run_id=? AND stage=?",
                            (ticket["project_id"], ticket["run_id"], ticket["stage"]))
-                raise Rejected("Recovery limit reached; operator review required")
-            db.execute("UPDATE tasks SET state='queued',token=NULL WHERE project_id=? "
-                       "AND run_id=? AND stage=?",
-                       (ticket["project_id"], ticket["run_id"], ticket["stage"]))
-            return "queued"
+                db.execute("UPDATE runs SET state='needs_review' WHERE "
+                           "project_id=? AND run_id=?",
+                           (ticket["project_id"], ticket["run_id"]))
+                outcome = "needs_review"
+            else:
+                db.execute("UPDATE tasks SET state='queued',token=NULL WHERE project_id=? "
+                           "AND run_id=? AND stage=?",
+                           (ticket["project_id"], ticket["run_id"], ticket["stage"]))
+                outcome = "queued"
+        if outcome == "needs_review":
+            raise Rejected("Recovery limit reached; operator review required")
+        return outcome
 
     def reserve_mock(self, project_id, run_id, key):
         """P03.07 zero-charge dry-run outbox; no real provider adapter."""

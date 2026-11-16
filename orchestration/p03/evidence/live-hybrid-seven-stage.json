@@ -1,0 +1,97 @@
+{
+  "checkpoint": "P03.01–P03.08 development",
+  "provenance": "six freshly inferred local Ollama role outputs (Research, Visual, Avatar, Budget, Editing, QC), plus exact-byte matching P02.02 Creative Director execution 59 cached output; Executive Producer plan from prior validated execution 54",
+  "model": "qwen3.6:latest",
+  "source": "Authorized WSL CLI / local Ollama",
+  "mode": "fresh_roles_plus_exact_P02_creative_cache",
+  "run_id": "P03-HYBRID-OLLAMA-001",
+  "receipt": {
+    "action": "created",
+    "state": "planning",
+    "project_id": "FWAI-EP-0001",
+    "run_id": "P03-HYBRID-OLLAMA-001"
+  },
+  "dashboard": {
+    "project_id": "FWAI-EP-0001",
+    "run_id": "P03-HYBRID-OLLAMA-001",
+    "revision": 1,
+    "manifest_sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87",
+    "state": "awaiting_approval",
+    "stages": [
+      {
+        "stage": "research",
+        "role": "research_agent",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "script",
+        "role": "creative_director",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "visual",
+        "role": "visual_director",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "avatar",
+        "role": "avatar_director",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "budget",
+        "role": "budget_controller",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "assembly",
+        "role": "editing_supervisor",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      },
+      {
+        "stage": "qc",
+        "role": "quality_control",
+        "state": "passed",
+        "attempt": 1,
+        "error": null
+      }
+    ],
+    "approvals": [
+      {
+        "name": "budget_approval",
+        "status": "pending"
+      },
+      {
+        "name": "human_approval",
+        "status": "pending"
+      },
+      {
+        "name": "publication_approval",
+        "status": "pending"
+      }
+    ],
+    "provider_jobs": [],
+    "costs_usd": 0,
+    "assets_ready": 0,
+    "issues": [],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false,
+    "next_action": "owner_review"
+  }
+}

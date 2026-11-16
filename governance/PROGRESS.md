@@ -58,3 +58,25 @@ The eight existing inactive Ollama specialist workflows were hardened with froze
 A WSL2 Bubblewrap-isolated regression run passed **141 tests** (21 Executive Producer + 23 development worker + 65 P01 contracts + 11 atomic concurrency + 21 nine-agent role, wrapper and live-result tests); all accepted role candidates passed P01 canonical envelope validation in an offline handoff. All role authorization flags remain false, dispatch remains false, and all development workflows are inactive. No paid calls, likeness generation, publishing, production changes, or merge into `main` occurred.
 
 **Status:** P02.02–P02.10 implemented and verified for controlled local-agent development; P02 10/10 technical verification, subject to formal review/owner acceptance. Do **not** automatically advance to P03 orchestration or deploy. The P02 development-workflow PR remains to be reviewed and merged only with owner authorization.
+
+## P02 merged development closeout — November 15, 2026
+
+**P02: 10/10 locally tested agents, development milestone COMPLETE.** The owner confirmed that all P02 pull requests were merged. GitHub verified PR #1 merge commit `e1b4ad0314b3969481d500efbc70aa98a9f8b39d` and PR #2 merge commit `1924b5a4211121f4b01df894ec35ab76a5c73877`, both targeting `dev/p02.01-executive-producer`. The earlier PR-draft language above remains historical rather than current.
+
+All nine specialist live Ollama tests and the prior Executive Producer role passed development acceptance; the most recent full WSL isolated evidence passed **141 tests**. P02 technical exit criterion is satisfied for local planning and blocked canonical handoffs. No production workflows were activated, no paid providers called, no publishing or identity usage authorized, and `main` was not merged by either PR.
+
+**P03.01 Master Production Orchestrator is the next checkpoint, NOT started.** The locked checklist calls for explicit user authorization before advancing to a new phase. Production and provider-side integration remain subject to later approval gates.
+
+## P03.01–P03.08 Master Orchestration — November 15, 2026
+
+**P03: 8/8 development implementations technically verified; draft merge review/owner acceptance pending.** Source and detailed evidence: `orchestration/p03/P03-ACCEPTANCE.md`. This is the first controlled master-orchestration phase following merged P02 10/10. The locked master checklist is unchanged.
+
+- Dedicated WSL worktree `~/futureworks-studio/futureworks-p03-orchestration` and branch `dev/p03.01-p03.08-orchestration`. Production Python worker, Compose, locked contracts, active Creative Director, and active render workflow unchanged.
+- Durable seven-stage SQLite orchestrator, canonical immutable handoffs, dependency-aware concurrent Visual/Avatar planning, bounded local retries and mock provider polling/recovery, immutable human/budget/publication approval holds, and a read-only stage/cost/asset/issue dashboard implemented.
+- Inactive n8n master workflow `F9DwOI01m1c4ld3Y` is a credential-placeholder development scaffold; secure credential provisioning is a separate gate.
+- **n8n execution 67** passed with pinned HTTP results; **68** correctly rejected unauthorized webhook input; **69** successfully sent a frozen test concept over a **real n8n HTTP Request** to an explicitly enabled, temporary one-shot WSL dev endpoint, automatically validated/replayed seven stages and returned `awaiting_human_approval`, three pending gates, false dispatch/permissions and zero cost. This was **synthetic role-output replay**, not fresh seven-role inference. The one-shot demo server is stopped and token revoked.
+- Separate WSL **`P03-HYBRID-OLLAMA-001`** completed all seven stages using fresh local Ollama for Research, Visual, Avatar, Budget, Editing and QC, plus exact-manifest reused original P02.02 Creative Director output. All canonical envelopes passed, with false authorization and no provider calls. Earlier fully fresh Ollama run rejected short narration twice and correctly quarantined in `needs_review` (known quality limitation).
+- The complete 190-test read-only Bubblewrap regression portfolio (P01 65; P02.01 21+23+11; P02 nine-role 21; P03 49) passed with zero failures. No live paid provider operations or publishing occurred.
+- **Phase exit:** P03.01–P03.08 verified for the isolated synthetic/local planning-development scope, **not** arbitrary real-brief production intake or provider-side exactly-once behavior. Draft pull request and formal owner merge approval remain pending. Do **not** start P04 without approval.
+
+P03.07 additional acceptance: an isolated background **mock-only** polling thread uses SQLite due timestamps, bounded backoff, two-attempt retry ceiling and restart-safe quarantine. Two new regression tests passed; total P03 suite **49** and combined P01–P03 suite **190**. No actual provider polling or submissions were enabled. This record remains development technical evidence; owner merge authorization is still required.

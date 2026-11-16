@@ -80,3 +80,11 @@ All nine specialist live Ollama tests and the prior Executive Producer role pass
 - **Phase exit:** P03.01–P03.08 verified for the isolated synthetic/local planning-development scope, **not** arbitrary real-brief production intake or provider-side exactly-once behavior. Draft pull request and formal owner merge approval remain pending. Do **not** start P04 without approval.
 
 P03.07 additional acceptance: an isolated background **mock-only** polling thread uses SQLite due timestamps, bounded backoff, two-attempt retry ceiling and restart-safe quarantine. Two new regression tests passed; total P03 suite **49** and combined P01–P03 suite **190**. No actual provider polling or submissions were enabled. This record remains development technical evidence; owner merge authorization is still required.
+
+## P03 merged development closeout — November 15, 2026
+
+**P03: COMPLETE for the isolated planning-development milestone (8/8).** Owner confirmed PR #5 merged; independently verified merged GitHub PR #5, merge commit `9be3364877d232ea6bacaf1e347f777af4bd631e`, targeting `dev/p02.01-executive-producer`. Prior draft/merge-hold notes above are historical.
+
+Evidence accepted on the merged development branch: 190 isolated P01–P03 regressions passed; actual n8n-to-WSL synthetic transport execution 69 reached the approval hold without paid operations; separate six-fresh-plus-exact-cached-Creative local Ollama orchestration run completed seven planning stages with canonical handoffs, zero spending and three pending approval gates. P03 source, tests and acceptance record are in `orchestration/p03/`.
+
+**P04 is NOT authorized or started by this merge.** The locked phase boundary still requires a new owner instruction. The merged state does not enable production deployment, real arbitrary-intake webhook, actual provider submission, external paid polling, spending or publishing. No assertion is made that `main` was changed by PR #5.

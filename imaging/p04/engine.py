@@ -17,6 +17,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
+import zlib
 
 REPO = Path(__file__).resolve().parents[2]
 CATALOG = json.loads((Path(__file__).with_name("model-catalog.json")).read_text())
@@ -72,14 +73,37 @@ def validate_backend(url):
 
 
 def png_dimensions(raw):
-    if (len(raw) < 33 or raw[:8] != b"\x89PNG\r\n\x1a\n" or
-            raw[12:16] != b"IHDR"):
-        raise Rejected("ComfyUI did not return a PNG")
-    width, height = struct.unpack(">II", raw[16:24])
-    if not (64 <= width <= 8192 and 64 <= height <= 8192):
-        raise Rejected("Invalid generated image dimensions")
-    return width, height
-
+    """Validate PNG chunk bounds/checksums, not merely its image signature."""
+    if len(raw) < 57 or raw[:8] != b"\\x89PNG\\r\\n\\x1a\\n":
+        raise Rejected("ComfyUI did not return a complete PNG")
+    cursor, dimensions, seen_image, seen_end = 8, None, False, False
+    while cursor + 12 <= len(raw):
+        length = struct.unpack(">I", raw[cursor:cursor+4])[0]
+        if length > 20 * 1024 * 1024 or cursor + length + 12 > len(raw):
+            raise Rejected("Invalid PNG chunk boundary")
+        kind = raw[cursor+4:cursor+8]
+        payload = raw[cursor+8:cursor+8+length]
+        expected_crc = struct.unpack(">I", raw[cursor+8+length:cursor+12+length])[0]
+        if zlib.crc32(kind + payload) & 0xffffffff != expected_crc:
+            raise Rejected("PNG chunk checksum mismatch")
+        if dimensions is None:
+            if kind != b"IHDR" or length != 13:
+                raise Rejected("PNG must start with IHDR")
+            width, height = struct.unpack(">II", payload[:8])
+            if not (64 <= width <= 8192 and 64 <= height <= 8192):
+                raise Rejected("Invalid generated image dimensions")
+            dimensions = (width, height)
+        if kind == b"IDAT":
+            seen_image = True
+        cursor += 12 + length
+        if kind == b"IEND":
+            if length or cursor != len(raw):
+                raise Rejected("Invalid PNG terminator")
+            seen_end = True
+            break
+    if dimensions is None or not seen_image or not seen_end:
+        raise Rejected("PNG has no complete image body")
+    return dimensions
 
 def verify_model(path):
     path = Path(path).resolve()

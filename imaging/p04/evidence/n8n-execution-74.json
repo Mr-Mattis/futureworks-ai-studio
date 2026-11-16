@@ -1,0 +1,85 @@
+{
+  "workflow_id": "eKgk6RwTsfZg7ulU",
+  "execution_id": "74",
+  "workflow_version": "a158b67e-363e-44ef-9612-b2500fbdd79f",
+  "status": "success",
+  "interpretation": "Actual n8n HTTP GET to Windows local ComfyUI /history/{prompt_id} for all ten real generated images. Not a proof of downloading or agent intake by n8n; those were separately done via local Python bridge and index.",
+  "output": {
+    "checkpoint": "P04.06",
+    "is_test": true,
+    "mode": "real_ComfyUI_history_HTTP_readbacks",
+    "run_id": "P04_GPU_001",
+    "project_id": "FWAI-EP-0001",
+    "count": 10,
+    "prompt_results": [
+      {
+        "asset_id": "P04_P04_GPU_001_01",
+        "prompt_id": "5bf499d5-48df-4b2c-b644-ce6553d16b9a",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_01_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_02",
+        "prompt_id": "fdbe8ed4-0260-4f12-8fa0-e8c1821ad5cf",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_02_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_03",
+        "prompt_id": "6f426a1f-0dc0-40d7-8a15-e5f754b0a7a1",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_03_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_04",
+        "prompt_id": "99f263a4-ad17-4650-a120-8baebf5826df",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_04_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_05",
+        "prompt_id": "f62bd5ef-240f-40e7-9c00-e8e50544155c",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_05_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_06",
+        "prompt_id": "8e681bc2-dc55-4f5e-8ae5-2fedaade1964",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_06_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_07",
+        "prompt_id": "11b6a215-5b29-4290-aeb0-9a188ad3a1d9",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_07_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_08",
+        "prompt_id": "9eb9828b-ef3a-4151-bcae-2eff0dcce758",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_08_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_09",
+        "prompt_id": "c772a9a4-75fc-4e9f-b2d6-535e04a0a26b",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_09_00001_.png",
+        "state": "generated"
+      },
+      {
+        "asset_id": "P04_P04_GPU_001_10",
+        "prompt_id": "4996b583-56e0-44fa-814f-dff0d6b7f450",
+        "comfy_filename": "FWAI_P04_DEV_P04_P04_GPU_001_10_00001_.png",
+        "state": "generated"
+      }
+    ],
+    "metadata_transfer_performed": false,
+    "paid_api_calls": 0,
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "next_action": "cross_validate_SHA_index_and_Visual_Director_plan"
+  }
+}

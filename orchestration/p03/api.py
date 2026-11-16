@@ -137,7 +137,7 @@ def service(database, bearer_secret, *, live_model=False):
                     return
                 self._send(200, result)
             except (Rejected, ValueError, KeyError, TypeError) as exc:
-                self._send(400, {"error": type(exc).__name__, "detail": str(exc)[:160})
+                self._send(400, {"error": type(exc).__name__, "detail": str(exc)[:160]})
 
     return Handler
 

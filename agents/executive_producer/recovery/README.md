@@ -19,3 +19,11 @@ The regression suite includes a 12-process race test. Run from this directory wi
 7. Record acceptance evidence and obtain human merge approval. Do **not** merge into `main` as part of this reference proof.
 
 Production worker: `worker/worker.py`; original Executive Producer isolation runner: `agents/executive_producer/run-isolated-tests.sh`. This new proof is intentionally not imported by either.
+
+## WSL continuation
+
+The committed eleven tests have now passed under WSL Bubblewrap isolation.
+The separate worker/dev_worker.py imports the shared transactional primitive;
+production worker.py and its image remain unchanged. See worker/README-development.md
+and the WSL continuation evidence for current results. Earlier unverified-test
+statements above describe the original proof session.

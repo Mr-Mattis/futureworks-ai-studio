@@ -20,3 +20,21 @@ Counting discrepancy: the supplied phase denominators sum to 111, while the supp
 Next sequential checkpoint is P02.01 Executive Producer. Preserve the working production webhook. No paid generation, publishing or stack substitution authorized by this status record.
 
 Owner preference: after completing each checkpoint, ask whether to move on to the next checkpoint; do not automatically advance.
+
+## P02.01 WSL continuation - November 15, 2026
+
+P02.01.07 is verified complete for isolated, zero-cost development integration:
+transactional claims and durable work intent, cross-process exclusion, fenced
+recovery, immutable manifest references and unsubmitted provider reservations.
+P02.01.08 evidence is consolidated in
+agents/executive_producer/recovery/WSL-ACCEPTANCE.md and WSL-TEST-RESULTS.txt.
+The final WSL offline run passed 119 tests. n8n execution 53 failed closed;
+reconciled execution 54 passed, and its exact candidate passed concurrent canonical
+worker ingestion. The Executive Producer development workflow remains inactive.
+
+P02.01.09 is prepared for draft branch review. Overall P02.01 owner acceptance and
+production validation remain pending; P02.02 is not started. No production
+migration, paid-provider submission, publication or merge is authorized by this
+record. The locked checklist, accepted contracts and production worker/compose
+bytes are unchanged. This development verification does not increase the
+established phase count or establish real provider-side exactly-once behavior.

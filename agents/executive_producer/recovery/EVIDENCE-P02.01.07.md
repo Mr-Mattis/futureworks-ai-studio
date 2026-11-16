@@ -1,3 +1,5 @@
+> Current WSL results supersede this historical session status. See [WSL-ACCEPTANCE.md](WSL-ACCEPTANCE.md): 119 tests passed; isolated development integration verified; production and overall owner acceptance remain pending.
+
 # P02.01.07 — Transactional claim integration evidence (development only)
 
 Date: 2026-11-15. Phase status: **OPEN**. This evidence record does not amend the locked master checklist.

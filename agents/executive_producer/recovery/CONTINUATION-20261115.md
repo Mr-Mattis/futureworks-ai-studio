@@ -1,3 +1,5 @@
+> Current WSL results supersede this historical session status. See [WSL-ACCEPTANCE.md](WSL-ACCEPTANCE.md): 119 tests passed; isolated development integration verified; production and overall owner acceptance remain pending.
+
 # P02.01.07 continuation: verified tests and integration assessment
 
 Status: **OPEN — development integration not implemented; isolation prerequisite blocked.**

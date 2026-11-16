@@ -34,8 +34,38 @@ def registry():
 
 def schema(role):
     """The source n8n parser schema, locked down at the role-output root."""
-    candidate = copy.deepcopy(records()[role]["parserSchema"])
-    candidate["additionalProperties"] = False
+    if role == "creative_director":
+        # The active production workflow emits a *manifest formatter* object,
+        # not the required P01.02 Creative Director role-native planning payload.
+        # Never mutate that live workflow to resolve this distinction.
+        required = ("project_id", "working_title", "opening_hook", "logline",
+                    "closing_cta", "disclosure_note", "sections", "scenes",
+                    "shorts_ideas", "open_questions", "metadata_draft",
+                    "content_type", "target_duration_seconds")
+        properties = {
+            k: {"type": "array"} if k in ("sections", "scenes", "shorts_ideas", "open_questions")
+            else {"type": "object"} if k == "metadata_draft"
+            else {"type": "integer", "minimum": 1} if k == "target_duration_seconds"
+            else {"type": "string", "minLength": 1}
+            for k in required
+        }
+        properties["content_type"]["enum"] = ["REAL_BUILD", "AI_CONCEPT", "HYBRID"]
+        properties["scenes"]["items"] = {
+            "type": "object", "additionalProperties": False,
+            "required": ["scene_id", "description", "narration", "visual_intent", "duration_seconds"],
+            "properties": {
+                "scene_id": {"type": "string", "pattern": "^S[0-9]{2,3}$"},
+                "description": {"type": "string", "minLength": 1},
+                "narration": {"type": "string", "minLength": 1},
+                "visual_intent": {"type": "string", "minLength": 1},
+                "duration_seconds": {"type": "integer", "minimum": 1},
+            },
+        }
+        candidate = {"type": "object", "required": list(required),
+                     "properties": properties, "additionalProperties": False}
+    else:
+        candidate = copy.deepcopy(records()[role]["parserSchema"])
+        candidate["additionalProperties"] = False
     Draft202012Validator.check_schema(candidate)
     return candidate
 

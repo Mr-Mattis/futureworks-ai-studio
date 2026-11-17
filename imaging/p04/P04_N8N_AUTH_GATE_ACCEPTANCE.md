@@ -4,6 +4,8 @@
 
 **Tunnel RESTORED:** Existing outbound tunnel-client is running; connected MCP integration can read n8n workflows. `futureworks-studio-n8n-1` is running; no production workflow was edited or activated.
 
+**Authenticated n8n acceptance update (2026-11-17, 06:12 UTC): PASS.** Owner configured a protected n8n Custom Auth credential. Manual run **#78** on isolated inactive workflow `Fxda6MLJBavUMoMu` executed the actual credentialed HTTP POST successfully: verified three exact original asset SHA256 references, approved derivative hash `ac14488fd251d88d5ffaa0ad47aa7c4010274d2e4597bc29519a16b57e08ebad`, `idempotent_replay=true`, `paid_provider_calls=0`, no production or publishing. The POST node was re-disabled immediately and the workflow confirmed inactive. This **does not complete** the original locked ten-image Comfy batch writer gate; formal P04 closeout remains OPEN.
+
 **New isolated n8n workflow:** `Fxda6MLJBavUMoMu`, `FWAI-DEV — P04 Authenticated Reference Handoff (isolated, no media spend)`. Created in owner's personal n8n project. Four nodes: manual trigger -> immutable exact P04 scope -> local isolated service health -> credentialed POST (initially DISABLED). Manual execution **77** returned success for local service health and deliberately skipped the credentialed POST. This is not acceptance of the final n8n authentication gate.
 
 **Local scoped handoff gateway:** `imaging/p04/p04_n8n_handoff_server.py` listening at `0.0.0.0:18741` in WSL. The n8n Docker container successfully reached `http://host.docker.internal:18741/healthz` (HTTP 200). An isolated 0600 secret stored outside Git at `~/.config/futureworks-ai-studio/secrets/p04_n8n_gateway_token` is required on every POST. Do not expose port publicly or commit the token.
@@ -12,7 +14,7 @@
 
 **Important distinction:** Above is a **three-reference owner-approved handoff**, NOT an authenticated ten-image Comfy batch-generation writer. It closes reference-authentication infrastructure testing, not the locked full P04 ten-image writer acceptance.
 
-## One owner action needed for true n8n-to-gateway POST
+## Protected credential setup — COMPLETED and verified; retained as repeatable SOP
 
 1. Open the **isolated development** workflow: `http://localhost:5678/workflow/Fxda6MLJBavUMoMu`.
 2. Open its final node `AUTH P04 handoff POST — ENABLE ONLY WITH MANAGED CREDENTIAL`.

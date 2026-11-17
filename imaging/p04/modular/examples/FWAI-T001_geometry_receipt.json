@@ -1,0 +1,32 @@
+{
+  "schema": "FWAI_TECH_GEOMETRY_RECEIPT_1",
+  "source_sha256": "7bc0379c02632018e78dfbea6eab467071ec0ffe9f97b3c9522c1634bf51b77e",
+  "geometry": {
+    "status": "GEOMETRY_QA_PASS",
+    "design_id": "FWAI-T001",
+    "truss_ring_diameter_m": 40.0,
+    "fabrication_arms": 6,
+    "hinged_segments": 12,
+    "radiators": 6,
+    "crew_access_width_m": 2.0,
+    "environment_excluded": true,
+    "real_world_feasibility": "NOT_VALIDATED",
+    "manufacturing_certified": false,
+    "human_visual_approval": false,
+    "production_approved": false
+  },
+  "artifacts": {
+    "blueprint": {
+      "path": "FWAI-T001_blueprint.svg",
+      "sha256": "7069d0a4472b600e06726b0850ff1d160781b001cf42134600fbffe61d1bc4b1"
+    },
+    "subject_mask": {
+      "path": "FWAI-T001_subject_mask.svg",
+      "sha256": "f13fc5216b6b69eea3f3ec06a90aea86183e24fb1926ff00b935e94e275219a8"
+    }
+  },
+  "next_gate": "MECHANICAL_FUNCTION_QA",
+  "environment_generation_allowed": false,
+  "material_rendering_allowed": false,
+  "owner_approval_required": true
+}

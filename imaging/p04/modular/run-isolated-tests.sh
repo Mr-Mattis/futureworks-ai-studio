@@ -7,4 +7,4 @@ exec bwrap --unshare-all --new-session --die-with-parent \
  --proc /proc --dev /dev --tmpfs /tmp --ro-bind "$REPO" /mnt \
  --chdir /mnt --clearenv --setenv HOME /tmp --setenv PATH /usr/bin:/bin \
  --setenv PYTHONDONTWRITEBYTECODE 1 \
- /usr/bin/python3 -B -m unittest -v imaging.p04.modular.test_modular
+ /usr/bin/python3 -B -m unittest -v imaging.p04.modular.test_modular imaging.p04.modular.test_mechanical_detail

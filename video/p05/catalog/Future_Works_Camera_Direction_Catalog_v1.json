@@ -1,0 +1,728 @@
+{
+  "version": "1.0",
+  "brand": "Future Works AI Studio",
+  "purpose": "Agent vocabulary for camera movements, angles, framing and optical controls",
+  "units": "metric; seconds; degrees; full-frame-equivalent focal length",
+  "catalog": [
+    {
+      "id": "MOV-001",
+      "category": "Camera movements",
+      "name": "Static / Locked-off",
+      "definition": "Tripod or virtual camera remains stationary; subject motion supplies action.",
+      "agent_instruction_example": "Keep camera completely fixed; no pan, tilt, translation or zoom.",
+      "usage": "stable interviews, product inspection"
+    },
+    {
+      "id": "MOV-002",
+      "category": "Camera movements",
+      "name": "Pan left / right",
+      "definition": "Camera rotates horizontally from a fixed position.",
+      "agent_instruction_example": "Pan smoothly right 25 degrees over 4 seconds; pivot around camera location.",
+      "usage": "reveal a room or follow passing motion"
+    },
+    {
+      "id": "MOV-003",
+      "category": "Camera movements",
+      "name": "Tilt up / down",
+      "definition": "Camera rotates vertically without changing position.",
+      "agent_instruction_example": "Tilt upward from wheel assembly to sensor mast over 5 seconds.",
+      "usage": "establish height or reveal tall machinery"
+    },
+    {
+      "id": "MOV-004",
+      "category": "Camera movements",
+      "name": "Dolly in / push-in",
+      "definition": "Entire camera translates physically toward subject; perspective changes.",
+      "agent_instruction_example": "Dolly forward 1.5 m over 5 seconds toward the machine chest plate.",
+      "usage": "build intimacy and emphasis"
+    },
+    {
+      "id": "MOV-005",
+      "category": "Camera movements",
+      "name": "Dolly out / pullback",
+      "definition": "Camera translates away from subject; frame and spatial context expand.",
+      "agent_instruction_example": "Dolly backward 2 m, revealing the full rover and terrain.",
+      "usage": "context reveals, dramatic exits"
+    },
+    {
+      "id": "MOV-006",
+      "category": "Camera movements",
+      "name": "Truck / lateral dolly",
+      "definition": "Camera travels sideways, approximately perpendicular to viewing direction.",
+      "agent_instruction_example": "Truck left 2 m while keeping the robot centered.",
+      "usage": "lateral inspection and parallax"
+    },
+    {
+      "id": "MOV-007",
+      "category": "Camera movements",
+      "name": "Pedestal up / down",
+      "definition": "Camera moves vertically with orientation held constant.",
+      "agent_instruction_example": "Pedestal upward 1 m to inspect upper chassis without tilting.",
+      "usage": "height changes without rotation"
+    },
+    {
+      "id": "MOV-008",
+      "category": "Camera movements",
+      "name": "Crane / jib rise",
+      "definition": "Camera travels along an arc or vertical sweep on boom, often combining translation and tilt.",
+      "agent_instruction_example": "Crane up from tire level to a high three-quarter angle in 6 seconds.",
+      "usage": "sweeping scale reveals"
+    },
+    {
+      "id": "MOV-009",
+      "category": "Camera movements",
+      "name": "Arc / orbit",
+      "definition": "Camera travels around subject along an arc while generally facing it.",
+      "agent_instruction_example": "Orbit clockwise 60 degrees around rover at constant radius.",
+      "usage": "show form and dimensions"
+    },
+    {
+      "id": "MOV-010",
+      "category": "Camera movements",
+      "name": "360-degree orbit",
+      "definition": "Complete circular camera movement around an object.",
+      "agent_instruction_example": "Orbit one full turn over 12 seconds, fixed radius and fixed subject anchor.",
+      "usage": "product turntables; may be too fast for 5-second clips"
+    },
+    {
+      "id": "MOV-011",
+      "category": "Camera movements",
+      "name": "Tracking / follow",
+      "definition": "Camera translates with a moving subject, matching or coordinating speed.",
+      "agent_instruction_example": "Track alongside moving rover from 3 m away at wheel-center height.",
+      "usage": "motion continuity"
+    },
+    {
+      "id": "MOV-012",
+      "category": "Camera movements",
+      "name": "Lead / backward tracking",
+      "definition": "Camera moves backward ahead of the advancing subject.",
+      "agent_instruction_example": "Retreat steadily as robot advances toward lens; maintain 4 m distance.",
+      "usage": "face-on action"
+    },
+    {
+      "id": "MOV-013",
+      "category": "Camera movements",
+      "name": "Reveal / occlusion pass",
+      "definition": "Camera crosses an obstruction or foreground element to expose a subject.",
+      "agent_instruction_example": "Slide right from behind a girder to reveal the suspended drone.",
+      "usage": "surprise, dimensionality"
+    },
+    {
+      "id": "MOV-014",
+      "category": "Camera movements",
+      "name": "Push-pull / dolly zoom",
+      "definition": "Camera dolly and focal-length zoom in opposite directions; subject size remains nearly fixed.",
+      "agent_instruction_example": "Dolly in while widening focal length to hold subject size and expand background.",
+      "usage": "strong perspective shift; difficult to generate accurately"
+    },
+    {
+      "id": "MOV-015",
+      "category": "Camera movements",
+      "name": "Optical zoom in / out",
+      "definition": "Change focal length without moving camera; framing changes with minimal parallax.",
+      "agent_instruction_example": "Zoom from 35 mm to 70 mm, camera position locked.",
+      "usage": "technical detail emphasis"
+    },
+    {
+      "id": "MOV-016",
+      "category": "Camera movements",
+      "name": "Digital zoom / crop",
+      "definition": "Simulated magnification by cropping; no new perspective or real detail.",
+      "agent_instruction_example": "Apply a subtle 1.1x digital crop on an existing frame.",
+      "usage": "post-production emphasis; avoid quality loss"
+    },
+    {
+      "id": "MOV-017",
+      "category": "Camera movements",
+      "name": "Whip pan",
+      "definition": "Very fast pan producing motion blur and often a transition.",
+      "agent_instruction_example": "Whip pan left in 0.4 seconds to the next assembly.",
+      "usage": "fast action transition"
+    },
+    {
+      "id": "MOV-018",
+      "category": "Camera movements",
+      "name": "Handheld",
+      "definition": "Small organic translations and rotations associated with a handheld operator.",
+      "agent_instruction_example": "Subtle stabilized handheld movement; amplitude under 2% frame.",
+      "usage": "documentary immediacy"
+    },
+    {
+      "id": "MOV-019",
+      "category": "Camera movements",
+      "name": "Steadicam / gimbal walk",
+      "definition": "Smooth stabilized movement that can travel freely and change direction.",
+      "agent_instruction_example": "Gimbal walk through workshop aisle at human eye level, smooth horizon.",
+      "usage": "immersive exploration"
+    },
+    {
+      "id": "MOV-020",
+      "category": "Camera movements",
+      "name": "Drone flyover",
+      "definition": "Aerial camera translates above landscape or subject.",
+      "agent_instruction_example": "Fly forward at 15 m altitude, gradually reveal solar installation.",
+      "usage": "environment scale"
+    },
+    {
+      "id": "MOV-021",
+      "category": "Camera movements",
+      "name": "Top-down aerial descent",
+      "definition": "Camera points down while vertically descending.",
+      "agent_instruction_example": "Descend from 30 m to 8 m while maintaining nadir angle.",
+      "usage": "geographic layout"
+    },
+    {
+      "id": "MOV-022",
+      "category": "Camera movements",
+      "name": "FPV dive / swoop",
+      "definition": "Fast dynamic aerial or virtual flight with banking and rapid altitude change.",
+      "agent_instruction_example": "Swoop down between towers, bank 20 degrees, stabilize at destination.",
+      "usage": "high-energy spectacle; geometry drift risk"
+    },
+    {
+      "id": "MOV-023",
+      "category": "Camera movements",
+      "name": "Roll / Dutch roll",
+      "definition": "Rotate camera around lens optical axis.",
+      "agent_instruction_example": "Roll camera clockwise 10 degrees over 3 seconds; position fixed.",
+      "usage": "unease, spatial transition"
+    },
+    {
+      "id": "MOV-024",
+      "category": "Camera movements",
+      "name": "Boom / diagonal rise",
+      "definition": "Move camera on combined vertical and lateral path.",
+      "agent_instruction_example": "Boom up and right 1 m each, maintaining focus on the main actuator.",
+      "usage": "multiaxis reveal"
+    },
+    {
+      "id": "MOV-025",
+      "category": "Camera movements",
+      "name": "Parallax slide",
+      "definition": "Move laterally with foreground and background at different depths.",
+      "agent_instruction_example": "Slide 1 m left with foreground piston at 0.5 m and robot behind at 4 m.",
+      "usage": "material depth and 3D credibility"
+    },
+    {
+      "id": "MOV-026",
+      "category": "Camera movements",
+      "name": "Push-through",
+      "definition": "Camera passes through a real opening, doorway, or structural gap.",
+      "agent_instruction_example": "Travel through open hangar hatch into the central engineering bay.",
+      "usage": "transition between spaces"
+    },
+    {
+      "id": "MOV-027",
+      "category": "Camera movements",
+      "name": "Rack-and-track move",
+      "definition": "Camera moves while shifting focus between depth planes.",
+      "agent_instruction_example": "Dolly 1 m right and rack focus from forearm linkage to background sensors.",
+      "usage": "guided attention"
+    },
+    {
+      "id": "MOV-028",
+      "category": "Camera movements",
+      "name": "Snap zoom",
+      "definition": "Very fast focal-length change, typically punchy or comedic.",
+      "agent_instruction_example": "Snap zoom from medium to close-up in under 0.3 seconds.",
+      "usage": "stylized emphasis; use sparingly"
+    },
+    {
+      "id": "MOV-029",
+      "category": "Camera movements",
+      "name": "Locked-on counter-move",
+      "definition": "Camera moves to compensate for subject so its screen position stays stable.",
+      "agent_instruction_example": "Track robot moving left while holding its eye module near frame center.",
+      "usage": "subject clarity amid motion"
+    },
+    {
+      "id": "MOV-030",
+      "category": "Camera movements",
+      "name": "Virtual impossible camera",
+      "definition": "CG/AI-specific movement not feasible with physical rigs.",
+      "agent_instruction_example": "Flow from extreme macro of gear teeth into a wide factory view without a hard cut.",
+      "usage": "creative virtual scenes; high continuity risk"
+    },
+    {
+      "id": "ANG-001",
+      "category": "Camera angles and orientation",
+      "name": "Eye level",
+      "definition": "Lens sits near subject eye height or corresponding interaction height.",
+      "agent_instruction_example": "Camera at robot sensor height, optical axis horizontal.",
+      "usage": "neutral presentation"
+    },
+    {
+      "id": "ANG-002",
+      "category": "Camera angles and orientation",
+      "name": "Low angle",
+      "definition": "Lens below subject and angled upward, increasing apparent dominance.",
+      "agent_instruction_example": "Set camera at 0.5 m, tilt up 15 degrees toward chassis.",
+      "usage": "heroic scale"
+    },
+    {
+      "id": "ANG-003",
+      "category": "Camera angles and orientation",
+      "name": "High angle",
+      "definition": "Lens above subject and angled downward.",
+      "agent_instruction_example": "Camera 2.5 m above floor, pitch down 25 degrees.",
+      "usage": "show top geometry"
+    },
+    {
+      "id": "ANG-004",
+      "category": "Camera angles and orientation",
+      "name": "Birds-eye view",
+      "definition": "Elevated camera looks strongly downward, not necessarily vertical.",
+      "agent_instruction_example": "Camera at 12 m, tilt down 70 degrees.",
+      "usage": "spatial overview"
+    },
+    {
+      "id": "ANG-005",
+      "category": "Camera angles and orientation",
+      "name": "Nadir / true top-down",
+      "definition": "Optical axis points vertically toward the ground.",
+      "agent_instruction_example": "Camera directly above subject, pitch down 90 degrees.",
+      "usage": "layout diagrams, assembly mapping"
+    },
+    {
+      "id": "ANG-006",
+      "category": "Camera angles and orientation",
+      "name": "Worms-eye view",
+      "definition": "Extremely low camera pointed steeply upward.",
+      "agent_instruction_example": "Camera 10 cm above ground, tilt up 60 degrees.",
+      "usage": "towering machines"
+    },
+    {
+      "id": "ANG-007",
+      "category": "Camera angles and orientation",
+      "name": "Dutch / canted angle",
+      "definition": "Horizon intentionally tilted by camera roll.",
+      "agent_instruction_example": "Hold 8-degree clockwise Dutch angle.",
+      "usage": "tension; not a movement itself"
+    },
+    {
+      "id": "ANG-008",
+      "category": "Camera angles and orientation",
+      "name": "Front-on / head-on",
+      "definition": "Camera faces primary front axis of subject.",
+      "agent_instruction_example": "Align camera directly with rover nose at wheel height.",
+      "usage": "symmetry and design recognition"
+    },
+    {
+      "id": "ANG-009",
+      "category": "Camera angles and orientation",
+      "name": "Profile / side-on",
+      "definition": "Camera faces subject at approximately 90 degrees from its forward axis.",
+      "agent_instruction_example": "Shoot left-side profile; keep both front and rear wheels visible.",
+      "usage": "mechanical silhouette"
+    },
+    {
+      "id": "ANG-010",
+      "category": "Camera angles and orientation",
+      "name": "Three-quarter front",
+      "definition": "Camera located roughly 30-60 degrees off front axis.",
+      "agent_instruction_example": "Front-left 45-degree view, 1.2 m height.",
+      "usage": "product hero image"
+    },
+    {
+      "id": "ANG-011",
+      "category": "Camera angles and orientation",
+      "name": "Three-quarter rear",
+      "definition": "Camera roughly 30-60 degrees off rear axis.",
+      "agent_instruction_example": "Rear-right 45-degree angle, show propulsion and service hatch.",
+      "usage": "engineering detail"
+    },
+    {
+      "id": "ANG-012",
+      "category": "Camera angles and orientation",
+      "name": "Over-the-shoulder (OTS)",
+      "definition": "Frame past foreground shoulder/edge toward another subject or target.",
+      "agent_instruction_example": "Frame over technician shoulder toward robotic control screen.",
+      "usage": "human-machine relationships"
+    },
+    {
+      "id": "ANG-013",
+      "category": "Camera angles and orientation",
+      "name": "Point of view (POV)",
+      "definition": "Camera adopts viewpoint of a character, robot or sensor.",
+      "agent_instruction_example": "POV from rover forward navigation camera at 1 m.",
+      "usage": "immersive operating perspective"
+    },
+    {
+      "id": "ANG-014",
+      "category": "Camera angles and orientation",
+      "name": "Reverse angle",
+      "definition": "Shot from roughly opposite facing direction to prior camera.",
+      "agent_instruction_example": "Cut to 180-degree reverse of the inspection conversation.",
+      "usage": "coverage and dialogue"
+    },
+    {
+      "id": "ANG-015",
+      "category": "Camera angles and orientation",
+      "name": "Ground-level / tire-level",
+      "definition": "Lens placed close to ground or moving equipment contact plane.",
+      "agent_instruction_example": "Place lens 20 cm high, camera aimed along tire tread.",
+      "usage": "surface/weathering detail"
+    },
+    {
+      "id": "ANG-016",
+      "category": "Camera angles and orientation",
+      "name": "Axial / centered symmetry",
+      "definition": "Camera centered on an object symmetry axis.",
+      "agent_instruction_example": "Place camera at central chassis midline; straight verticals.",
+      "usage": "engineering precision"
+    },
+    {
+      "id": "ANG-017",
+      "category": "Camera angles and orientation",
+      "name": "Oblique / diagonal",
+      "definition": "View crosses subject rather than matching principal axes.",
+      "agent_instruction_example": "Frame diagonal workshop lines behind the robot.",
+      "usage": "dynamic geometry"
+    },
+    {
+      "id": "ANG-018",
+      "category": "Camera angles and orientation",
+      "name": "Underslung / undercarriage",
+      "definition": "Camera located beneath or beside the subject looking up at underside.",
+      "agent_instruction_example": "Look under chassis from ground to reveal suspension and battery shield.",
+      "usage": "internal mechanisms"
+    },
+    {
+      "id": "ANG-019",
+      "category": "Camera angles and orientation",
+      "name": "Isometric-like",
+      "definition": "Three visible sides with restrained perspective distortion; not true orthographic unless specified.",
+      "agent_instruction_example": "Elevated 35-degree three-quarter viewpoint, long lens for compressed perspective.",
+      "usage": "product explanation"
+    },
+    {
+      "id": "ANG-020",
+      "category": "Camera angles and orientation",
+      "name": "Aerial oblique",
+      "definition": "Aerial camera aimed diagonally toward environment.",
+      "agent_instruction_example": "Drone 25 m high, camera pitched down 40 degrees.",
+      "usage": "architecture and terrain"
+    },
+    {
+      "id": "FRM-001",
+      "category": "Shot sizes and composition",
+      "name": "Extreme wide shot (EWS) / extreme long shot",
+      "definition": "Subject small relative to setting; environment carries meaning.",
+      "agent_instruction_example": "Show 50 m lunar installation with rover occupying under 10% frame width.",
+      "usage": "world building"
+    },
+    {
+      "id": "FRM-002",
+      "category": "Shot sizes and composition",
+      "name": "Wide shot (WS) / long shot",
+      "definition": "Full subject and meaningful surrounding space visible.",
+      "agent_instruction_example": "Full rover from tire to sensor mast, with terrain on all sides.",
+      "usage": "movement and scale"
+    },
+    {
+      "id": "FRM-003",
+      "category": "Shot sizes and composition",
+      "name": "Full shot",
+      "definition": "Entire subject visible with relatively little surplus environment.",
+      "agent_instruction_example": "Fit all four wheels and complete antenna within safe margins.",
+      "usage": "product geometry"
+    },
+    {
+      "id": "FRM-004",
+      "category": "Shot sizes and composition",
+      "name": "Medium wide shot (MWS)",
+      "definition": "Most of subject plus some context; between wide and medium.",
+      "agent_instruction_example": "Frame robot from feet to upper torso with workshop context.",
+      "usage": "action coverage"
+    },
+    {
+      "id": "FRM-005",
+      "category": "Shot sizes and composition",
+      "name": "Medium shot (MS)",
+      "definition": "A moderate portion of subject is prominent.",
+      "agent_instruction_example": "Frame robotic upper body and both manipulator arms.",
+      "usage": "interaction"
+    },
+    {
+      "id": "FRM-006",
+      "category": "Shot sizes and composition",
+      "name": "Medium close-up (MCU)",
+      "definition": "Head/shoulder analog or upper assembly fills frame.",
+      "agent_instruction_example": "Frame sensor head and shoulder actuator together.",
+      "usage": "character/mechanical expression"
+    },
+    {
+      "id": "FRM-007",
+      "category": "Shot sizes and composition",
+      "name": "Close-up (CU)",
+      "definition": "Single meaningful subject part dominates frame.",
+      "agent_instruction_example": "Fill frame with wheel hub and tread blocks.",
+      "usage": "craftsmanship and emotion"
+    },
+    {
+      "id": "FRM-008",
+      "category": "Shot sizes and composition",
+      "name": "Extreme close-up (ECU)",
+      "definition": "Tiny component or feature dominates screen.",
+      "agent_instruction_example": "Macro on engraved bolt head and machining marks.",
+      "usage": "micro-detail"
+    },
+    {
+      "id": "FRM-009",
+      "category": "Shot sizes and composition",
+      "name": "Insert shot",
+      "definition": "Dedicated shot of an object/detail important to story.",
+      "agent_instruction_example": "Insert: diagnostic light changes from amber to cyan.",
+      "usage": "information"
+    },
+    {
+      "id": "FRM-010",
+      "category": "Shot sizes and composition",
+      "name": "Cutaway",
+      "definition": "Temporarily shifts from main action to associated detail or observer.",
+      "agent_instruction_example": "Cut away to servo gear turning while rover stops.",
+      "usage": "editing continuity"
+    },
+    {
+      "id": "FRM-011",
+      "category": "Shot sizes and composition",
+      "name": "Two-shot",
+      "definition": "Two primary subjects in one frame.",
+      "agent_instruction_example": "Frame human engineer alongside service android.",
+      "usage": "relationship/scale"
+    },
+    {
+      "id": "FRM-012",
+      "category": "Shot sizes and composition",
+      "name": "Group / ensemble",
+      "definition": "Three or more primary subjects arranged together.",
+      "agent_instruction_example": "Show three autonomous robots cooperating around solar array.",
+      "usage": "team action"
+    },
+    {
+      "id": "FRM-013",
+      "category": "Shot sizes and composition",
+      "name": "Establishing shot",
+      "definition": "Introduces setting, geography and subject relationships.",
+      "agent_instruction_example": "Wide facility exterior followed by robot bay interior.",
+      "usage": "scene orientation"
+    },
+    {
+      "id": "FRM-014",
+      "category": "Shot sizes and composition",
+      "name": "Master shot",
+      "definition": "Continuous broad coverage of scene main action.",
+      "agent_instruction_example": "Hold full robot assembly process in one wide shot.",
+      "usage": "editing anchor"
+    },
+    {
+      "id": "FRM-015",
+      "category": "Shot sizes and composition",
+      "name": "Clean single",
+      "definition": "One unobstructed isolated subject in frame.",
+      "agent_instruction_example": "Single robot in frame, no foreground operator.",
+      "usage": "visual clarity"
+    },
+    {
+      "id": "FRM-016",
+      "category": "Shot sizes and composition",
+      "name": "Negative space",
+      "definition": "Intentional empty area around subject.",
+      "agent_instruction_example": "Place rover in left third with open sky at right.",
+      "usage": "titles or anticipation"
+    },
+    {
+      "id": "FRM-017",
+      "category": "Shot sizes and composition",
+      "name": "Centered composition",
+      "definition": "Subject placed near central axis.",
+      "agent_instruction_example": "Center the robot with equal side clearance.",
+      "usage": "symmetry and precision"
+    },
+    {
+      "id": "FRM-018",
+      "category": "Shot sizes and composition",
+      "name": "Rule-of-thirds",
+      "definition": "Subject aligned near one-third intersections or verticals.",
+      "agent_instruction_example": "Place sensor head on upper-right thirds intersection.",
+      "usage": "balanced composition"
+    },
+    {
+      "id": "FRM-019",
+      "category": "Shot sizes and composition",
+      "name": "Leading lines",
+      "definition": "Lines in environment direct eye toward subject.",
+      "agent_instruction_example": "Use rail tracks converging toward fabrication robot.",
+      "usage": "depth and attention"
+    },
+    {
+      "id": "FRM-020",
+      "category": "Shot sizes and composition",
+      "name": "Foreground framing",
+      "definition": "Scene includes foreground objects as a framing device.",
+      "agent_instruction_example": "Frame rover between two out-of-focus structural beams.",
+      "usage": "depth"
+    },
+    {
+      "id": "FRM-021",
+      "category": "Shot sizes and composition",
+      "name": "Silhouette",
+      "definition": "Subject shape read predominantly against brighter background.",
+      "agent_instruction_example": "Backlight walking mech at hangar doorway.",
+      "usage": "form and drama"
+    },
+    {
+      "id": "FRM-022",
+      "category": "Shot sizes and composition",
+      "name": "Overhead flat lay",
+      "definition": "Organize small parts on a plane from a true overhead view.",
+      "agent_instruction_example": "Arrange disassembled servo parts in precise top-down layout.",
+      "usage": "technical explainers"
+    },
+    {
+      "id": "OPT-001",
+      "category": "Lens, focus and temporal controls",
+      "name": "Wide-angle lens",
+      "definition": "Short focal lengths widen field of view and exaggerate near/far size relationships.",
+      "agent_instruction_example": "Use 24 mm equivalent; avoid subject-edge warping.",
+      "usage": "environment and spatiality"
+    },
+    {
+      "id": "OPT-002",
+      "category": "Lens, focus and temporal controls",
+      "name": "Normal lens",
+      "definition": "Approximately natural-looking perspective at common framing distances.",
+      "agent_instruction_example": "Use 50 mm full-frame equivalent for practical industrial realism.",
+      "usage": "grounded product realism"
+    },
+    {
+      "id": "OPT-003",
+      "category": "Lens, focus and temporal controls",
+      "name": "Telephoto lens",
+      "definition": "Long focal lengths narrow view and compress apparent depth across a fixed subject framing.",
+      "agent_instruction_example": "Use 100 mm equivalent from a distant position, shallow background.",
+      "usage": "isolating hardware"
+    },
+    {
+      "id": "OPT-004",
+      "category": "Lens, focus and temporal controls",
+      "name": "Macro lens",
+      "definition": "Close focusing for small details; depth of field often very narrow.",
+      "agent_instruction_example": "90 mm macro, shallow depth of field on machined thread.",
+      "usage": "micro textures"
+    },
+    {
+      "id": "OPT-005",
+      "category": "Lens, focus and temporal controls",
+      "name": "Deep focus",
+      "definition": "Foreground and background both visually sharp.",
+      "agent_instruction_example": "Keep wheels, cabin, and rear landscape in sharp focus.",
+      "usage": "spatial explanation"
+    },
+    {
+      "id": "OPT-006",
+      "category": "Lens, focus and temporal controls",
+      "name": "Shallow depth of field",
+      "definition": "Narrow distance range appears sharp; near and far elements blur.",
+      "agent_instruction_example": "Sharp focus on actuator; blurred distant service bay.",
+      "usage": "subject priority"
+    },
+    {
+      "id": "OPT-007",
+      "category": "Lens, focus and temporal controls",
+      "name": "Rack focus / focus pull",
+      "definition": "Shift focus from one depth plane to another during a single shot.",
+      "agent_instruction_example": "Rack focus foreground tread to background lidar module in 2 seconds.",
+      "usage": "guide audience attention"
+    },
+    {
+      "id": "OPT-008",
+      "category": "Lens, focus and temporal controls",
+      "name": "Follow focus",
+      "definition": "Adjust focus continually to maintain moving subject sharpness.",
+      "agent_instruction_example": "Maintain sensor eye sharp as robot moves toward lens.",
+      "usage": "moving subject"
+    },
+    {
+      "id": "OPT-009",
+      "category": "Lens, focus and temporal controls",
+      "name": "Anamorphic aesthetic",
+      "definition": "Wide frame, oval bokeh and characteristic horizontal flare (can be subtle).",
+      "agent_instruction_example": "Subtle 2x anamorphic look; avoid exaggerated sci-fi flares.",
+      "usage": "cinematic style"
+    },
+    {
+      "id": "OPT-010",
+      "category": "Lens, focus and temporal controls",
+      "name": "Slow motion",
+      "definition": "Play footage slower than action occurs, usually by high capture frame rate.",
+      "agent_instruction_example": "50% slow-motion playback of hydraulic compression.",
+      "usage": "mechanical analysis"
+    },
+    {
+      "id": "OPT-011",
+      "category": "Lens, focus and temporal controls",
+      "name": "Speed ramp",
+      "definition": "Change playback speed within one shot.",
+      "agent_instruction_example": "Ease from 100% to 35% speed at moment of impact, then back.",
+      "usage": "action emphasis"
+    },
+    {
+      "id": "OPT-012",
+      "category": "Lens, focus and temporal controls",
+      "name": "Timelapse",
+      "definition": "Compress long activity into a short shot.",
+      "agent_instruction_example": "Time-lapse robotic construction over a full daylight cycle.",
+      "usage": "progress"
+    },
+    {
+      "id": "OPT-013",
+      "category": "Lens, focus and temporal controls",
+      "name": "Motion blur",
+      "definition": "Exposure-related blur on moving subjects or camera; should remain physically coherent.",
+      "agent_instruction_example": "Natural 180-degree shutter motion blur at 24 fps.",
+      "usage": "film movement"
+    },
+    {
+      "id": "OPT-014",
+      "category": "Lens, focus and temporal controls",
+      "name": "Panoramic stitch",
+      "definition": "Combine views for a wider scene, generally in post-production.",
+      "agent_instruction_example": "Stitch a wide static facility panorama; preserve straight structures.",
+      "usage": "large environments"
+    },
+    {
+      "id": "OPT-015",
+      "category": "Lens, focus and temporal controls",
+      "name": "Match cut",
+      "definition": "Edit transition matching composition, shape, movement, or idea between two shots.",
+      "agent_instruction_example": "Match circular tire hub to rotating orbital ring in next shot.",
+      "usage": "thematic continuity"
+    },
+    {
+      "id": "OPT-016",
+      "category": "Lens, focus and temporal controls",
+      "name": "J-cut / L-cut",
+      "definition": "Audio begins before or continues after a picture cut, respectively.",
+      "agent_instruction_example": "Bring motor sound in two seconds before revealing source.",
+      "usage": "sound-led editing"
+    },
+    {
+      "id": "OPT-017",
+      "category": "Lens, focus and temporal controls",
+      "name": "Whip-pan transition",
+      "definition": "Join shots during fast blurred pan to mask cut.",
+      "agent_instruction_example": "Match leftward blur direction on both sides of the cut.",
+      "usage": "energy"
+    },
+    {
+      "id": "OPT-018",
+      "category": "Lens, focus and temporal controls",
+      "name": "Push-in transition",
+      "definition": "Visual cut between shots aligned on increasing scale or forward motion.",
+      "agent_instruction_example": "End the hallway push-in on a component, start close-up from same angle.",
+      "usage": "smooth motion continuity"
+    }
+  ]
+}

@@ -7,4 +7,4 @@ exec bwrap --unshare-all --new-session --die-with-parent \
  --proc /proc --dev /dev --tmpfs /tmp --ro-bind "$REPO" /mnt \
  --chdir /mnt/video/p05 --clearenv --setenv HOME /tmp \
  --setenv PATH /usr/bin:/bin --setenv PYTHONDONTWRITEBYTECODE 1 \
- /usr/bin/python3 -B -m unittest -v test_camera_direction_contract.py
+ /usr/bin/python3 -B -m unittest discover -v -s /mnt/video/p05 -p 'test_camera_*.py'

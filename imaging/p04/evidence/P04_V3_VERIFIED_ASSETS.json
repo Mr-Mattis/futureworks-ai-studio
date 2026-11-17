@@ -1,0 +1,79 @@
+{
+  "status": "pixel_hash_and_dimension_verified",
+  "model_sha256": "37f9a931c215f040aa6d50f711f2cb115f713c46df1d0d6469a8bd7bfe9a60bb",
+  "assets": [
+    {
+      "id": "01",
+      "original_sha256": "a9de53bf31600fceba9dc521672bb547936dc4d480220cf58b4eb4b4dd8e6476",
+      "upscaled_sha256": "9ed0d3c1bf7862f5eddb0055e3920c84482034fa65a05e275c6b8ce75e737a37",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "02",
+      "original_sha256": "e0e4bd8192fac8ea0e129385634b707ecb12b0183cb38b9568eea9cf5d0fc3cc",
+      "upscaled_sha256": "dee398006a1f7ace5293ff87f9e36647b8c5c299907c8aa1b874ed968946b022",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "03",
+      "original_sha256": "d11db278973fcba86d459aea21c9bfc798813301c25bf70a2b4988c94eee1573",
+      "upscaled_sha256": "bac3f9af29e717c27e71a59ee5532e396a6f479dcc1a1b5c37883247f1c75dc5",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "04",
+      "original_sha256": "18ca6c63319e49d138afe1bb98631cb9f2f4d3d4629a31a5b3c1694ac91d1b2f",
+      "upscaled_sha256": "16e98a59f751016d26573341bef5c2a11eedfcb1059d5f5d83499c18e4d144ae",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "05",
+      "original_sha256": "1e953ec5b7c9e48b35f6dbd255d2a437e860d1da0cbb1dbf148260a60d860e00",
+      "upscaled_sha256": "6b2cc32f9ef78a3bda5a54ef2b42166a48cd0c91f2500f8f369eb95b45eb3b0a",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "06",
+      "original_sha256": "bed360220a7e8b22db3defdf54529fb111c0c804ec0b309cee2700fb897a01f6",
+      "upscaled_sha256": "0133057e62afd56e2124c628dbe0ab6f3b1ab784389e9dd1fe22f6709a0227c8",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "07",
+      "original_sha256": "c82735093607b7d7b7c8f17a745acc1972d5e2d00d926f780b380c5c6563dabe",
+      "upscaled_sha256": "e25263f0ddf10186a15691c05e0a8fe9a77c7cb3ad13a9b7aae4eeaf697b0cf3",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "08",
+      "original_sha256": "f591db6a048e269b408e4cee61617d366ec1f4e4e6dcb1285a3647217fa2ad76",
+      "upscaled_sha256": "7a1e22cd556b5d91cfbaf7bdec57c871b0ff986a3a4c24c9c87fdf6e599f85e8",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "09",
+      "original_sha256": "090784a8446db1a55fd856c9afb52a3aa16108fb176112b9c7c2157f2fcb707f",
+      "upscaled_sha256": "c79ff4e865ecc42561fa45295aa30cc7f55240e515da58581335f5d71dfaa047",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    },
+    {
+      "id": "10",
+      "original_sha256": "465eeece67108ff2e54d169c3a09571da88bd6ec0be5d33fe350dda40224109b",
+      "upscaled_sha256": "54043071fbdb0574540821048ab56cd263bb187abdd1502e1507152077257b0f",
+      "original_dimensions": "768x512",
+      "upscaled_dimensions": "1920x1080"
+    }
+  ],
+  "visual_quality": "requires_owner_review",
+  "production_approved": false,
+  "external_upload_approved": false
+}

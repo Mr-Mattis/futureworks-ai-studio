@@ -1,0 +1,131 @@
+{
+  "phase": "P04",
+  "batch_id": "P04_V5_CIVILIAN_AI_001",
+  "asset_count": 10,
+  "model": "Realistic Vision V6.0 with RealESRGAN x4 super-resolution",
+  "assets": [
+    {
+      "id": "01",
+      "design": "Orbital lattice weaver",
+      "filename": "FUT_01_1920x1080.png",
+      "sha256": "c1bfcdb20ec8f90db4f2e49641c7efda25fa00a3e00572940112b9b90b0c7456",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "34a49495-064d-4066-9066-f70abf845566",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "02",
+      "design": "Pelagic ecosystem restorer",
+      "filename": "FUT_02_1920x1080.png",
+      "sha256": "1d192871855c75358a4278f76783e9f534a048ed8c06f42d814fe91a3e361297",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "d23a745a-156c-4c62-ab3e-ff52a973af7b",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "03",
+      "design": "Desert atmospheric water harvester",
+      "filename": "FUT_03_1920x1080.png",
+      "sha256": "25a2e3d284b6d0f16043aed6380370d8c7f520cd41f26167fd3ae82e76618df8",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "3afa5d4a-6c25-4381-9f15-d7f826bdc05b",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "04",
+      "design": "Mantle geoscience walker",
+      "filename": "FUT_04_1920x1080.png",
+      "sha256": "fc001cd956fdff00917295f5fdab08607a05db1ee34322ea27952bcc659225ac",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "049ec774-f164-462c-8373-9e0dc719b21b",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "05",
+      "design": "Skyborne biome conservatory",
+      "filename": "FUT_05_1920x1080.png",
+      "sha256": "80e0216f63020cd03aea6ee5efe07cc005e9e69b1aaf83335d380509b1242bf1",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "7ddad1a5-d024-4da1-95c8-a866294fdb31",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "06",
+      "design": "Lunar regolith foundry",
+      "filename": "FUT_06_1920x1080.png",
+      "sha256": "4ad63e7d5afe8958fa7a1a04258da5b7c75fc17c157bc917c6936440428b76b9",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "c3216b5b-3b6f-45aa-8ace-e6d5b0e9dd1e",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "07",
+      "design": "Swarm infrastructure atelier",
+      "filename": "FUT_07_1920x1080.png",
+      "sha256": "a73005af9a443a71105f3e1020936bf7dc902c6e8602dd9b0946c28070de9821",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "54751ba3-3139-42c8-903d-be9a4e7ad47e",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "08",
+      "design": "Microgravity biomedical fabricator",
+      "filename": "FUT_08_1920x1080.png",
+      "sha256": "6779528d4e3cdba918a61241c179d8aad485b344719455a24cc79b08fc31bf5c",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "25d3447b-79cb-4fa5-84b6-6cc0dba3820d",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "09",
+      "design": "Interplanetary debris curator",
+      "filename": "FUT_09_1920x1080.png",
+      "sha256": "df9ae9cde040ae624eafc0c19e1e0e3f138e8f22cf4cdcc8d07786e826e03d65",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "72389700-e025-4cf7-a8b9-dd9cd7c88556",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    },
+    {
+      "id": "10",
+      "design": "Adaptive civic mobility pavilion",
+      "filename": "FUT_10_1920x1080.png",
+      "sha256": "035569f03d7ea772aad3a0b5b2a8c7d2fde6a22dc5a7eaa7325d212c17159c1f",
+      "width": 1920,
+      "height": 1080,
+      "comfy_receipt": "20f87c77-6827-4998-baa0-b1f21bc94993",
+      "visual_review": "PENDING_OWNER",
+      "external_upload_authorized": false,
+      "publish_authorized": false
+    }
+  ],
+  "owner_creative_approval": false,
+  "external_upload_authorized": false,
+  "publish_authorized": false
+}

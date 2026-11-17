@@ -1,0 +1,26 @@
+{
+  "01": {
+    "title": "ORBITAL LATTICE WEAVER",
+    "state": "complete",
+    "seed": 260118211,
+    "concept_prompt": "A 40-meter futuristic orbital lattice weaving machine, huge hexagonal open truss, six precision fabrication arms and radiator wings, construction robotics on orbit around Earth, tiny two-meter service hatch for scale, elegant nonmilitary human-AI engineered shape, high detail sci-fi industrial machine concept, cinematic realistic hard surface 3D render",
+    "photo_prompt": "Orbital lattice fabrication robot 40-meter hexagonal tension truss and articulated multi-axis construction arms, tiny human-size pressure maintenance hatch, precise machined titanium brackets, visible fasteners, thermal radiators, cable routing, minor scratches, realistic metal surface patina, film still, ultra photoreal industrial aerospace documentary",
+    "task_id": "851c5195-4c14-4d18-852a-227a8a8fbd03",
+    "sha256": "8262b4f229340effc8f6286a93151cd78133b34436bd24207a6b87fb2ee8a1a6",
+    "concept_sha256": "ea95a3a7aa8331b84ef5c8dabadfbff12e174072c413334871a84ef7c0c4f458",
+    "review": "PENDING_OWNER",
+    "external_upload_authorized": false
+  },
+  "02": {
+    "title": "SWARM CIVIC INFRASTRUCTURE DEPOT",
+    "state": "complete",
+    "seed": 260119322,
+    "concept_prompt": "A seven-meter futuristic autonomous swarm robot depot, distinct towering hexagonal modular docking hive, hundreds of tiny repair robots connected to structural repair armatures, human-scale walkway and trees for scale, sunlit advanced eco city, novel nonmilitary human-AI engineered machinery, high detail sci-fi hard surface 3D render",
+    "photo_prompt": "Real industrial photo of unique seven-meter branching hexagonal docking hive for small autonomous maintenance robots, visible charging bays, precise servo brackets and connector pins, textured ceramic metal alloys, weathered panel edges, realistic late-afternoon city lighting, nearby two-meter maintenance worker silhouette for scale, technologically advanced sustainable civic plaza",
+    "task_id": "5f6f82d1-9b6c-4e14-a9e0-ed77bf726a76",
+    "sha256": "8b20e83becbc6f2ec5dde64dfae5ea4c63ba798e3992ec07bbdc7bb13e5c5af8",
+    "concept_sha256": "8f9da134d00fb65554697a03d461493c21ff8a52151dc831a7853584d4957b2c",
+    "review": "PENDING_OWNER",
+    "external_upload_authorized": false
+  }
+}

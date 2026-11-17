@@ -1,0 +1,74 @@
+{
+  "phase": "P05",
+  "pilot": "RUNWAY_GEN45_3X5_REAL_20261116",
+  "scope": "owner authorized three selected original P04 images, max $5, no publishing",
+  "source_manifest_sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87",
+  "approved_manifest_v2_sha256": "ac14488fd251d88d5ffaa0ad47aa7c4010274d2e4597bc29519a16b57e08ebad",
+  "scope_record_sha256": "223c620ebce2236f203e526f7315956b7b6ef9b49b079bc47a41b9680bf42ec0",
+  "provider": "Runway Developer API",
+  "model": "gen4.5",
+  "version": "2024-11-06",
+  "clips": [
+    {
+      "scene_id": "S01",
+      "source_asset_id": "P04_P04_GPU_001_01",
+      "source_sha256": "e889931fdc0f335a298f17bec805b266b84ac24aa774296f9ff08ab2f11d4f53",
+      "runway_task_id": "eeeceef4-6912-408f-ba8d-21488910528c",
+      "clip_sha256": "aadde63a3b34ca49c1ff2340c18fd4bccc9160c60695ccfb5ad57107d01596ca",
+      "size_bytes": 5795635,
+      "media": {
+        "codec": "h264",
+        "duration_seconds": 5.041667,
+        "height": 720,
+        "width": 1280
+      },
+      "verified_real_generation": true,
+      "human_continuity_review": "PENDING"
+    },
+    {
+      "scene_id": "S02",
+      "source_asset_id": "P04_P04_GPU_001_03",
+      "source_sha256": "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958",
+      "runway_task_id": "2aebaabb-2539-49d9-973c-bc69dc15ad84",
+      "clip_sha256": "aef102e65671c8b2ea0663115e47a912e758b24ae952f5482ab1f910baed9e91",
+      "size_bytes": 4673377,
+      "media": {
+        "codec": "h264",
+        "duration_seconds": 5.041667,
+        "height": 720,
+        "width": 1280
+      },
+      "verified_real_generation": true,
+      "human_continuity_review": "PENDING"
+    },
+    {
+      "scene_id": "S03",
+      "source_asset_id": "P04_P04_GPU_001_05",
+      "source_sha256": "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7",
+      "runway_task_id": "013431a6-cec2-4033-8884-ce14ec6c7b6c",
+      "clip_sha256": "dcbf9c06e12eaa78e3f6efb8ab19e066c770e6575356cf843f96994f57834bdb",
+      "size_bytes": 3103258,
+      "media": {
+        "codec": "h264",
+        "duration_seconds": 5.041667,
+        "height": 720,
+        "width": 1280
+      },
+      "verified_real_generation": true,
+      "human_continuity_review": "PENDING"
+    }
+  ],
+  "starting_credit_balance": 1000,
+  "ending_credit_balance": 820,
+  "measured_spend_credits": 180,
+  "measured_spend_usd": 1.8,
+  "maximum_authorized_credits": 500,
+  "maximum_authorized_usd": 5,
+  "runway_http_submissions": 3,
+  "all_media_locally_archived": true,
+  "human_continuity_approval": false,
+  "production_approved": false,
+  "publication_approved": false,
+  "p04_authenticated_n8n_handoff": "NOT_YET_TESTED",
+  "phase_closed": false
+}

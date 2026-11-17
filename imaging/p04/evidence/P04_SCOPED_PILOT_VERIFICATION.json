@@ -1,0 +1,25 @@
+{
+  "phase": "P04",
+  "gate": "scoped_owner_external_runway_pilot",
+  "status": "PASS",
+  "source": "local independent P04 pilot verifier on owner workstation",
+  "approved_derivative_sha256": "ac14488fd251d88d5ffaa0ad47aa7c4010274d2e4597bc29519a16b57e08ebad",
+  "selected_original_sha256": [
+    "e889931fdc0f335a298f17bec805b266b84ac24aa774296f9ff08ab2f11d4f53",
+    "823332cd603610e128fd36c08af9eca035747632eba6f860b2aee63461e4e958",
+    "47f888da609871e13d73d941d63a0790d4d4b027293cbcc259ba4503c8668af7"
+  ],
+  "approved_provider": "Runway Developer API",
+  "max_credits": 500,
+  "paid_operations_authorized": 3,
+  "production_approved": false,
+  "publish_authorized": false,
+  "machine_hmac_integrity_verified": true,
+  "independently_human_key_signed": false,
+  "p01_manifest_schema_validated": true,
+  "original_manifest_mutated": false,
+  "scope_expiry": "2026-11-17T23:59:00-05:00",
+  "legacy_locked_p04_verifier_adapted": false,
+  "authenticated_n8n_image_batch_handoff_verified": false,
+  "formal_p04_exit_closed": false
+}

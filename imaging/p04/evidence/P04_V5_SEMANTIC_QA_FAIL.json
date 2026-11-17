@@ -1,0 +1,64 @@
+{
+  "batch_id": "P04_V5_CIVILIAN_AI_001",
+  "review_date": "2026-11-17",
+  "technical_integrity": "PASS_10_OF_10_SHA256_1920x1080",
+  "semantic_quality": "FAIL",
+  "owner_visual_approval": "NOT_OBTAINED",
+  "observer": "assistant contact sheet visual review",
+  "criteria": "Unique coherent futuristic nonmilitary machine clearly fulfilling requested function and scale",
+  "findings": [
+    {
+      "id": "01",
+      "observed": "Architectural interior/tensile opening rather than orbital lattice weaver",
+      "result": "REJECT"
+    },
+    {
+      "id": "02",
+      "observed": "Biological fish in coral reef rather than robotic ecosystem restoration platform",
+      "result": "REJECT"
+    },
+    {
+      "id": "03",
+      "observed": "Woman wearing white clothing in desert rather than water harvester machine",
+      "result": "REJECT"
+    },
+    {
+      "id": "04",
+      "observed": "Washer-like white device in industrial corridor rather than geoscience walker",
+      "result": "REJECT"
+    },
+    {
+      "id": "05",
+      "observed": "Large glass structure/trellis but not distinctive airborne conservatory carrier",
+      "result": "REJECT"
+    },
+    {
+      "id": "06",
+      "observed": "Woman portrait rather than lunar construction foundry",
+      "result": "REJECT"
+    },
+    {
+      "id": "07",
+      "observed": "Empty architectural walkway rather than robotic swarm depot",
+      "result": "REJECT"
+    },
+    {
+      "id": "08",
+      "observed": "Medical-mask woman portrait rather than microgravity biomedical fabricator",
+      "result": "REJECT"
+    },
+    {
+      "id": "09",
+      "observed": "Industrial mast structure rather than orbital salvage lattice collector",
+      "result": "REJECT"
+    },
+    {
+      "id": "10",
+      "observed": "Architectural greenhouse corridor rather than autonomous civic transit organism",
+      "result": "REJECT"
+    }
+  ],
+  "root_cause_hypothesis": "Realistic Vision V6 checkpoint follows conventional photographic subjects in text-only generation rather than unusual speculative-engineering semantics. High-resolution upscaling cannot fix wrong objects. Test concept-first SD1.5 + low-denoise photo-real img2img, with small A/B before ten-batch retry.",
+  "new_provider_calls_authorized": false,
+  "publishing_authorized": false
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "FWAI_B001_PARAMETRIC_GEOMETRY_V2",
+  "design_id": "FWAI-B001",
+  "name": "Helix Archive Terrace",
+  "review_status": "DESIGN_PROTOTYPE_V2_OWNER_REVIEW_REQUIRED",
+  "source": "Owner design selections questions 1-27, including delegated choices 24-27",
+  "creative_brief": "Level-3 2500+ precision-engineered hybrid monumental futuristic library; tangible advanced real-world-like architecture, not decorative concept art",
+  "library_style": "hybrid_monumental_organic_precision_dominant",
+  "design_character": "balanced_monumental_and_elegant",
+  "era": "2500+",
+  "coordinates": {
+    "unit": "ft",
+    "x": "parallel to library facade, positive right",
+    "y": "outward from library",
+    "z": "upward from courtyard finish level",
+    "library_mount_plane_y": 0
+  },
+  "balcony": {
+    "length_ft": 10,
+    "depth_ft": 6,
+    "floor_elevation_ft": 15,
+    "slab_thickness_ft": 0.42,
+    "support": "cantilever plus overhead tension",
+    "guard_height_ft": 3.5,
+    "floor": "opaque composite floor and transparent observation sections",
+    "rail": "glass metal sculpted structural panels"
+  },
+  "staircase": {
+    "two_independent_paths": true,
+    "helix_count": 2,
+    "movement_descending_top_view": "counterclockwise",
+    "angle_sign": "positive_around_z_axis",
+    "diameter_feet_permitted": [
+      9,
+      12
+    ],
+    "envelope_outer_radius_ft": 6,
+    "axis_center_ft": [
+      0,
+      15.5
+    ],
+    "inner_walking_radius_ft": 2.4,
+    "outer_walking_radius_ft": 5.9,
+    "usable_radial_width_ft": 3.5,
+    "inner_support_radius_ft": 2.25,
+    "outer_support_radius_ft": 5.98,
+    "rise_ft": 15,
+    "revolutions": 1,
+    "treads_per_path": 24,
+    "riser_height_ft": 0.625,
+    "tread_thickness_ft": 0.25,
+    "clearance_design_target_ft": 7,
+    "guard_height_ft": 3.5,
+    "entry_phase_radians_A": -1.5707963267948966,
+    "entry_phase_radians_B": 1.5707963267948966,
+    "central_axis": "open_void_no_vertical_column",
+    "open_air": true,
+    "dna_expression": "dramatic_true_double_helix_two_walking_paths",
+    "strand_construction": "hybrid swept metallic structural ribbons plus exposed open lattice and joints",
+    "treads": "individual composite/metal and glass-inset conceptual solids, final geometry pending",
+    "upper_entry": "shared landing, separate A/B entries; remote B bridge requires spatial resolution",
+    "lower_entry": "common courtyard arrival platform, two separate exits"
+  },
+  "upper_transfer": {
+    "status": "MODELED_WITH_REVIEW_HOLD",
+    "entry_A": "shared_terrace_landing_to_near_side_helix_A_short_threshold",
+    "entry_B": "same_shared_landing_via_peripheral_skybridge_to_far_side_helix_B",
+    "branching_strategy": "peripheral_suspended_link_outside_stair_diameter",
+    "side": "right_when_facing_courtyard_from_library",
+    "walking_width_ft": 3.5,
+    "inner_radius_ft": 7.1,
+    "outer_radius_ft": 10.6,
+    "start_angle_rad": -1.5707963267948966,
+    "end_angle_rad": 1.5707963267948966,
+    "deck_top_z_ft": 15.0,
+    "deck_thickness_ft": 0.42,
+    "guard_center_offset_ft": 0.13,
+    "entry_A_threshold_x_ft": [
+      -1.75,
+      1.75
+    ],
+    "entry_A_threshold_y_ft": [
+      9.25,
+      9.75
+    ],
+    "entry_B_radial_connector_x_ft": [
+      -1.75,
+      1.75
+    ],
+    "entry_B_radial_connector_y_ft": [
+      21.15,
+      22.95
+    ],
+    "guard_gap_outer_B_rail_segments": 10,
+    "guard_gap_outer_B_post_count": 3,
+    "guard_gap_bridge_inner_rail_segments_at_each_end": 8,
+    "finish": "peripheral_guarded_curved_walkway_with_radial_B_connection",
+    "topology": "continuous_xy_overlaps_proposed_not_global_collision_certified",
+    "engineering_status": "tension_anchor_and_load_path_unverified",
+    "public_egress_accessibility": "unverified_do_not_use_for_construction"
+  },
+  "courtyard": {
+    "scope": "two terminal structural landing pads only",
+    "scenery": false,
+    "environment_render_authorized": false
+  },
+  "support": {
+    "concept": "cantilevered balcony frame anchored to library superstructure plus paired overhead tension elements anchored to upper primary structure",
+    "steel_frame_fea_performed": false
+  },
+  "agency_boundary": {
+    "public_library": "spiral stairs shall not be assumed to satisfy accessible route or required egress",
+    "alternate_access": "accessible elevator or compliant route required in broader library design",
+    "code_compliant": false,
+    "structural_engineering_certified": false,
+    "physics_validated": false
+  },
+  "render_permissions": {
+    "geometry_only": true,
+    "material_rendering": false,
+    "environment_rendering": false,
+    "image_generation": false,
+    "external_upload": false,
+    "paid_api": false,
+    "publish": false
+  },
+  "approval_required": [
+    "dimensioned_3d_layout",
+    "two_entry_paths",
+    "head_clearance_and_shoulder_space",
+    "landing_connections",
+    "public_safety_and_accessibility"
+  ],
+  "revision": "Peripheral skybridge branch, owner delegated design judgment",
+  "v1_geometry_source_sha256": "0f8d4d084687245412aca5009a189624f2dfebb98d3cd7191565bf9b74cbd571",
+  "design_choice": "right_side_peripheral_half_ring_skybridge_to_far_side_helix_B"
+}

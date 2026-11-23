@@ -3,7 +3,7 @@ Does NOT certify photorealism, true cloth physics, brand design, or collision ac
 """
 from pathlib import Path
 from PIL import Image
-import json,hashlib,subprocess,unittest,ast
+import json,hashlib,subprocess,unittest,ast,os
 HOME=Path.home()
 ROOT=HOME/"Documents"/"futureworks-vq03"
 OUT=ROOT/"proof-v5"
@@ -56,7 +56,7 @@ class VQ03Technical(unittest.TestCase):
     def test_12_video_duration(self):
         raw=subprocess.check_output(["wsl.exe","-d","Ubuntu","--","ffprobe","-v","error",
           "-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",
-          "/mnt/c/Users/yashi/Documents/futureworks-vq03/proof-v5/VQ03_three_pose_3sec.mp4"],text=True)
+          "/mnt/c/Users/"+os.environ["USERNAME"]+"/Documents/futureworks-vq03/proof-v5/VQ03_three_pose_3sec.mp4"],text=True)
         self.assertAlmostEqual(float(raw.strip()),3.0,places=2)
     def test_13_no_spend_or_publish(self):
         self.assertEqual(self.gpu["paid_calls"],0)

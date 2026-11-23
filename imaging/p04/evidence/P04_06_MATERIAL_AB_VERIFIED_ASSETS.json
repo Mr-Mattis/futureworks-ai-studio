@@ -1,0 +1,55 @@
+{
+  "schema": "FWAI_P04_06_MATERIAL_A_B_RECEIPT_1",
+  "design_id": "FWAI-T001",
+  "geometry_sha256": "7bc0379c02632018e78dfbea6eab467071ec0ffe9f97b3c9522c1634bf51b77e",
+  "mechanical_sha256": "07dc8ea721e2d2d69d47585bc67268c31a2ceb9d96e0724a5ffc55fd17465c5f",
+  "method": "deterministic geometry-bound 2.5D material source -> local ComfyUI low-denoise img2img -> neural super-resolution -> local matte",
+  "rendered_on": "El_Corredor local AMD Radeon GPU",
+  "variant_count": 2,
+  "assets": [
+    {
+      "variant": "graphite_alloy",
+      "gpu_prompt_id": "83a9b818-9a1a-4542-a794-d0e825cc4e9d",
+      "denoise": 0.29,
+      "source_sha256": "4ccf7ab7711a86598fdc6bc222f365cc73581827db017a0bebac9526899dc272",
+      "render_file": "FWAI-T001_MATERIAL_graphite_alloy_1920x1080.png",
+      "render_sha256": "2e6f32b85d60d3f0bc42a3fc0c8879ac81672c51f2a9eb0e69475dbcab00f4b1",
+      "cutout_file": "FWAI-T001_MATERIAL_graphite_alloy_CUTOUT_1920x1080.png",
+      "cutout_sha256": "2ea2de3b117f38486ad97a146c01fe6f560000f89167999f89d603cd238b9cfa",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "alpha_foreground_fraction": 0.128,
+      "rms_source_pixel_difference": 15.05,
+      "human_material_review": "PENDING",
+      "mechanical_geometry_similarity": "REQUIRES_VISUAL_REVIEW"
+    },
+    {
+      "variant": "ceramic_titanium",
+      "gpu_prompt_id": "a88becf5-9fdc-490b-b96d-62c5c3c4f405",
+      "denoise": 0.36,
+      "source_sha256": "e4b7fe565f639460fec325cf86d25dab764e14264c25247cb76f32d477e6ee3b",
+      "render_file": "FWAI-T001_MATERIAL_ceramic_titanium_1920x1080.png",
+      "render_sha256": "892ba19ca5c8c53d35475cfdeed5058b56d16e2b95f02dcb4707a4725fd0fd10",
+      "cutout_file": "FWAI-T001_MATERIAL_ceramic_titanium_CUTOUT_1920x1080.png",
+      "cutout_sha256": "65d6d3dcee3e1ceb4a56b8b0097f8dd8f6b7bbd7998b37cd80df720256c75265",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "alpha_foreground_fraction": 0.1282,
+      "rms_source_pixel_difference": 17.08,
+      "human_material_review": "PENDING",
+      "mechanical_geometry_similarity": "REQUIRES_VISUAL_REVIEW"
+    }
+  ],
+  "subject_stage": "MATERIAL_LOOKDEV",
+  "environment_generation": false,
+  "external_upload_authorized": false,
+  "paid_provider_calls": 0,
+  "publishing_authorized": false,
+  "owner_material_approval": "PENDING",
+  "certified_physical_engineering": false,
+  "quality_observation": "Technically coherent isolated top-view material previews. Photographic depth and tangible three-dimensional realism are not yet demonstrated; approval is not inferred."
+}

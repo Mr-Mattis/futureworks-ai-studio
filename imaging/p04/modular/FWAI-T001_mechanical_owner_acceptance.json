@@ -1,0 +1,19 @@
+{
+  "schema": "FWAI_P04_06_MECHANICAL_OWNER_ACCEPTANCE_1",
+  "design_id": "FWAI-T001",
+  "mechanical_detail_sha256": "07dc8ea721e2d2d69d47585bc67268c31a2ceb9d96e0724a5ffc55fd17465c5f",
+  "geometry_spec_sha256": "7bc0379c02632018e78dfbea6eab467071ec0ffe9f97b3c9522c1634bf51b77e",
+  "owner_decisions": {
+    "P04.06-MECHANICAL": "APPROVE",
+    "GEOMETRY": "OWNER_APPROVED",
+    "PHYSICS_OR_FEASIBILITY": "NOT_CERTIFIED",
+    "MATERIAL_RENDER": "NOT_AUTHORIZED",
+    "ENVIRONMENT_RENDER": "NOT_AUTHORIZED",
+    "EXTERNAL_UPLOAD": "NOT_AUTHORIZED",
+    "PUBLISH": "NOT_AUTHORIZED"
+  },
+  "record_origin": "Owner submitted explicit P04.06 mechanical-detail review in conversation on 2026-11-18",
+  "approval_scope": "Conceptual mechanical-detail specification only; no rendering, environment, external image upload, publishing, or payment authorization",
+  "next_gate": "SEPARATE_MATERIAL_RENDER_AUTHORIZATION",
+  "automatic_promotion_allowed": false
+}

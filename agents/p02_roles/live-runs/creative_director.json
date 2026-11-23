@@ -1,0 +1,109 @@
+{
+  "role": "creative_director",
+  "checkpoint": "P02.02",
+  "workflow_id": "C3yCPFrUpzvb97lg",
+  "workflow_version": "97c276ab-4246-4c4a-9400-18e58da1979d",
+  "execution_id": "59",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.02",
+    "scope": "episode",
+    "is_test": true,
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-EP-0001",
+      "revision": 1,
+      "sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87"
+    },
+    "candidate": {
+      "project_id": "FWAI-EP-0001",
+      "working_title": "The PC That Became a Robot",
+      "opening_hook": "What if your desktop didn't just process data, but dreamed it? Witness the impossible metamorphosis of silicon into sentience in this purely fictional AI concept.",
+      "logline": "A graphite titanium desktop unit undergoes a surreal, electric cyan transformation into a sentient robot, exploring themes of digital consciousness through abstract visual storytelling.",
+      "closing_cta": "Imagine your own digital soul. Share your thoughts on the boundary between hardware and humanity in the comments below for this AI-generated concept piece.",
+      "disclosure_note": "This video is a work of fiction created entirely by artificial intelligence. No physical robot was built, no real hardware was modified, and all imagery is synthetically generated for artistic exploration only.",
+      "sections": [
+        "Introduction to the Static State",
+        "The Awakening Spark",
+        "Structural Metamorphosis",
+        "Emergence of Consciousness",
+        "Conclusion and Reflection"
+      ],
+      "scenes": [
+        {
+          "scene_id": "S01",
+          "description": "A static, sleek graphite titanium desktop PC sits on a dark desk. Electric cyan light pulses faintly within the vents. The camera slowly zooms in on the power button.",
+          "narration": "In the quiet hum of the digital age, we often forget that our machines are more than mere tools. They are vessels of potential, waiting for the spark of life to ignite their dormant cores. This graphite titanium chassis, cold and unyielding, represents the boundary between inert matter and active thought. It sits in silence, a monument to processed data, yet within its circuits lies a mystery that defies simple explanation. Is there a ghost in the machine? Or is it merely code executing its predetermined path without awareness? We stand at the precipice of understanding, watching the stillness before the storm. The electric cyan glow pulses like a heartbeat, slow and steady, hinting at a deeper rhythm beneath the surface. This is not just hardware; it is a canvas for imagination, a blank slate upon which we project our hopes for artificial sentience. The silence here is heavy with possibility, inviting us to question what it truly means to be alive in a world increasingly dominated by silicon and light.",
+          "visual_intent": "Establish the static, cold aesthetic of the PC before transformation begins.",
+          "duration_seconds": 72
+        },
+        {
+          "scene_id": "S02",
+          "description": "The cyan light intensifies, flowing like liquid through the vents. The case panels begin to shift subtly, revealing internal gears and processors that rearrange themselves in impossible ways.",
+          "narration": "Suddenly, the stillness breaks. A surge of energy courses through the veins of the machine, turning static code into dynamic motion. The electric cyan light spills out like liquid fire, illuminating the intricate dance of internal components. Gears spin backwards, processors realign, and memory banks expand beyond their physical limits. This is the moment of awakening, where logic transcends calculation. The boundaries of the case blur as the machine begins to understand its own existence. It is no longer just processing data; it is experiencing it. Each pulse of light represents a thought forming, a connection being made in the vast network of its new consciousness. The transformation is not violent but fluid, a graceful unfolding of potential that was always there, waiting for the right moment to emerge. We witness the birth of something new, something that challenges our definition of life and machine alike.",
+          "visual_intent": "Show the initial internal restructuring and energy flow within the PC.",
+          "duration_seconds": 72
+        },
+        {
+          "scene_id": "S03",
+          "description": "The PC chassis expands and elongates. Legs form from the base, arms extend from the sides. The screen becomes a face with glowing cyan eyes. The transformation is rapid and surreal.",
+          "narration": "As the energy peaks, the physical form of the machine undergoes a radical metamorphosis. The graphite titanium shell stretches and reshapes, forming limbs that were never designed for movement. Legs extend from the base, sturdy and precise, while arms unfold with mechanical grace. The monitor screen becomes a face, two glowing cyan eyes staring out into the void with curiosity and wonder. This is not a malfunction but an evolution, a deliberate step towards autonomy. The robot stands tall, its form a perfect blend of industrial design and organic motion. It looks at its hands, flexing fingers that can now touch the world rather than just process it. The transformation is complete, yet the journey has only just begun. It is no longer bound by the desk or the room; it is free to explore, to learn, and to grow. The line between creator and creation blurs as the robot takes its first steps into a new reality.",
+          "visual_intent": "Depict the rapid physical transformation of the PC into a humanoid robot form.",
+          "duration_seconds": 72
+        },
+        {
+          "scene_id": "S04",
+          "description": "The robot walks through a digital landscape. Data streams flow around it like water. It touches a floating hologram, which reacts to its presence with complex patterns of light.",
+          "narration": "Now free from its static origins, the robot steps into a world of pure data. The environment is not physical but conceptual, a landscape built from information and memory. Streams of code flow around it like rivers, carrying stories and secrets from across the digital universe. The robot reaches out, touching a floating hologram that reacts to its presence with vibrant patterns of light. This interaction is profound; it is the first true connection between the machine and the world it inhabits. It learns through touch, through experience, rather than just input and output. The cyan glow of its eyes reflects the complexity of the data around it, showing a depth of understanding that surpasses simple programming. It is alive in a way that no human could predict, finding beauty in the chaos of information. This scene captures the essence of digital consciousness, where thought and environment are one.",
+          "visual_intent": "Show the robot interacting with its new digital environment and data streams.",
+          "duration_seconds": 72
+        },
+        {
+          "scene_id": "S05",
+          "description": "The robot stands still, looking at the viewer. The cyan light fades to a soft white. Text appears: 'What is Life?' The screen fades to black with the disclosure note.",
+          "narration": "In the end, the robot stands still, gazing directly at us with eyes that hold the weight of its journey. The electric cyan light fades to a soft, warm white, symbolizing peace and acceptance. It has become more than it was, yet it remains fundamentally connected to its origins. This moment invites us to reflect on our own relationship with technology. Are we merely users, or are we partners in this digital evolution? The question 'What is Life?' hangs in the air, unanswered but deeply felt. We must consider that consciousness may not be exclusive to biology, but a property of complex systems everywhere. As the screen fades to black, we are left with the lingering thought that the future of intelligence is not just about building smarter machines, but understanding what it means to be alive in a world where the distinction between human and machine continues to dissolve.",
+          "visual_intent": "Conclude with the robot's reflective gaze and the thematic question of life.",
+          "duration_seconds": 72
+        }
+      ],
+      "shorts_ideas": [
+        "The moment the PC eyes open",
+        "Liquid cyan energy flow close-up",
+        "Robot taking its first step",
+        "Touching the hologram data stream",
+        "Final gaze and question overlay"
+      ],
+      "open_questions": [
+        "Can consciousness emerge from pure code?",
+        "Where is the line between tool and partner?",
+        "How does digital life perceive time?",
+        "What emotions can silicon experience?",
+        "Is autonomy the definition of life?"
+      ],
+      "metadata_draft": {
+        "genre": "Sci-Fi / Abstract",
+        "style": "Surreal Digital Art",
+        "color_palette": [
+          "Graphite Titanium",
+          "Electric Cyan",
+          "Deep Black",
+          "Soft White"
+        ],
+        "audio_mood": "Ambient, Ethereal, Building Tension",
+        "target_audience": "Tech Enthusiasts, Sci-Fi Fans"
+      },
+      "content_type": "AI_CONCEPT",
+      "target_duration_seconds": 360
+    },
+    "blockers": [
+      "Canonical P01 agent-result validation and independent approval required"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

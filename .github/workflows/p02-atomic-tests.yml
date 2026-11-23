@@ -1,0 +1,28 @@
+name: P02.01 atomic-claim regression
+on:
+  push:
+    branches:
+      - dev/p02.01-atomic-proof
+    paths:
+      - 'agents/executive_producer/recovery/**'
+      - '.github/workflows/p02-atomic-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  atomic-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONNOUSERSITE: '1'
+    steps:
+      - name: Checkout development source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test SQLite transaction and concurrency behavior
+        working-directory: agents/executive_producer/recovery
+        run: python3 -B -m unittest -v test_atomic_claim.py

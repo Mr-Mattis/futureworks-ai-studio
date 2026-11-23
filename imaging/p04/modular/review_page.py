@@ -1,0 +1,65 @@
+"""Reusable single-message acceptance UI for P04.06 geometry stages."""
+from __future__ import annotations
+from pathlib import Path
+import html,json,sys
+def create(folder):
+    folder=Path(folder)
+    data=json.loads((folder/"FWAI-T001_geometry_receipt.json").read_text())
+    if data["geometry"]["human_visual_approval"] is not False:
+        raise ValueError("Geometry must remain unapproved until explicit human decision")
+    preview=html.escape(data["artifacts"]["blueprint"]["path"],quote=True)
+    mask=html.escape(data["artifacts"]["subject_mask"]["path"],quote=True)
+    sha=html.escape(data["source_sha256"])
+    body='''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Future Works AI Studio — P04.06</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0d1721;color:#eef8ff;margin:0;line-height:1.5}
+main{max-width:1120px;margin:auto;padding:28px}
+h1{margin-bottom:0}p{color:#bdcad6}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px}
+.panel{background:#1b2d3b;border:1px solid #375366;padding:17px;border-radius:12px}
+iframe{background:#13202c;border:0;width:100%;height:410px;border-radius:8px}
+a{color:#72deff}
+label{display:block;padding:8px}
+textarea{background:#0a131e;color:white;width:100%;box-sizing:border-box;min-height:120px}
+input[type=text]{padding:9px;background:#0a131e;color:white;border:1px solid #537188;width:100%;box-sizing:border-box}
+button{background:#6fe0ff;border:0;border-radius:8px;padding:12px 18px;cursor:pointer}
+.small{font-size:.85rem}
+</style></head><body><main><h1>P04.06 — Technology Geometry Acceptance</h1>
+<p>FWAI-T001 · Civilian Orbital Lattice Weaver · Structure before realism.</p>
+<div class="panel"><strong>What this is:</strong> a dimensioned orthographic design with linked fabrication arms and a separately transparent silhouette.
+<p><strong>What this is not:</strong> a photograph, an already-functioning spacecraft, a structural simulation or proof of real-world feasibility. Your goal is real-life-like technology once future stages are approved.</p></div>
+<div class="panels"><div class="panel"><h2>Technology geometry</h2><iframe src="'''+preview+'''" title="Blueprint"></iframe>
+<a href="'''+preview+'''">Open vector blueprint full size</a></div>
+<div class="panel"><h2>Subject-only silhouette</h2><iframe src="'''+mask+'''" title="Silhouette mask"></iframe>
+<a href="'''+mask+'''">Open independent transparent mask</a></div></div>
+<section class="panel"><h2>Your decisions</h2>
+<p>Review the 40 m perimeter truss, six linked fabrication arms, central maintenance hatch, mechanical coherence and futuristic nonmilitary silhouette.</p>
+<label><input type="radio" name="geometry" value="APPROVE"> Approve technology geometry</label>
+<label><input type="radio" name="geometry" value="REVISE"> Revise technology geometry</label>
+<label><input type="radio" name="geometry" value="HOLD" checked> Hold</label>
+<p class="small">Mechanical QA has passed a heuristic connectivity check; its real-world feasibility is NOT certified.</p>
+<label>Notes / changes required <input type="text" id="notes" placeholder="e.g. larger scale cue; articulated arm should be more distinctive"></label>
+<button onclick="result()">Generate review message</button>
+<button onclick="copy()">Copy review</button><textarea id="output" readonly></textarea>
+<p id="feedback" class="small"></p></section></main>
+<script>
+function result(){let x=document.querySelector('input[name="geometry"]:checked').value;
+let notes=document.getElementById('notes').value.trim();
+document.getElementById('output').value=['FWAI P04.06 TECHNOLOGY GEOMETRY REVIEW',
+'DESIGN=FWAI-T001','SPEC_SHA256='''+sha+'''',
+'P04.06-GEOMETRY='+x+(notes?' | NOTES='+notes:''),
+'MECHANICAL_QA=HEURISTIC_PASS_NOT_CERTIFIED',
+'MATERIAL_RENDER=NOT_AUTHORIZED','ENVIRONMENT_RENDER=NOT_AUTHORIZED',
+'PUBLISH=NOT_AUTHORIZED'].join('\\n')}
+async function copy(){result();try{await navigator.clipboard.writeText(document.getElementById('output').value);
+document.getElementById('feedback').textContent='Copied. Paste the decision into ChatGPT.'}
+catch(e){document.getElementById('output').select();document.getElementById('feedback').textContent='Press Ctrl+C to copy.'}}
+result();
+</script></body></html>'''
+    path=folder/"P04_06_TECH_GEOMETRY_REVIEW.html"
+    path.write_text(body,encoding="utf-8")
+    print(path)
+if __name__=="__main__":
+    if len(sys.argv)!=2:raise SystemExit("Usage: python review_page.py OUTPUT_DIR")
+    create(sys.argv[1])

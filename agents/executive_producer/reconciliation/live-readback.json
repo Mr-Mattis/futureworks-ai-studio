@@ -1,0 +1,39 @@
+{
+  "workflow_id": "HBvqaDLfhurpNLlu",
+  "version_id": "34b0350a-b43b-4848-b0cb-94eb91c31242",
+  "active": false,
+  "parameter_checks": [
+    {
+      "name": "Manual role fixture",
+      "matched": true
+    },
+    {
+      "name": "Prepare input",
+      "matched": true
+    },
+    {
+      "name": "Executive Producer Agent",
+      "matched": true
+    },
+    {
+      "name": "Ollama Chat Model",
+      "matched": true
+    },
+    {
+      "name": "Structured Output Parser",
+      "matched": true
+    },
+    {
+      "name": "Validate canonical proposal - no dispatch",
+      "matched": true
+    }
+  ],
+  "planner_node_type": "@n8n/n8n-nodes-langchain.chainLlm",
+  "orchestrator_entry_disabled": true,
+  "orchestrator_entry_disconnected": true,
+  "ollama_credential_unchanged": true,
+  "has_tool_connections": false,
+  "execution_53": "failed_closed_invalid_model_JSON",
+  "execution_54": "success",
+  "note": "Snapshot contains no credential references, tokens or execution resume data."
+}

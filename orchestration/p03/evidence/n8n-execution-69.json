@@ -1,0 +1,104 @@
+{
+  "checkpoint": "P03.01-P03.08 dev one-shot transport",
+  "workflow_id": "9EzAAns1xeJDPZJe",
+  "execution_id": "69",
+  "workflow_version": "b6878817-13c0-481a-a5ad-73827d89a763",
+  "execution_status": "success",
+  "mode": "synthetic_replay_transport_only",
+  "notes": "Real n8n HTTP Request node contacted temporary WSL developer-only demo endpoint; all seven P02 role outputs were archived Ollama candidate replays; NO fresh role/model inference in this execution. Temporary no-auth demo was restricted to one immutable fixture and disabled after test.",
+  "output": {
+    "checkpoint": "P03.01-P03.08",
+    "mode": "synthetic_replay_transport_only",
+    "is_test": true,
+    "status": "awaiting_human_approval",
+    "dashboard": {
+      "approvals": [
+        {
+          "name": "budget_approval",
+          "status": "pending"
+        },
+        {
+          "name": "human_approval",
+          "status": "pending"
+        },
+        {
+          "name": "publication_approval",
+          "status": "pending"
+        }
+      ],
+      "assets_ready": 0,
+      "authorization": {
+        "production_approved": false,
+        "publish_authorized": false,
+        "spend_authorized": false
+      },
+      "costs_usd": 0,
+      "dispatch_performed": false,
+      "issues": [],
+      "manifest_sha256": "cf2bbd17b2170755fef18de1be5ea4c08694ee894c8167c70ed322aa9906fe87",
+      "next_action": "owner_review",
+      "project_id": "FWAI-EP-0001",
+      "provider_jobs": [],
+      "revision": 1,
+      "run_id": "P03-DEV-N8N-ONE-SHOT-001",
+      "stages": [
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "research_agent",
+          "stage": "research",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "creative_director",
+          "stage": "script",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "visual_director",
+          "stage": "visual",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "avatar_director",
+          "stage": "avatar",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "budget_controller",
+          "stage": "budget",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "editing_supervisor",
+          "stage": "assembly",
+          "state": "passed"
+        },
+        {
+          "attempt": 1,
+          "error": null,
+          "role": "quality_control",
+          "stage": "qc",
+          "state": "passed"
+        }
+      ],
+      "state": "awaiting_approval"
+    },
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "schema": "FWAI_TECH_GEOMETRY_1",
+  "design_id": "FWAI-T001",
+  "purpose": "civilian_orbital_construction",
+  "scene_type": "isolated_subject",
+  "environment": null,
+  "military": false,
+  "weapons": [],
+  "camouflage": false,
+  "truss_ring_diameter_m": 40.0,
+  "reference_view": "orthographic_top",
+  "ring": [
+    [
+      20.0,
+      0.0
+    ],
+    [
+      10.0,
+      17.321
+    ],
+    [
+      -10.0,
+      17.321
+    ],
+    [
+      -20.0,
+      0.0
+    ],
+    [
+      -10.0,
+      -17.321
+    ],
+    [
+      10.0,
+      -17.321
+    ]
+  ],
+  "fabrication_arms": [
+    {
+      "anchor": 0,
+      "joints": [
+        [
+          20.0,
+          0.0
+        ],
+        [
+          22.0,
+          3.0
+        ],
+        [
+          25.0,
+          1.0
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    },
+    {
+      "anchor": 1,
+      "joints": [
+        [
+          10.0,
+          17.321
+        ],
+        [
+          8.402,
+          20.553
+        ],
+        [
+          11.634,
+          22.151
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    },
+    {
+      "anchor": 2,
+      "joints": [
+        [
+          -10.0,
+          17.321
+        ],
+        [
+          -13.598,
+          17.553
+        ],
+        [
+          -13.366,
+          21.151
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    },
+    {
+      "anchor": 3,
+      "joints": [
+        [
+          -20.0,
+          0.0
+        ],
+        [
+          -22.0,
+          -3.0
+        ],
+        [
+          -25.0,
+          -1.0
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    },
+    {
+      "anchor": 4,
+      "joints": [
+        [
+          -10.0,
+          -17.321
+        ],
+        [
+          -8.402,
+          -20.553
+        ],
+        [
+          -11.634,
+          -22.151
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    },
+    {
+      "anchor": 5,
+      "joints": [
+        [
+          10.0,
+          -17.321
+        ],
+        [
+          13.598,
+          -17.553
+        ],
+        [
+          13.366,
+          -21.151
+        ]
+      ],
+      "function": "precision_additive_fabrication",
+      "mechanical_chain": "truss_mount -> rotary_joint -> linear_actuator -> tool_head",
+      "power": "shielded_harness",
+      "maintenance": "replaceable_joint_cartridge"
+    }
+  ],
+  "radiators": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "crew_access": {
+    "type": "maintenance_airlock",
+    "location": "central_hub",
+    "width_m": 2.0
+  },
+  "engineering_status": "fictional_visualization_not_physically_validated",
+  "materials_pending": "separate material gate",
+  "camera_pending": "separate cinematic gate",
+  "style_target": "real-life-like tangible manufactured technology; not concept art or CGI look"
+}

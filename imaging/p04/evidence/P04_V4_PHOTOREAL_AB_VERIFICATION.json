@@ -1,0 +1,57 @@
+{
+  "phase": "P04",
+  "experiment": "V4_photoreal_mechanical_A_B",
+  "models": {
+    "base": "Realistic_Vision_V6.0_NV_B1_fp16.safetensors",
+    "base_sha256": "c48bfd159cd7a6507b128685e963c398fa72399cefafaf603781df50ce836cc7",
+    "base_license": "creativeml-openrail-m",
+    "vae_sha256": "735e4c3a447a3255760d7f86845f09f937809baa529c17370d83e4c3758f3c75",
+    "vae_license": "MIT",
+    "upscale_sha256": "37f9a931c215f040aa6d50f711f2cb115f713c46df1d0d6469a8bd7bfe9a60bb"
+  },
+  "A": "new text-to-image documentary photoreal rover details",
+  "B": "img2img mechanical refinement of V3 rover using .5 denoise",
+  "owner_visual_approval": "PENDING",
+  "commercial_use_approval": "PENDING_FINAL_RIGHTS_CHECK",
+  "paid_calls": 0,
+  "production_approved": false,
+  "publish_authorized": false,
+  "assets": [
+    {
+      "asset": "V4_A_NATIVE",
+      "sha256": "00517d03d001f4d8c06f0c03e79547c5a4acb746d6cb6113584516b96231e605",
+      "resolution": [
+        768,
+        512
+      ],
+      "immutable": true
+    },
+    {
+      "asset": "V4_A_ESRGAN_1080P",
+      "sha256": "1dcf68c2a92507471fb20934d1d5759eef049758ce5694af24ce8b45c084835e",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "immutable": true
+    },
+    {
+      "asset": "V4_B_NATIVE",
+      "sha256": "ece12df302a1a09afe50d2ea4b3af051830b5998ac6c3167a9045279c1a549aa",
+      "resolution": [
+        768,
+        512
+      ],
+      "immutable": true
+    },
+    {
+      "asset": "V4_B_ESRGAN_1080P",
+      "sha256": "4f9f32d95505a8affe9b9bbbb39cadd5751e37b692f1c957cdcd995ce156e775",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "immutable": true
+    }
+  ]
+}

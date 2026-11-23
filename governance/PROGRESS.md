@@ -20,3 +20,93 @@ Counting discrepancy: the supplied phase denominators sum to 111, while the supp
 Next sequential checkpoint is P02.01 Executive Producer. Preserve the working production webhook. No paid generation, publishing or stack substitution authorized by this status record.
 
 Owner preference: after completing each checkpoint, ask whether to move on to the next checkpoint; do not automatically advance.
+
+## P02.01 WSL continuation - November 15, 2026
+
+P02.01.07 is verified complete for isolated, zero-cost development integration:
+transactional claims and durable work intent, cross-process exclusion, fenced
+recovery, immutable manifest references and unsubmitted provider reservations.
+P02.01.08 evidence is consolidated in
+agents/executive_producer/recovery/WSL-ACCEPTANCE.md and WSL-TEST-RESULTS.txt.
+The final WSL offline run passed 119 tests. n8n execution 53 failed closed;
+reconciled execution 54 passed, and its exact candidate passed concurrent canonical
+worker ingestion. The Executive Producer development workflow remains inactive.
+
+P02.01.09 is prepared for draft branch review. Overall P02.01 owner acceptance and
+production validation remain pending; P02.02 is not started. No production
+migration, paid-provider submission, publication or merge is authorized by this
+record. The locked checklist, accepted contracts and production worker/compose
+bytes are unchanged. This development verification does not increase the
+established phase count or establish real provider-side exactly-once behavior.
+
+## P02.01 acceptance closeout — November 15, 2026
+
+**P02.01 Executive Producer: COMPLETE for the isolated local-agent development milestone.** The owner requested P02.01 closure following the authorized formal PR review. Current acceptance record: `agents/executive_producer/recovery/P02.01-ACCEPTANCE.md`.
+
+The final authorized WSL re-run passed **120** offline-isolated tests (21 Executive Producer, 23 development worker and n8n wrapper, 65 canonical contracts, 11 atomic claims). It includes a new guard against invalid synthetic ambiguous-operation state transitions. n8n execution 54 is a successful blocked candidate with five scenes, seven work packages, preserved blockers, no dispatch and all authorization false. Both development workflows remain inactive. Production worker, compose, locked checklist and `main` are unchanged.
+
+P02.01.08 evidence consolidation and P02.01.09 formal review are complete. Draft PR #1 stays **unmerged**; owner acceptance of the development role does **not** approve merging, production deployment, provider charges or publication. Permanent service wiring, external provider reconciliation and production validation belong to later gated integration work. **P02.02 is the next sequential role checkpoint; not started here.** P02 roles accepted in development: **1/10**. No other phase status is advanced.
+
+## P02.02–P02.10 nine-role development verification — November 15, 2026
+
+**Nine additional specialist agents are built and individually development-verified; P02 technical local-agent exit criterion: 10/10 roles. Formal owner acceptance and draft PR merge review remain open.** Full evidence: `agents/p02_roles/P02-NINE-AGENTS-ACCEPTANCE.md`.
+
+PR #1 was confirmed merged into `dev/p02.01-executive-producer` at `e1b4ad0`; the nine-role development branch `dev/p02.02-p02.10-local-agents` was created from that merged state, not from `main`.
+
+The eight existing inactive Ollama specialist workflows were hardened with frozen synthetic input, stricter role-native structured output, fail-closed role policies, canonical blocked handoff and disabled/disconnected orchestrator triggers. A separate inactive Creative Director workflow was built without modifying the active production Creative Director. Successful manual Ollama evidence: P02.02 **59**, P02.03 **57**, P02.04 **58**, P02.05 **60**, P02.06 **64**, P02.07 **62**, P02.08 **63**, P02.09 **65**, P02.10 **66**. Rejected diagnostic outputs (Creative **56** and Budget **61**) were hardened and successfully retested; negative results were not counted as passes.
+
+A WSL2 Bubblewrap-isolated regression run passed **141 tests** (21 Executive Producer + 23 development worker + 65 P01 contracts + 11 atomic concurrency + 21 nine-agent role, wrapper and live-result tests); all accepted role candidates passed P01 canonical envelope validation in an offline handoff. All role authorization flags remain false, dispatch remains false, and all development workflows are inactive. No paid calls, likeness generation, publishing, production changes, or merge into `main` occurred.
+
+**Status:** P02.02–P02.10 implemented and verified for controlled local-agent development; P02 10/10 technical verification, subject to formal review/owner acceptance. Do **not** automatically advance to P03 orchestration or deploy. The P02 development-workflow PR remains to be reviewed and merged only with owner authorization.
+
+## P02 merged development closeout — November 15, 2026
+
+**P02: 10/10 locally tested agents, development milestone COMPLETE.** The owner confirmed that all P02 pull requests were merged. GitHub verified PR #1 merge commit `e1b4ad0314b3969481d500efbc70aa98a9f8b39d` and PR #2 merge commit `1924b5a4211121f4b01df894ec35ab76a5c73877`, both targeting `dev/p02.01-executive-producer`. The earlier PR-draft language above remains historical rather than current.
+
+All nine specialist live Ollama tests and the prior Executive Producer role passed development acceptance; the most recent full WSL isolated evidence passed **141 tests**. P02 technical exit criterion is satisfied for local planning and blocked canonical handoffs. No production workflows were activated, no paid providers called, no publishing or identity usage authorized, and `main` was not merged by either PR.
+
+**P03.01 Master Production Orchestrator is the next checkpoint, NOT started.** The locked checklist calls for explicit user authorization before advancing to a new phase. Production and provider-side integration remain subject to later approval gates.
+
+## P03.01–P03.08 Master Orchestration — November 15, 2026
+
+**P03: 8/8 development implementations technically verified; draft merge review/owner acceptance pending.** Source and detailed evidence: `orchestration/p03/P03-ACCEPTANCE.md`. This is the first controlled master-orchestration phase following merged P02 10/10. The locked master checklist is unchanged.
+
+- Dedicated WSL worktree `~/futureworks-studio/futureworks-p03-orchestration` and branch `dev/p03.01-p03.08-orchestration`. Production Python worker, Compose, locked contracts, active Creative Director, and active render workflow unchanged.
+- Durable seven-stage SQLite orchestrator, canonical immutable handoffs, dependency-aware concurrent Visual/Avatar planning, bounded local retries and mock provider polling/recovery, immutable human/budget/publication approval holds, and a read-only stage/cost/asset/issue dashboard implemented.
+- Inactive n8n master workflow `F9DwOI01m1c4ld3Y` is a credential-placeholder development scaffold; secure credential provisioning is a separate gate.
+- **n8n execution 67** passed with pinned HTTP results; **68** correctly rejected unauthorized webhook input; **69** successfully sent a frozen test concept over a **real n8n HTTP Request** to an explicitly enabled, temporary one-shot WSL dev endpoint, automatically validated/replayed seven stages and returned `awaiting_human_approval`, three pending gates, false dispatch/permissions and zero cost. This was **synthetic role-output replay**, not fresh seven-role inference. The one-shot demo server is stopped and token revoked.
+- Separate WSL **`P03-HYBRID-OLLAMA-001`** completed all seven stages using fresh local Ollama for Research, Visual, Avatar, Budget, Editing and QC, plus exact-manifest reused original P02.02 Creative Director output. All canonical envelopes passed, with false authorization and no provider calls. Earlier fully fresh Ollama run rejected short narration twice and correctly quarantined in `needs_review` (known quality limitation).
+- The complete 190-test read-only Bubblewrap regression portfolio (P01 65; P02.01 21+23+11; P02 nine-role 21; P03 49) passed with zero failures. No live paid provider operations or publishing occurred.
+- **Phase exit:** P03.01–P03.08 verified for the isolated synthetic/local planning-development scope, **not** arbitrary real-brief production intake or provider-side exactly-once behavior. Draft pull request and formal owner merge approval remain pending. Do **not** start P04 without approval.
+
+P03.07 additional acceptance: an isolated background **mock-only** polling thread uses SQLite due timestamps, bounded backoff, two-attempt retry ceiling and restart-safe quarantine. Two new regression tests passed; total P03 suite **49** and combined P01–P03 suite **190**. No actual provider polling or submissions were enabled. This record remains development technical evidence; owner merge authorization is still required.
+
+## P03 merged development closeout — November 15, 2026
+
+**P03: COMPLETE for the isolated planning-development milestone (8/8).** Owner confirmed PR #5 merged; independently verified merged GitHub PR #5, merge commit `9be3364877d232ea6bacaf1e347f777af4bd631e`, targeting `dev/p02.01-executive-producer`. Prior draft/merge-hold notes above are historical.
+
+Evidence accepted on the merged development branch: 190 isolated P01–P03 regressions passed; actual n8n-to-WSL synthetic transport execution 69 reached the approval hold without paid operations; separate six-fresh-plus-exact-cached-Creative local Ollama orchestration run completed seven planning stages with canonical handoffs, zero spending and three pending approval gates. P03 source, tests and acceptance record are in `orchestration/p03/`.
+
+**P04 is NOT authorized or started by this merge.** The locked phase boundary still requires a new owner instruction. The merged state does not enable production deployment, real arbitrary-intake webhook, actual provider submission, external paid polling, spending or publishing. No assertion is made that `main` was changed by PR #5.
+
+## P04.01–P04.06 Local AI Image Generation — November 15, 2026
+
+**P04 six development components implemented and demonstrated; full locked P04 exit remains OPEN.** Evidence: `imaging/p04/P04-ACCEPTANCE.md`. All changes are isolated to branch `dev/p04.01-p04.06-local-images` and development worktree `~/futureworks-studio/futureworks-p04-images`. Production worker, active workflows, Compose and `main` untouched.
+
+Real Windows ComfyUI 0.45.0 initialized on RX 9070 XT with ROCm 7.2, supported PyTorch GPU; pinned SD1.5 checkpoint license metadata reviewed, downloaded and SHA256 verified. P04.03 four source-controlled templates generated **ten actual ComfyUI GPU PNGs**, each downloaded, full-PNG-validated, SHA-indexed in an isolated SQLite store, and automatically transferred by metadata into an actual local Ollama Visual Director planning run. The plan covers all ten distinct image references, passes the canonical P01.02 schema, remains `blocked`, and has false authorization flags. File artifacts remain local outside public Git. Visual pixel/rights review and stronger scene-consistency benchmarking remain pending.
+
+Actual n8n read-only Comfy GPU/queue probe **72** succeeded and real ten-prompt Comfy history verification **74** succeeded. The n8n async submission/polling scaffold was **pin-tested only** (70/71) because its credential is a placeholder; authenticated n8n→batch generation is NOT yet verified or enabled. All P04 development workflows remain inactive. Cross-phase re-run: **226 isolated regressions passed** (65 P01 + 21 EP + 23 worker + 11 atomic + 21 specialists + 49 P03 + 36 P04), zero failures.
+
+**P04 exit gate OPEN:** P01 development manifest status is `pending_review`, not human approved; generic secure n8n batch credential/intake, video-generation adapter and human image QA are not in place. Do not mark full phase accepted, authorize production/provider use, or advance P05 without explicit owner approval. Draft PR merge review pending.
+
+## P04 approval remediation and P05.01–P05.07 guarded development — November 15, 2026
+
+**P04 locked exit remains OPEN despite PR #9 merge.** The owner authorized remediation and all P05 development checkpoints, but **not paid Runway generation, spending, publication, production activation or a specific image-rights approval**. This work has proceeded in isolated WSL worktree `~/futureworks-studio/futureworks-p05-video` and GitHub branch `dev/p04-remediation-p05-video`, from merged P04 PR #9 at `a37d4da`.
+
+P04 remediation: independent HMAC owner-reviewed manifest/image rights/quality/consistency gate now exists in `imaging/p04/approval_gate.py`; refuses the unapproved current P01 `pending_review` manifest even under synthetic signed test conditions. New inactive n8n review gate `XhXS6pgYziLrSIgy` uses a managed-credential template rather than a plaintext bearer, and its writer remains disabled/disconnected. n8n **execution 76** intentionally stopped on the unapproved manifest; no actual Comfy batch submit. Managed credential provisioning and actual human source-image approval remain unresolved.
+
+P05: provider-agnostic durable three-scene video intent/receipt/QC/storage implementation with current `gen4.5` API contract, USD/credit cost snapshot, zero spend cap, task status polling and bounded mock review queue; no network-capable paid submit is enabled. `video/p05/download.py` validates future expiring outputs, with only injected fake media downloads tested. Inactive n8n zero-cost planning workflow `IAkOGqIN72HnqBWe` **execution 75 succeeded**, retaining all authorization false and actual generated clips 0. Separately, three **real local FFmpeg camera-motion H.268 storyboard previews** were generated from P04 images, FFprobe verified and saved solely on Windows to `Documents/futureworks-p05-data/storyboard-previews`; these are **not** Runway-generated cinematic clips. Local frame sampling produced conservative human-required continuity report. Evidence: `video/p05/P04-P05-DEVELOPMENT-ACCEPTANCE.md`.
+
+Across P01–P05 **268 read-only Bubblewrap-isolated regression tests passed**, zero failures, including seven new P04 approval and 35 P05 protocol/integration tests; prior atomic 11 suite was rerun in the corrected read-only namespace after an aggregate-run path typo. All active production workflows, Compose, worker and `main` remain unchanged.
+
+**P05 locked exit OPEN:** actual Runway developer credentials, owner-approved nonzero budget, authorized image uploads, three real AI-generated clips, clip costs and independent human continuity approval have not occurred. Official Gen-4.5 list quote at the time was 12 credits/s; 3×5s = 180 credits ($1.80 before tax) for planning only. Draft PR review required. Do not advance to P06.

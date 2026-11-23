@@ -1,0 +1,103 @@
+{
+  "role": "avatar_director",
+  "checkpoint": "P02.05",
+  "workflow_id": "Uj3C8kkSV3NMlbvs",
+  "workflow_version": "7b4227bd-f1c2-4b16-8f5e-37c8bc8450da",
+  "execution_id": "60",
+  "model": "qwen3.6:latest",
+  "handoff": {
+    "checkpoint": "P02.05",
+    "is_test": true,
+    "scope": "episode",
+    "status": "candidate_requires_canonical_validation",
+    "input_manifest": {
+      "schema_version": "1.0.0",
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "revision": 1,
+      "sha256": "483a1439c2fcdb330fdaede44fb826e3bb66fc1995cf93c02e56cf8b98c5d2cd"
+    },
+    "candidate": {
+      "project_id": "FWAI-P0105-LIVE-TEST",
+      "identity_profile_version": "DRAFT_NO_AVATAR",
+      "presenter_scenes": [
+        {
+          "scene_id": "S01",
+          "script_excerpt": "Introduction to Future Works AI Studio: Transforming computers and futuristic builds.",
+          "wardrobe": "Graphite/Titanium industrial casual",
+          "setting": "Studio background with electric cyan accents",
+          "expression": "Neutral, professional",
+          "gesture": "Open hand gesture indicating scope",
+          "voice_style": "Standard synthetic placeholder"
+        },
+        {
+          "scene_id": "S02",
+          "script_excerpt": "Overview of RC builds and original mecha-model construction techniques.",
+          "wardrobe": "Graphite/Titanium industrial casual",
+          "setting": "Workbench environment with restrained orange safety highlights",
+          "expression": "Focused, instructional",
+          "gesture": "Pointing to hypothetical model parts",
+          "voice_style": "Standard synthetic placeholder"
+        },
+        {
+          "scene_id": "S03",
+          "script_excerpt": "Demonstration of Venetian plaster application and plasterwork finishing.",
+          "wardrobe": "Graphite/Titanium industrial casual",
+          "setting": "Wall surface with texture samples",
+          "expression": "Concentrated, detailed",
+          "gesture": "Mimicking trowel motion",
+          "voice_style": "Standard synthetic placeholder"
+        },
+        {
+          "scene_id": "S04",
+          "script_excerpt": "Techniques for painting and vinyl installation on complex surfaces.",
+          "wardrobe": "Graphite/Titanium industrial casual",
+          "setting": "Clean room environment with cyan lighting",
+          "expression": "Precise, careful",
+          "gesture": "Smoothing motion simulation",
+          "voice_style": "Standard synthetic placeholder"
+        },
+        {
+          "scene_id": "S05",
+          "script_excerpt": "Conclusion: Safety constraints and practical limitations in DIY construction.",
+          "wardrobe": "Graphite/Titanium industrial casual",
+          "setting": "Studio background with electric cyan accents",
+          "expression": "Serious, informative",
+          "gesture": "Warning sign gesture or crossed arms",
+          "voice_style": "Standard synthetic placeholder"
+        }
+      ],
+      "required_consents": [
+        "Explicit consent for digital likeness creation is missing.",
+        "Explicit consent for voice cloning is missing.",
+        "Legal review of AI-generated content disclosure required."
+      ],
+      "missing_assets": [
+        "Approved identity profile (null)",
+        "Approved likeness data",
+        "Approved voice sample",
+        "Consent records for avatar usage"
+      ],
+      "continuity_checks": [
+        "Brand color palette consistency: Graphite/titanium, electric cyan, restrained orange.",
+        "Tone consistency: Professional, technical, safety-conscious.",
+        "Distinction between real builds and AI concepts maintained in script."
+      ],
+      "disclosure_flags": [
+        "No physical avatar exists; this is a planning draft.",
+        "No likeness or voice has been generated or approved.",
+        "Content describes hypothetical scenarios for production planning only.",
+        "Safety warnings apply to all construction-related topics (plaster, painting, vinyl)."
+      ]
+    },
+    "blockers": [
+      "Independent canonical contract validation and owner approval required",
+      "Presenter likeness/voice consent must be independently verified"
+    ],
+    "authorization": {
+      "production_approved": false,
+      "spend_authorized": false,
+      "publish_authorized": false
+    },
+    "dispatch_performed": false
+  }
+}

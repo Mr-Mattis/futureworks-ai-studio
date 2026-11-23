@@ -6,7 +6,7 @@ import json,sys,hashlib
 ROOT=Path.home()/"Documents"/"futureworks-maintenance"
 def scan(name):
     folder=ROOT/name
-    output=folder/("BL02_P04_composite.png" if name=="poc-bl02" else "BL01_P04_composite.png")
+    output=folder/("BL05_P04_composite.png" if name=="poc-bl05-gpu-baseline" else "BL02_P04_composite.png" if name=="poc-bl02" else "BL01_P04_composite.png")
     with Image.open(output) as im,Image.open(folder/"BL01_edit_mask.png") as m:
         img=im.convert("RGB"); mask=m.convert("L")
         vals=[img.getpixel((x,y)) for y in range(576) for x in range(1024) if mask.getpixel((x,y))>=128]
@@ -24,5 +24,5 @@ def scan(name):
     print(json.dumps(result,indent=2))
     return no_flat_fill
 if __name__=="__main__":
-    if len(sys.argv)!=2 or sys.argv[1] not in {"poc-bl01","poc-bl02"}:raise SystemExit("Usage: python quality_gate.py poc-bl01|poc-bl02")
+    if len(sys.argv)!=2 or sys.argv[1] not in {"poc-bl01","poc-bl02","poc-bl05-gpu-baseline"}:raise SystemExit("Usage: python quality_gate.py poc-bl01|poc-bl02|poc-bl05-gpu-baseline")
     scan(sys.argv[1])

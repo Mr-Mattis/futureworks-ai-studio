@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FWAI-B001 v2 | Offline Skybridge 3D Geometry Inspector</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0d1722;color:#eff6fc;font-family:system-ui,Segoe UI,sans-serif}
+main{max-width:1280px;margin:auto;padding:22px}
+h1{margin:0;font-size:1.55rem}
+p{color:#c2ced9;line-height:1.5}
+main>section{background:#192c3c;border:1px solid #39576e;border-radius:12px;padding:15px;margin:13px 0}
+#view{width:100%;height:580px;display:block;background:#101c27;border:1px solid #4b657b;border-radius:8px;touch-action:none}
+.control{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:9px 0}
+button,input[type=file]{border:1px solid #668ba1;border-radius:7px;padding:9px 12px;background:#26475d;color:#eff6fc;cursor:pointer}
+button:hover{background:#356b86}
+label{font-size:.9rem}
+input[type=range]{width:180px;accent-color:#7bdcfa}
+small{color:#b9a9a1}
+#stats{font-variant-numeric:tabular-nums;font-size:.92rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.legend span{display:inline-flex;gap:5px;align-items:center;font-size:.85rem}
+.legend i{display:inline-block;width:13px;height:13px}
+@media(max-width:650px){#view{height:350px}main{padding:10px}}
+</style></head><body><main>
+<h1>FWAI-B001 v2 — Double-Helix + Peripheral Skybridge</h1>
+<p>Unrendered engineering geometry. This is one coherent parametric mesh, not an AI-generated image.
+Open the local OBJ beside this file, then rotate it to inspect the two independent staircases, the new upper skybridge route, and support relationships.</p>
+<section><div class="control">
+<label for="model">Select <strong>FWAI-B001_parametric_3d_concept_v2.obj</strong>:</label>
+<input id="model" type="file" accept=".obj,text/plain">
+</div><div id="stats" aria-live="polite">No mesh loaded. No network access or uploads.</div>
+<div class="control"><button type="button" data-view="iso">Isometric</button>
+<button type="button" data-view="top">Top view</button>
+<button type="button" data-view="front">Front elevation</button>
+<button type="button" data-view="side">Side elevation</button>
+<label for="zoom">Zoom</label><input id="zoom" type="range" min="50" max="200" value="100"></div>
+<canvas id="view" role="img" aria-label="Interactive geometric 3D model, movable via pointer drag or view buttons"></canvas>
+<p>Click and drag to rotate. This inspector uses flat category colors only—<strong>no physically based material rendering</strong> has occurred.</p>
+<div class="legend"><span><i style="background:#75bcd8"></i>Helix A</span><span><i style="background:#deaa6e"></i>Helix B</span><span><i style="background:#b1bcc7"></i>Balcony</span><span><i style="background:#6dd1bb"></i>Suspension</span><span><i style="background:#b395df"></i>Skybridge</span><span><i style="background:#667789"></i>Courtyard landing</span></div>
+</section>
+<section><strong>Critical architectural hold:</strong>
+<p>The two helices remain independent 24-step routes within the original 12-foot stair envelope. A <strong>3.5-foot-wide outer skybridge</strong> now curves around the right-hand side to the far-side entrance of Helix B. The new upper connection is provisionally continuous in plan and has an actual modeled deck, rails and entry aperture. Its complete swept-volume safety, structural capacity, accessible circulation, guards and building-code compliance <strong>remain unverified</strong>. The bridge occupies an overall outer envelope of approximately <strong>21.2 feet</strong>, while the staircase itself remains 12 feet. The previous nominal 7.25-foot crossing headroom remains a simplified tread-only estimate.</p>
+<small>Personal offline design review only. No uploads, scene generation, paid services or publishing.</small>
+</section></main>
+<script>
+(function(){
+"use strict";
+const input=document.getElementById("model"),canvas=document.getElementById("view"),
+stats=document.getElementById("stats"),zoom=document.getElementById("zoom");
+let yaw=.75,pitch=.55,model=null,mouse=null,program=null,gpu={};
+const gl=canvas.getContext("webgl2",{antialias:true,alpha:false});
+if(!gl){stats.textContent="WebGL2 not available in this browser. OBJ remains readable in Blender or a CAD viewer.";return;}
+const vs=`#version 300 es
+in vec3 aPos;
+in vec3 aNormal;
+in vec3 aColor;
+uniform vec3 uCenter;
+uniform float uYaw,uPitch,uAspect,uSize;
+out vec3 vColor;
+out vec3 vNormal;
+void main(){
+ vec3 p=aPos-uCenter;
+ float cy=cos(uYaw),sy=sin(uYaw),cp=cos(uPitch),sp=sin(uPitch);
+ float horizontal=cy*p.x+sy*p.y;
+ float depth=-sy*p.x+cy*p.y;
+ vec3 screen=vec3(horizontal,cp*p.z+sp*depth,-sp*p.z+cp*depth);
+ gl_Position=vec4(screen.x/(uSize*uAspect),screen.y/uSize,screen.z/30.0,1.0);
+ vec3 n=aNormal;
+ vNormal=normalize(vec3(cy*n.x+sy*n.y,cp*n.z+sp*(-sy*n.x+cy*n.y),-sp*n.z+cp*(-sy*n.x+cy*n.y)));
+ vColor=aColor;
+}`;
+const fs=`#version 300 es
+precision highp float;
+in vec3 vColor;in vec3 vNormal;
+out vec4 fragColor;
+void main(){vec3 light=normalize(vec3(-0.3,-0.5,0.8));float diffuse=abs(dot(normalize(vNormal),light));
+float intensity=.43+.57*diffuse;fragColor=vec4(vColor*intensity,1.0);}`;
+function shader(type,src){
+ const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+ if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;
+}
+try{program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vs));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(program);
+if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));}
+catch(e){stats.textContent="3D shader initialization failed: "+e.message;return;}
+const palette={STAIR_A:[.46,.76,.87],STAIR_B:[.87,.67,.43],LIBRARY:[.62,.70,.77],BALCONY:[.69,.74,.78],UPPER:[.65,.75,.84],OVERHEAD:[.41,.82,.74],PERIPHERAL_SKYBRIDGE:[.70,.54,.86],SKYBRIDGE:[.70,.54,.86],TRANSFER_TO_HELIX_B:[.71,.56,.86],TRANSFER_TO_HELIX_A:[.71,.56,.86],COURTYARD:[.39,.45,.53]};
+function color(group){
+ const k=Object.keys(palette).find(k=>group.startsWith(k));return palette[k]||[.68,.71,.72];
+}
+function parseObj(text){
+ const verts=[[0,0,0]], pos=[],nrm=[],col=[],names=new Set();
+ let group="STRUCTURE";let triangles=0,lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];
+ for(const row of text.split(/\r?\n/)){
+  if(row.startsWith("v ")){
+   const p=row.trim().split(/\s+/).slice(1,4).map(Number);
+   if(p.length!==3||p.some(x=>!Number.isFinite(x)))throw Error("Invalid vertex");
+   verts.push(p);
+   for(let i=0;i<3;i++){lo[i]=Math.min(lo[i],p[i]);hi[i]=Math.max(hi[i],p[i]);}
+  }else if(row.startsWith("g ")){group=row.slice(2).trim();names.add(group);}
+  else if(row.startsWith("f ")){
+   const ids=row.trim().split(/\s+/).slice(1).map(s=>Number(s.split("/")[0]));
+   if(ids.length!==3||ids.some(i=>!Number.isInteger(i)||i<=0||i>=verts.length))throw Error("Expected positive triangulated OBJ face");
+   const a=verts[ids[0]],b=verts[ids[1]],c=verts[ids[2]];
+   const ab=b.map((v,i)=>v-a[i]),ac=c.map((v,i)=>v-a[i]);
+   const v=[ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
+   const len=Math.hypot(...v)||1;const normal=v.map(x=>x/len);
+   for(const p of [a,b,c]){pos.push(...p);nrm.push(...normal);col.push(...color(group));}
+   triangles++;
+  }
+ }
+ if(triangles<1000)throw Error("Not the expected complete 3D concept");
+ return {pos:new Float32Array(pos),nrm:new Float32Array(nrm),col:new Float32Array(col),
+ triangles,parts:names.size,center:lo.map((v,i)=>(v+hi[i])/2)};
+}
+function setupGeometry(x){
+ model=x;
+ for(const [name,data,attr] of [["pos",x.pos,"aPos"],["nrm",x.nrm,"aNormal"],["col",x.col,"aColor"]]){
+  const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(program,attr);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,3,gl.FLOAT,false,0,0);
+  gpu[name]=buffer;
+ }
+ stats.textContent="Loaded "+x.triangles.toLocaleString()+" 3D triangles across "+x.parts+" component groups • OBJ in meters • offline.";
+ draw();
+}
+function draw(){
+ const dpr=Math.min(2,window.devicePixelRatio||1);
+ const w=Math.max(100,Math.floor(canvas.clientWidth*dpr));
+ const h=Math.max(100,Math.floor(canvas.clientHeight*dpr));
+ if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+ gl.viewport(0,0,w,h);gl.clearColor(.06,.11,.16,1);gl.clearDepth(1);
+ gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ if(!model)return;
+ gl.useProgram(program);
+ gl.uniform3fv(gl.getUniformLocation(program,"uCenter"),model.center);
+ gl.uniform1f(gl.getUniformLocation(program,"uYaw"),yaw);
+ gl.uniform1f(gl.getUniformLocation(program,"uPitch"),pitch);
+ gl.uniform1f(gl.getUniformLocation(program,"uAspect"),w/h);
+ gl.uniform1f(gl.getUniformLocation(program,"uSize"),7.0/(Number(zoom.value)/100));
+ gl.drawArrays(gl.TRIANGLES,0,model.pos.length/3);
+}
+input.addEventListener("change",async()=>{
+ const file=input.files&&input.files[0];
+ if(!file)return;
+ if(file.size>30e6){stats.textContent="File exceeds 30 MB safety limit.";return;}
+ stats.textContent="Reading local OBJ (no upload)...";
+ try{setupGeometry(parseObj(await file.text()));}
+ catch(e){stats.textContent="Cannot load file: "+e.message;model=null;draw();}
+});
+document.querySelectorAll("[data-view]").forEach(button=>button.addEventListener("click",()=>{
+ const name=button.dataset.view;
+ if(name==="iso"){yaw=.75;pitch=.55;}
+ else if(name==="top"){yaw=0;pitch=1.570796;}
+ else if(name==="front"){yaw=0;pitch=0;}
+ else if(name==="side"){yaw=1.570796;pitch=0;}
+ draw();
+}));
+zoom.addEventListener("input",draw);
+canvas.addEventListener("pointerdown",e=>{mouse={x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener("pointermove",e=>{if(!mouse)return;
+ yaw+=(e.clientX-mouse.x)*.006;
+ pitch=Math.max(-1.570796,Math.min(1.570796,pitch+(e.clientY-mouse.y)*.006));
+ mouse={x:e.clientX,y:e.clientY};draw();});
+canvas.addEventListener("pointerup",()=>{mouse=null});
+canvas.addEventListener("pointercancel",()=>{mouse=null});
+window.addEventListener("resize",draw);
+draw();
+})();
+</script>
+</body></html>
